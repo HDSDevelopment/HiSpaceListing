@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "ListerManagement";
+    Layout = "~/Views/Shared/_WebLayout.cshtml";
+    @using Microsoft.AspNetCore.Http
+}
+
+
+    <div class="bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+                        <li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span>Agency management</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="space-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-5">
+                    <div class="profile-sidebar bg-holder bg-overlay-black-70" style="background-image: url(images/banner-01.jpg);">
+                        <div class="d-sm-flex align-items-center position-relative">
+                            <div class="profile-avatar">
+                                <img class="img-fluid  rounded-circle" src="images/agent/04.jpg" alt="">
+                            </div>
+                            <div class="ml-sm-4">
+                                <h4 class="text-white">Alice Williams</h4>
+                                <b class="text-white">alicewilliams@gmail.com</b>
+                            </div>
+                            <div class="ml-auto my-4 mt-sm-0">
+                                <a class="btn btn-white btn-md" href="submit-property.html"> <i class="fa fa-plus-circle"></i>Add listing </a>
+                            </div>
+                        </div>
+                        <div class="profile-nav">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-profile.html"><i class="far fa-user"></i> Edit Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="account-my-properties.html"><i class="far fa-bell"></i>My  Lists</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="account-agency-management.html"><i class="far fa-edit"></i> List Management</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="section-title d-flex align-items-center">
+                        <h2>List Management</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table agency-management">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">List</th>
+                                            <th scope="col">Last Updated</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h6><a href="#" class="d-block mb-2"> Pomegranate office</a></h6>
+                                                <span class="badge badge-md badge-info">Pending Approval</span>
+                                            </td>
+                                            <td>
+
+                                                29,Mar 2020
+
+
+                                            </td>
+                                            <td>
+                                                <a href="#"><i class="far fa-edit pr-2"></i></a>
+                                                <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6><a href="#" class="d-block mb-2">Blossom Warehouse</a></h6>
+                                                <span class="badge badge-md badge-success">Approved</span>
+                                            </td>
+                                            <td>
+                                                26,Mar 2020
+                                            </td>
+                                            <td>
+                                                <a href="#"><i class="far fa-edit pr-2"></i></a>
+                                                <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h6><a href="#" class="d-block mb-2">SunValley real Cafe</a></h6>
+                                                <span class="badge badge-md badge-danger">Disapproved</span>
+                                            </td>
+                                            <td>
+                                                30,Mar 2020
+                                            </td>
+                                            <td>
+                                                <a href="#"><i class="far fa-edit pr-2"></i></a>
+                                                <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3 class="text-white mb-0">Sign up to our newsletter to get the latest news and offers.</h3>
+                </div>
+                <div class="col-md-7 mt-3 mt-md-0">
+                    <div class="newsletter">
+                        <form>
+                            <div class="form-group mb-0">
+                                <input type="email" class="form-control" placeholder="Enter email">
+                            </div>
+                            <button type="submit" class="btn btn-dark b-radius-left-none">Get notified</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
