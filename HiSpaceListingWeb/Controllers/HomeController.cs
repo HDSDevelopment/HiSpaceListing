@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HiSpaceListingWeb.Models;
+using Microsoft.AspNetCore.Http;
+using HiSpaceListingWeb.Utilities;
+using HiSpaceListingModels;
 
 namespace HiSpaceListingWeb.Controllers
 {
@@ -12,11 +15,13 @@ namespace HiSpaceListingWeb.Controllers
 	{
 		public IActionResult Index()
 		{
+			SetSessionVariables();
 			return View();
 		}
 
 		public IActionResult Privacy()
 		{
+			SetSessionVariables();
 			return View();
 		}
 
@@ -24,6 +29,22 @@ namespace HiSpaceListingWeb.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+		public void SetSessionVariables()
+		{
+			#region
+			User rs = HttpContext.Session.GetObjectFromJson<User>("_user");
+			ViewBag.UserEmail = HttpContext.Session.GetString(Common.SessionUserEmail);
+			ViewBag.UserId = HttpContext.Session.GetInt32(Common.SessionUserId);
+			ViewBag.UserType = HttpContext.Session.GetInt32(Common.SessionUserType);
+			ViewBag.UserCompanyName = HttpContext.Session.GetString(Common.SessionUserCompanyName);
+			#endregion
+		}
+
+		public User GetSessionObject()
+		{
+			return HttpContext.Session.GetObjectFromJson<User>("_user");
 		}
 	}
 }

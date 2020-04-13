@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +21,16 @@ namespace HiSpaceListingWeb.Utilities
 				return _ApiAddress;
 			}
 		}
+
+		#region Constructor
+
+		public Common()
+		{
+			//ApiAddress = ConfigurationManager.AppSettings["HiSpaceServiceURL"].ToString();
+			//ApiAddress = "https://localhost:44339/api/";
+		}
+
+		#endregion Constructor
 
 		#region Singleton Object
 
