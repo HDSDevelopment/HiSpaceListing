@@ -80,9 +80,31 @@ namespace HiSpaceListingWeb.Utilities
 
 		public string ApiUserAuthenticateUser = "AuthenticateUser/";
 		public string ApiUserGetUsers = "GetUsers/";
-		public string ApiUserGetUserByUserId = "GetUserByUserId/";
+		public string ApiUserGetUser = "GetUser/";
+		public string ApiUserAddUser = "AddUser/";
+		public string ApiUserUpdateUser = "UpdateUser/";
+		public string ApiUserDeleteUser = "DeleteUser/";
 
 		#endregion User Controller
+
+		#region Listing Controller
+
+		public string ApiListingControllerName
+		{
+			get
+			{
+				return ApiAddress + "Listing/";
+			}
+		}
+
+		public string ApiListingAuthenticateListing = "AuthenticateListing/";
+		public string ApiListingGetListings = "GetListings/";
+		public string ApiListingGetListing = "GetListing/";
+		public string ApiListingAddListing = "AddListing/";
+		public string ApiListingUpdateListing = "UpdateListing/";
+		public string ApiListingDeleteListing = "DeleteListing/";
+
+		#endregion Listing Controller
 
 		#endregion API Methods
 	}

@@ -14,5 +14,11 @@ namespace HiSpaceListingService.Models
 		{ }
 
 		public DbSet<User> Users { get; set; }
+		public DbSet<Listing> Listings { get; set; }
+		public DbSet<Amenity> Amenitys { get; set; }
+		public DbSet<Facility> Facilitys { get; set; }
+		public DbSet<ListingImages> ListingImagess { get; set; }
+		public DbSet<REProfessionalMaster> REProfessionalMasters { get; set; }
+		public DbSet<WorkingHours> WorkingHourss { get; set; }
 	}
 }

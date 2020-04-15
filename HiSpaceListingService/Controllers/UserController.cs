@@ -54,9 +54,9 @@ namespace HiSpaceListingService.Controllers
 		}
 
 		/// <summary>
-		/// Gets the list of all Employees.
+		/// Gets the list of all Users.
 		/// </summary>
-		/// <returns>The list of Employees.</returns>
+		/// <returns>The list of Users.</returns>
 		// GET: api/user/Users
 		[HttpGet]
 		[Route("GetUsers")]
@@ -65,10 +65,14 @@ namespace HiSpaceListingService.Controllers
 			return await _context.Users.ToListAsync();
 		}
 
+		/// <summary>
+		/// Gets the User by UserId.
+		/// </summary>
+		/// <returns>The User by UserId.</returns>
 		// GET: api/user/GetUser/1
 		//[HttpGet("GetUser/{UserId}")]
-		[HttpGet("GetUser/{UserId}")]
-		//[Route("GetClient/{UserId}")]
+		[HttpGet]
+		[Route("GetUser/{UserId}")]
 		public async Task<ActionResult<User>> GetUser(int UserId)
 		{
 			var user = await _context.Users.FindAsync(UserId);
@@ -80,5 +84,90 @@ namespace HiSpaceListingService.Controllers
 
 			return user;
 		}
+
+		/// <summary>
+		/// Add the User.
+		/// </summary>
+		/// <returns>The User by UserId.</returns>
+		// POST: api/user/AddUser
+		[HttpPost]
+		[Route("AddUser")]
+		public async Task<ActionResult<User>> AddUser([FromBody] User user)
+		{
+			user.CreatedDateTime = DateTime.Now;
+
+			_context.Users.Add(user);
+			await _context.SaveChangesAsync();
+
+			return CreatedAtAction("GetUser", new { UserId = user.UserId }, user);
+		}
+
+		/// <summary>
+		/// Update the User by UserId.
+		/// </summary>
+		/// <returns>The User by UserId.</returns>
+		// PUT: api/user/UpdateUser
+		[HttpPut]
+		[Route("UpdateUser/{UserId}")]
+		public async Task<IActionResult> UpdateUser(int UserId, [FromBody]  User user)
+		{
+			if (UserId != user.UserId || user == null)
+			{
+				return BadRequest();
+			}
+
+			using (var trans = _context.Database.BeginTransaction())
+			{
+				try
+				{
+					_context.Entry(user).State = EntityState.Modified;
+
+					try
+					{
+						await _context.SaveChangesAsync();
+					}
+					catch (DbUpdateConcurrencyException)
+					{
+						if (!UserExists(UserId))
+						{
+							return NotFound();
+						}
+						else
+						{
+							throw;
+						}
+					}
+
+					trans.Commit();
+				}
+				catch (Exception err)
+				{
+					trans.Rollback();
+				}
+			}
+
+			return NoContent();
+		}
+
+		private bool UserExists(int UserId)
+		{
+			return _context.Users.Any(e => e.UserId == UserId);
+		}
+
+		/// <summary>
+		/// Delete the User by UserId.
+		/// </summary>
+		/// <returns>The Users list.</returns>
+		// POST: api/user/DeleteUser
+		[HttpPost]
+		[Route("DeleteUser/{UserId}")]
+		public async Task<ActionResult<IEnumerable<User>>> DeleteUser(int UserId)
+		{
+			var user = await _context.Users.FindAsync(UserId);
+			_context.Users.Remove(user);
+			await _context.SaveChangesAsync();
+			return CreatedAtAction("GetUsers", user);
+		}
+
 	}
 }
