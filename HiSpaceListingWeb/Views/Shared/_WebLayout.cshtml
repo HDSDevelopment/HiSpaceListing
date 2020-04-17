@@ -22,7 +22,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Hispace - Home</title>
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" href="~/images/favicon.ico" />
 	<!-- Google Font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300,500,600,700%7CRoboto:300,400,500,700">
 	<!-- CSS Global Compulsory (Do not remove)-->
@@ -37,6 +37,7 @@
 	<!-- Template Style -->
 	<link rel="stylesheet" href="~/css/style.css" />
 	<link rel="stylesheet" href="~/css/custom.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
 	<!--=================================
@@ -75,13 +76,13 @@
 		<nav class="navbar navbar-light bg-white navbar-static-top navbar-expand-lg header-sticky">
 			<div class="container-fluid">
 				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse"><i class="fas fa-align-left"></i></button>
-				<a class="navbar-brand" href="index.html">
-					<img class="img-fluid" src="images/logo.png" alt="logo">
+				<a class="navbar-brand" href="@Url.Action( "Index","Website")">
+					<img class="img-fluid" src="~/images/logo.png" alt="logo">
 				</a>
 				<div class="navbar-collapse collapse justify-content-center">
 					<ul class="nav navbar-nav">
 						<li class="nav-item  active">
-							<a class="nav-link" href="index.html" id="navbarDropdown">Home</a>
+							<a class="nav-link" href="@Url.Action( "Index","Website")" id="navbarDropdown">Home</a>
 						</li>
 
 						<li class="nav-item dropdown">
@@ -89,16 +90,16 @@
 								Listing <i class="fas fa-chevron-down fa-xs"></i>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="property-list.html">Commercial</a></li>
-								<li><a class="dropdown-item" href="property-list.html">Coworking</a></li>
-								<li><a class="dropdown-item" href="property-list.html">RE-Professionals</a></li>
+								<li><a class="dropdown-item" href="@Url.Action( "PropertyList","Website")">Commercial</a></li>
+								<li><a class="dropdown-item" href="@Url.Action( "PropertyList","Website")">Coworking</a></li>
+								<li><a class="dropdown-item" href="@Url.Action( "PropertyList","Website")">RE-Professionals</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown ">
-							<a class="nav-link" href="about-us.html">About</a>
+							<a class="nav-link" href="@Url.Action( "About","Website")">About</a>
 						</li>
 						<li class="nav-item  ">
-							<a class="nav-link" href="contact-us.html" id="navbarDropdown">Contact</a>
+							<a class="nav-link" href="@Url.Action( "Contact","Website")" id="navbarDropdown">Contact</a>
 						</li>
 					</ul>
 				</div>
@@ -201,7 +202,7 @@
 						<ul class="list-unstyled mb-0">
 							<li>
 								<div class="footer-recent-list-item">
-									<img class="img-fluid" src="images/property/list/01.jpg" alt="">
+									<img class="img-fluid" src="~/images/property/list/01.jpg" alt="">
 									<div class="footer-recent-list-item-info">
 										<h6 class="text-white"><a class="category font-md mb-2" href="property-detail-style-01.html">Awesome family home</a></h6>
 										<a class="address mb-2 font-sm" href="#">Vermont dr. hephzibah</a>
@@ -211,7 +212,7 @@
 							</li>
 							<li>
 								<div class="footer-recent-list-item">
-									<img class="img-fluid" src="images/property/list/02.jpg" alt="">
+									<img class="img-fluid" src="~/images/property/list/02.jpg" alt="">
 									<div class="footer-recent-list-item-info">
 										<h6 class="text-white"><a class="category font-md mb-2" href="property-detail-style-01.html">Lawn court villa</a></h6>
 										<a class="address mb-2 font-sm" href="#">Newport st. mebane, nc</a>
@@ -256,6 +257,7 @@
 			</div>
 		</div>
 	</footer>
+
 	<!--=================================
 	footer-->
 	<!-- JS Global Compulsory (Do not remove)-->
@@ -273,5 +275,6 @@
 	<script src="~/js/magnific-popup/jquery.magnific-popup.min.js"></script>
 	<!-- Template Scripts (Do not remove)-->
 	<script src="~/js/custom.js"></script>
+	<script src="~/js/site.js"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ namespace HiSpaceListingWeb
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Website}/{action=Index}/{id?}");
 			});
 		}
 	}
