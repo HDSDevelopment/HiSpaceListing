@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace HiSpaceListingWeb.Utilities
@@ -96,6 +97,8 @@ namespace HiSpaceListingWeb.Utilities
 				return ApiAddress + "Listing/";
 			}
 		}
+
+		public SerializationInfo ApiClientControllerName { get; internal set; }
 
 		public string ApiListingAuthenticateListing = "AuthenticateListing/";
 		public string ApiListingGetListings = "GetListings/";

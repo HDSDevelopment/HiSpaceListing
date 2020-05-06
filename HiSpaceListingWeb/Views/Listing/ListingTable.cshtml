@@ -1,0 +1,2184 @@
+﻿
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model HiSpaceListingWeb.ViewModel.UserViewModel
+@*@model HiSpaceListingModels.User*@
+@{
+	ViewData["Title"] = "ListingTable";
+	Layout = "~/Views/Shared/_WebLayout.cshtml";
+}
+
+
+<div class="listingtable">
+	<div class="bg-light mb-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+
+						<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span>Add Table</span></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section>
+		<div class="container p-0">
+			<div class="row no-gutters">
+				<div class="widget accordion-sec col-md-12 mb-2">
+					<div class="widget-title widget-collapse">
+						<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Basic Information</h6> <i class="fas fa-chevron-down"></i> </a>
+					</div>
+					<div class="collapse show" id="property-lister">
+						<div class="accordion-sec__detail">
+							@*<form class="form-row align-items-center md-form p-3" action="account-profile.html">*@
+							@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-row align-items-center md-form p-3", enctype = "multipart/form-data"  }))
+							{
+								@Html.AntiForgeryToken()
+								@Html.HiddenFor(m => m.User.UserId)
+								@Html.HiddenFor(m => m.User.UserType)
+								@Html.HiddenFor(m => m.User.Doc_CompanyLogo)
+								@Html.HiddenFor(m => m.User.Doc_PANCopy)
+								@Html.HiddenFor(m => m.User.Doc_RCCopy)
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="Company Name">*@
+									@Html.EditorFor(m => m.User.CompanyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
+									<label for="input" class="control-label">Company Name*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="Phone">*@
+									@Html.EditorFor(m => m.User.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone" } })
+									<label for="input" class="control-label">Phone*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="email" class="form-control" placeholder="abc@gmail.com">*@
+									@Html.EditorFor(m => m.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
+									<label for="input" class="control-label">Email*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="password" class="form-control" placeholder="password">*@
+									@Html.EditorFor(m => m.User.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Password" } })
+									<label for="input" class="control-label">Password*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="www.abc.com">*@
+									@Html.EditorFor(m => m.User.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Website" } })
+									<label for="input" class="control-label">Web Address</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="No.00, street">*@
+									@Html.EditorFor(m => m.User.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Address" } })
+									<label for="input" class="control-label">Address Line</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="city">*@
+									@Html.EditorFor(m => m.User.City, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter City" } })
+									<label for="input" class="control-label">City</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="state">*@
+									@Html.EditorFor(m => m.User.State, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter State" } })
+									<label for="input" class="control-label">State</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="country">*@
+									@Html.EditorFor(m => m.User.Country, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Country" } })
+									<label for="input" class="control-label">Country</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="number" class="form-control" placeholder="postal code">*@
+									@Html.EditorFor(m => m.User.Postalcode, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter PostalCode" } })
+									<label for="input" class="control-label">Postal Code</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="Fax">*@
+									@Html.EditorFor(m => m.User.Fax, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Fax" } })
+									<label for="input" class="control-label">Fax</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="Contact Name">*@
+									@Html.EditorFor(m => m.User.PrimaryContactName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
+									<label for="input" class="control-label">Contact Person</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="9999999999">*@
+									@Html.EditorFor(m => m.User.PrimaryContactPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone" } })
+									<label for="input" class="control-label">Contact Person N0.</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="12345ABCD">*@
+									@Html.EditorFor(m => m.User.GSTIN, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter GSTIN" } })
+									<label for="input" class="control-label">GSTIN</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="12345ABCD">*@
+									@Html.EditorFor(m => m.User.PAN, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter PAN" } })
+									<label for="input" class="control-label">PAN</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="text" class="form-control" placeholder="12345ABCD">*@
+									@Html.EditorFor(m => m.User.UAN, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter UAN" } })
+									<label for="input" class="control-label">UAN</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="file" class="form-control" accept="image/*">*@
+									@*@Html.EditorFor(m => m.User.Doc_PANCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+									<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
+									<p class="label-head mb-10">PAN Certificate</p>
+										@if (Model.User.Doc_PANCopy != null)
+										{
+
+											<div class="gallery">
+												@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
+												<a href="@Url.Content(Model.User.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
+												<p><a href="@Url.Content(Model.User.Doc_PANCopy)" target="_blank">PAN</a></p>
+											</div>
+										}
+										else
+										{
+											@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
+											<p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
+										}
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="file" class="form-control" accept="image/*">*@
+									@*@Html.EditorFor(m => m.User.Doc_RCCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+									<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
+									<p class="label-head mb-10">Registration Certificate</p>
+										@if (Model.User.Doc_RCCopy != null)
+										{
+
+											<div class="gallery">
+												@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+												<a href="@Url.Content(Model.User.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
+												<p><a href="@Url.Content(Model.User.Doc_RCCopy)" target="_blank">RCCopy</a></p>
+											</div>
+										}
+										else
+										{
+											@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+											<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+										}
+								</div>
+								<div class="form-group col-md-3 col-sm-6">
+									@*<input type="file" class="form-control" accept="image/*">*@
+									@*@Html.EditorFor(m => m.User.Doc_CompanyLogo, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+									<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
+									<p class="label-head mb-10">Logo</p>
+										@if (Model.User.Doc_CompanyLogo != null)
+										{
+
+											<div class="gallery">
+												@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
+												<a href="@Url.Content(Model.User.Doc_CompanyLogo)" class="view1"><img src="@Url.Content(Model.User.Doc_CompanyLogo)" class="img-fluid" alt="Logo"></a>
+												<p><a href="@Url.Content(Model.User.Doc_CompanyLogo)" target="_blank">Logo</a></p>
+											</div>
+										}
+										else
+										{
+											@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
+											<p class="font-15 text-danger">Logo Not Uploaded!</p>
+										}
+								</div>
+								<div class="col-md-12 col-sm-12">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i><a data-toggle="modal" data-target="#termsModal" href="#" class="hover-signup" data-dismiss="modal">Terms and Conditions</a>
+										</label>
+									</div>
+								</div>
+								<div class="col-sm-6 mt-3">
+									<button type="submit" class="btn btn-sec">Submit</button>
+								</div>
+								@*</form>*@
+							}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div>
+						<span class="font-weight-bold">Note: </span>
+						Please fill the basic details to enable the <span class="text-pry font-weight-bold">Listing Section</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="">
+		<div class="container p-0">
+			<div class="row no-gutters">
+				<div class="col-md-12">
+					<div class="section-title d-flex align-items-center m--tb-15">
+						<h2>Listing Table</h2>
+					</div>
+					<div class="listing-note">
+						<span class="note-head note-add">Please Note</span>
+						<p>After added the new Listing</p>
+						<p>
+							Please add your
+							<span class="note-head"> <i class="fas fa-business-time btn-icon text-pry"></i> Business Hours </span> <span class="spliter"> | </span>
+							<span class="note-head"> <i class="fas fa-image btn-icon text-try"></i> Images </span><span class="note-sm"> ( Space or Re Project ) </span>
+						<p>
+							Addons like <span class="note-head"> <i class="fas fa-wifi btn-icon text-primary"></i> Amenities</span> and
+							<span class="note-head"> <i class="fas fa-bus btn-icon text-sec"></i> Facilities</span> <span class="note-sm"> ( for space ) </span><span class="spliter"> - </span>
+							<span class="note-head"> <i class="fas fa-city btn-icon text-info"></i> Re Projects</span><span class="note-sm"> ( for RE Professionals ) </span>
+						</p>
+					</div>
+					<div class="card hi-card">
+						<div class="card-body">
+							<div class="datatable-wrapper table-responsive">
+								<a href="@Url.Action( "ListingForm","Listing")">
+									<div id="show_add_view" class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add listing">
+										<i class="fa fa-plus-circle"></i> List
+									</div>
+								</a>
+
+								<table id="example" class="display display compact table table-striped mdtable">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Type</th>
+											<th>Phone</th>
+											<th>City</th>
+											<th>Current occ.</th>
+											<th><i class="fas fa-business-time"></i> Hours</th>
+											<th><i class="fas fa-images"></i> Images</th>
+											<th><i class="fab fa-gratipay"></i> Addons</th>
+											<th>Status</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>HDS Workarea</td>
+											<td><span class="font-weight-bold text-sec">Co-Working</span></td>
+											<td>9898989898</td>
+											<td>chennai</td>
+											<td>20%</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
+															<i class="fas fa-business-time btn-icon text-pry"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
+															<i class="fas fa-image btn-icon text-try"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<span data-toggle="modal" data-target="#amenitiesModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the aminities">
+															<i class="fas fa-wifi btn-icon text-primary"></i>
+														</a>
+													</span>
+													<span data-toggle="modal" data-target="#facilitiesModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the facilities">
+															<i class="fas fa-bus btn-icon text-sec"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td>
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<i class="fas fa-check text-success"></i>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+														<i class="fas fa-eye btn-icon text-info"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fas fa-edit btn-icon text-warning"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fas fa-trash-alt btn-icon text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>HDS Commercial</td>
+											<td><span class="font-weight-bold text-pry">Commercial</span></td>
+											<td>9898989898</td>
+											<td>chennai</td>
+											<td>20%</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
+															<i class="fas fa-business-time btn-icon text-pry"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
+															<i class="fas fa-image btn-icon text-try"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<span data-toggle="modal" data-target="#amenitiesModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the aminities">
+															<i class="fas fa-wifi btn-icon text-primary"></i>
+														</a>
+													</span>
+													<span data-toggle="modal" data-target="#facilitiesModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the facilities">
+															<i class="fas fa-bus btn-icon text-sec"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td>
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<i class="fas fa-check text-success"></i>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+														<i class="fas fa-eye btn-icon text-info"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fas fa-edit btn-icon text-warning"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fas fa-trash-alt btn-icon text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>HDS Professional</td>
+											<td><span class="font-weight-bold text-info">Re-Proff.</span></td>
+											<td>9898989898</td>
+											<td>chennai</td>
+											<td>20%</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
+															<i class="fas fa-business-time btn-icon text-pry"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
+															<i class="fas fa-image btn-icon text-try"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<span data-toggle="modal" data-target="#projectModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the RE project">
+															<i class="fas fa-city btn-icon text-info"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td>
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<i class="fas fa-times text-danger"></i>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+														<i class="fas fa-eye btn-icon text-info"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fas fa-edit btn-icon text-warning"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fas fa-trash-alt btn-icon text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>Hi Professional</td>
+											<td><span class="font-weight-bold text-info">Re-Proff.</span></td>
+											<td>9898989898</td>
+											<td>chennai</td>
+											<td>20%</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
+															<i class="fas fa-business-time btn-icon text-pry"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
+															<i class="fas fa-image btn-icon text-try"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<span data-toggle="modal" data-target="#projectModal" data-dismiss="modal">
+														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the RE project">
+															<i class="fas fa-city btn-icon text-info"></i>
+														</a>
+													</span>
+												</div>
+											</td>
+											<td>
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+													<i class="fas fa-check text-success"></i>
+												</div>
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+														<i class="fas fa-eye btn-icon text-info"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fas fa-edit btn-icon text-warning"></i>
+													</a>
+													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+														<i class="fas fa-trash-alt btn-icon text-danger"></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						@*<div class="table-disabled"> Fill the Information to enable listing</div>*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!--=================================
+	 Modal login -->
+<div class="modal login fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="termsModalLabel">HiSpace Terms and conditions</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+						<ul>
+							<li>Publishing any Website material in any other media.</li>
+							<li>Engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website.</li>
+							<li>Publicly performing and/or showing any Website material.</li>
+							<li>Using this Website contrary to applicable laws and regulations, or in any way may cause harm to the Website, or to any person or business entity.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--=================================
+  Modal login -->
+@*model for the working hours section*@
+<div class="modal hours fade modal-pry" id="hoursModal" tabindex="-1" role="dialog" aria-labelledby="hoursModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="hoursModalLabel"><i class="fas fa-business-time"></i> Business Hours </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="">
+					<div class="tab-pane fade show active" id="hours" role="tabpanel" aria-labelledby="hours-tab">
+						<form class="form-row mt-4 align-items-center md-form" action="account-profile.html">
+							<div class="form-radio m-0 width-full hi-sch">
+								<!--radio 1-->
+								<div class="sch-1">
+									<div class="radio">
+										<label class="radio-active">
+											<input type="radio" id="AllTimeCheck_radio" name="ClientSpaceFloorPlan.Is24" value="true" checked="checked" radio-attr="24/7" /><i class="helper"></i>24 / 7 Available
+											@*@Html.EditorFor(m => m.User.AllTimeCheck, new { htmlAttributes = new { @class = "hidden" } })*@
+											<input type="checkbox" checked="checked" id="AllTimeCheck" name="AllTimeCheck" value="true" class="hidden" />
+										</label>
+									</div>
+								</div>
+								<!--radio 2 mon-fri-->
+								<div class="sch-2">
+									<div class="radio m-0">
+										<label>
+											<input type="radio" id="MonToFriCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr="weekdays" /><i class="helper"></i>Weekdays
+											@*@Html.EditorFor(m => m.User.MonToFriCheck, new { htmlAttributes = new { @class = "hidden" } })*@
+											<input type="checkbox" id="MonToFriCheck" name="MonToFriCheck" value="true" class="hidden" />
+										</label>
+									</div>
+									<div class="sch-weekdays cursor-no-drop">
+										<div class="pointer-event-none">
+											<!--mon-fri-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Monday - Friday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="MonToFri_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFri_Open" name="MonToFriOpen" asp-for="MonToFriOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFri_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="MonToFri_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFri_Close" name="MonToFriClose" asp-for="MonToFriClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFri_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select><label for="MonToFri_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--radio 3 mon-sat-->
+								<div class="sch-3">
+									<div class="radio m-0">
+										<label>
+											<input type="radio" id="MonToSatCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr="weeksaturday" /><i class="helper"></i>Weekdays with Saturday
+											@*@Html.EditorFor(m => m.User.MonToSatCheck, new { htmlAttributes = new { @class = "hidden" } })*@
+											<input type="checkbox" id="MonToSatCheck" name="MonToSatCheck" value="true" class="hidden" />
+										</label>
+									</div>
+									<div class="sch-weeksaturday cursor-no-drop">
+										<div class="pointer-event-none">
+											<!--mon-fri-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Monday - Friday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="MonToFriNotSat_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFriNotSat_Open" name="MonToFriNotSatOpen" asp-for="MonToFriNotSatOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFriNotSat_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="MonToFriNotSat_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFriNotSat_Close" name="MonToFriNotSatClose" asp-for="MonToFriNotSatClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFriNotSat_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="MonToFriNotSat_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--saturday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Saturday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="MonToFriWithSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFri_Sat_Open" name="MonToFriWithSatOpen" asp-for="MonToFriWithSatOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFri_Sat_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="MonToFri_Sat_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="MonToFri_Sat_Close" name="MonToFriWithSatClose" asp-for="MonToFriWithSatClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="MonToFri_Sat_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="MonToFri_Sat_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--radio 4-->
+								<div class="sch-4">
+									<div class="radio m-0">
+										<label>
+											<input type="radio" id="CustomCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr="custom" /><i class="helper"></i>Custom Available
+											@*@Html.EditorFor(m => m.User.CustomCheck, new { htmlAttributes = new { @class = "hidden" } })*@
+											<input type="checkbox" id="CustomCheck" name="CustomCheck" value="true" class="hidden" />
+										</label>
+									</div>
+
+									<!--time selection-->
+									<div class="sch-custom cursor-no-drop">
+										<div class="pointer-event-none">
+
+											<!--monday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Monday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="CustomMon_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomMon_Open" name="ClientSpaceFloorPlan.MonOpen" asp-for="ClientSpaceFloorPlan.MonOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomMon_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomMon_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomMon_Close" name="ClientSpaceFloorPlan.MonClose" asp-for="ClientSpaceFloorPlan.MonClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomMon_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomMon_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--tuesday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Tuesday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSpaceFloorPlan_TueAvail" name="ClientSpaceFloorPlan.TueAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomTue_Open" name="ClientSpaceFloorPlan.TueOpen" asp-for="ClientSpaceFloorPlan.TueOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomTue_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomTue_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomTue_Close" name="ClientSpaceFloorPlan.TueClose" asp-for="ClientSpaceFloorPlan.TueClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomTue_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomTue_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--wednesday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Wednesday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSpaceFloorPlan_WedAvail" name="ClientSpaceFloorPlan.WedAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomWed_Open" name="ClientSpaceFloorPlan.WedOpen" asp-for="ClientSpaceFloorPlan.WedOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomWed_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomWed_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomWed_Close" name="ClientSpaceFloorPlan.WedClose" asp-for="ClientSpaceFloorPlan.WedClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomWed_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomWed_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--thursday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Thursday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSpaceFloorPlan_ThuAvail" name="ClientSpaceFloorPlan.ThuAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomThu_Open" name="ClientSpaceFloorPlan.ThuOpen" asp-for="ClientSpaceFloorPlan.ThuOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomThu_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomThu_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomThu_Close" name="ClientSpaceFloorPlan.ThuClose" asp-for="ClientSpaceFloorPlan.ThuClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomThu_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomThu_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--friday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Friday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSpaceFloorPlan_FriAvail" name="ClientSpaceFloorPlan.FriAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomFri_Open" name="ClientSpaceFloorPlan.FriOpen" asp-for="ClientSpaceFloorPlan.FriOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomFri_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomFri_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomFri_Close" name="ClientSpaceFloorPlan.FriClose" asp-for="ClientSpaceFloorPlan.FriClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomFri_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomFri_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--saturday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Saturday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomSat_Open" name="ClientSpaceFloorPlan.SatOpen" asp-for="ClientSpaceFloorPlan.SatOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomSat_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomSat_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomSat_Close" name="ClientSpaceFloorPlan.SatClose" asp-for="ClientSpaceFloorPlan.SatClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomSat_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomSat_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--sunday-->
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-6 sch-days">
+													Sunday
+												</div>
+												<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+													<div class="form-group m-0">
+														<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+															<label class="p-0">
+																<input id="ClientSpaceFloorPlan_SunAvail" name="ClientSpaceFloorPlan.SunAvail" class="sch-status" type="checkbox" value="true" />
+																<span></span>
+																<strong>Closed</strong>
+															</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-sm-6 col-6 sch-time align-self-center">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomSun_Open" name="ClientSpaceFloorPlan.SunOpen" asp-for="ClientSpaceFloorPlan.SunOpen"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomSun_Open">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomSun_Open" class="control-label">From</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+															<div class="form-group">
+																@*<select id="CustomSun_Close" name="ClientSpaceFloorPlan.SunClose" asp-for="ClientSpaceFloorPlan.SunClose"
+																	asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>*@
+																<select class="form-control basic-select" id="CustomSun_Close">
+																	<option value="1">08:00 AM</option>
+																	<option value="2">09:00 AM</option>
+																	<option value="3">10:00 AM</option>
+																</select>
+																<label for="CustomSun_Close" class="control-label">To</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row width-full justify-content-center">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-primary btn-block">Submit Hours</button>
+								</div>
+							</div>
+						</form>
+						@*}*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*schedualr section end*@
+@*Adding image section start*@
+<div class="modal image fade modal-try" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="imageModalLabel"><i class="fas fa-image"> </i> Image </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="">
+					<div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
+						<div class="btn btn-try add-btn" onclick="addImage()"> <i class="fa fa-plus-circle"></i>Image</div>
+						<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+							@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+							@*{*@
+							<div class="image-upload">
+								<div class="row image-upload__row">
+									<div class=" col-md-4 col-sm-6">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Image Name">
+											<label for="input" class="control-label">Image Name</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" col-md-4 col-sm-6">
+										<div class="form-group">
+											<input type="file" class="form-control" accept="image/*">
+											<label for="input" class="control-label">Upload Image</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-6 m-b--15 align-self-center">
+										<div class="checkbox m-0">
+											<label>
+												<input type="checkbox" /><i class="helper"></i> Active
+											</label>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-6">
+										<span class="delete-btn" onclick="deleteRowImage(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row width-full justify-content-center">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-try btn-block">Submit Images</button>
+								</div>
+							</div>
+						</form>
+						@*}*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*Adding image section end*@
+
+@*Adding project section start*@
+<div class="modal project fade modal-info" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="projectModalLabel"><i class="fas fa-city"> </i> Project </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="">
+					<div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="project-tab">
+						<div class="btn btn-info add-btn" onclick="addProject()"> <i class="fa fa-plus-circle"></i>project</div>
+						<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+							@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+							@*{*@
+							<div class="project-upload">
+								<div class="row project-upload__row">
+
+									<div class=" col-md-3 col-sm-6 align-self-center">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="project Name">
+											<label for="input" class="control-label">project Name</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" col-md-3 col-sm-6 align-self-center">
+										<div class="form-group">
+											<input type="file" class="form-control" accept="project/*">
+											<label for="input" class="control-label">Upload project</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" col-md-3 col-sm-6 align-self-center">
+										<div class="form-group">
+											<textarea type="text" class="form-control" rows="3" placeholder="Enter your text..."></textarea>
+											<label for="input" class="control-label">Description</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-6 m-b--15 align-self-center">
+										<div class="checkbox m-0">
+											<label>
+												<input type="checkbox" /><i class="helper"></i> Active
+											</label>
+										</div>
+									</div>
+									<div class="col-md-1 col-sm-6">
+										<span class="delete-btn" onclick="deleteRowProject(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row width-full justify-content-center">
+								<div class="col-sm-4">
+									<button type="submit" class="btn btn-info btn-block">Submit Projects</button>
+								</div>
+							</div>
+						</form>
+						@*}*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*Adding project section end*@
+@*Amenities section start*@
+<div class="modal amenities fade modal-pry" id="amenitiesModal" tabindex="-1" role="dialog" aria-labelledby="amenitiesModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="amenitiesModalLabel"><i class="fas fa-wifi"> </i> Amenities </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="">
+					<div class="tab-pane fade show active" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
+
+						<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+							@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+							@*{*@
+
+							<h6>Common Aminities</h6>
+							<div class="amenities-common">
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Hi-Speed Internet
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Air Condition
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Hand Sanitizer
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Standing Desk
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Printer
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Bike Parking
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Drinking Water
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Personal Locker
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Snacks
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Dual Monitor
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> BeanBag
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Projector
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Shower
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Tea
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Gym
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class=" am-price col-md-6 col-sm-6 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class=" am-partial col-md-3 col-sm-3 d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn btn-primary add-btn" onclick="addAmenities()"> <i class="fa fa-plus-circle"></i>Custom Amenities</div>
+							<div class="amenities-upload">
+								<div class="row amenities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Name">
+											<label for="input" class="control-label">Amenity</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">
+										<div class="form-group">
+											<select class="form-control am-option" id="">
+												<option value="1">Free</option>
+												<option value="2">Paid</option>
+												<option value="3">Partially Paid</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									@*paid*@
+									<div class="am-price col-md-4 col-sm-6  d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+									@*partial*@
+									<div class="am-partial col-md-2 col-sm-3  d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="am-partial col-md-2 col-sm-3  d-none">
+										<div class="form-group">
+											<input type="number" class="form-control" placeholder="00">
+											<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+										</div>
+									</div>
+
+									<div class="col-md-1 col-sm-6 m-b--15 align-self-center">
+										<div class="checkbox m-0">
+											<label>
+												<input type="checkbox" /><i class="helper"></i> Active
+											</label>
+										</div>
+									</div>
+									<div class="col-md-1 col-sm-6">
+										<span class="delete-btn" onclick="deleteRowAmenities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row width-full justify-content-center">
+								<div class="col-sm-4">
+									<button type="submit" class="btn btn-primary btn-block">Submit Amenities</button>
+								</div>
+							</div>
+						</form>
+						@*}*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*Amenities section end*@
+@*facilities section start*@
+<div class="modal facilities fade modal-sec" id="facilitiesModal" tabindex="-1" role="dialog" aria-labelledby="facilitiesModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="facilitiesModalLabel"><i class="fas fa-bus"> </i> Facilities </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="">
+					<div class="tab-pane fade show active" id="facilities" role="tabpanel" aria-labelledby="facilities-tab">
+
+						<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+							@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+							@*{*@
+
+							<h6>Common Facilities</h6>
+							<div class="facilities-common">
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Bus Terminal
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Railway Station
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div><div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Airport
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Harbour
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Internet Cafe
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div>
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<div class="checkbox m-0">
+												<label>
+													<input type="checkbox" /><i class="helper"></i> Hotels
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Cost</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn btn-sec add-btn" onclick="addFacilities()"> <i class="fa fa-plus-circle"></i>Custom Facilities</div>
+							<div class="facilities-upload">
+								<div class="row facilities-upload__row">
+									<div class=" col-md-3 col-sm-4 ">
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Name">
+											<label for="input" class="control-label">Facility</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">
+										<div class="form-group">
+											<select class="form-control fc-option" id="">
+												<option value="1">0 to .5KM</option>
+												<option value="2">.5KM to 1KM</option>
+												<option value="3">1KM to 2KM</option>
+												<option value="4">2KM to 3KM</option>
+												<option value="5">3KM to 4KM</option>
+												<option value="6">4KM to 5KM</option>
+												<option value="7">5KM to 6KM</option>
+												<option value="8">6KM to 7KM</option>
+												<option value="9">7KM to 8KM</option>
+												<option value="10">8KM to 9KM</option>
+												<option value="11">9KM to 10KM</option>
+												<option value="12">Above 10KM</option>
+											</select>
+											<label for="" class="control-label">Distance</label>
+											<i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-6 m-b--15 align-self-center">
+										<div class="checkbox m-0">
+											<label>
+												<input type="checkbox" /><i class="helper"></i> Active
+											</label>
+										</div>
+									</div>
+									<div class="col-md-1 col-sm-6">
+										<span class="delete-btn" onclick="deleteRowFacilities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row width-full justify-content-center">
+								<div class="col-sm-4">
+									<button type="submit" class="btn btn-sec btn-block">Submit Facilities</button>
+								</div>
+							</div>
+						</form>
+						@*}*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*facilities section end*@
+

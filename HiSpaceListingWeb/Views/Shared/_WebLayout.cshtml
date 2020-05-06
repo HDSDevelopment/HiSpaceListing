@@ -6,7 +6,6 @@
 	@*@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor*@
 
 }
-@model HiSpaceListingModels.User
 @{
 	Layout = null;
 
@@ -34,6 +33,17 @@
 	<link rel="stylesheet" href="~/css/range-slider/ion.rangeSlider.css" />
 	<link rel="stylesheet" href="~/css/owl-carousel/owl.carousel.min.css" />
 	<link rel="stylesheet" href="~/css/magnific-popup/magnific-popup.css" />
+	@*datatables*@
+	<link rel="stylesheet" href="~/css/datatables/jquery.dataTables.min.css" />
+	<link rel="stylesheet" href="~/css/datatables/dataTables.bootstrap4.min.css" />
+	@*<link rel="stylesheet" href="~/css/datatables/dataTables.jqueryui.min.css" />*@
+	@*<link rel="stylesheet" href="~/css/datatables/dataTables.foundation.min" />*@
+	@*<link rel="stylesheet" href="~/css/datatables/dataTables.semanticui.min" />*@
+
+
+	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker.css">*@
+	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker-standalone.css">*@
+	<link rel="stylesheet" href="~/css/datetimepicker/datetimepicker.min.css" />
 	<!-- Template Style -->
 	<link rel="stylesheet" href="~/css/style.css" />
 	<link rel="stylesheet" href="~/css/custom.css" />
@@ -54,7 +64,7 @@
 							<div class="mr-auto d-inline-block">
 							</div>
 							<div class="dropdown d-inline-block pl-2 pl-md-0">
-								<a class="dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<a class="dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
 							</div>
 							<div class="social d-inline-block">
 								<ul class="list-unstyled">
@@ -101,10 +111,19 @@
 						<li class="nav-item  ">
 							<a class="nav-link" href="@Url.Action( "Contact","Website")" id="navbarDropdown">Contact</a>
 						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Dashboard <i class="fas fa-chevron-down fa-xs"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId})">My Listing</a></li>
+								<li><a class="dropdown-item" href="@Url.Action( "AdminLister","Admin")">Operators</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 				<div class="add-listing d-none d-sm-block">
-					<a class="btn btn-primary btn-md" href="submit-property.html"> <i class="fa fa-plus-circle"></i>Add listing </a>
+					<a class="btn btn-primary btn-md" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId})"> <i class="fa fa-plus-circle"></i>Add listing </a>
 				</div>
 			</div>
 		</nav>
@@ -117,7 +136,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-0">
-					<h5 class="modal-title" id="loginModalLabel">Log in </h5>
+					<h5 class="modal-title" id="loginModalLabel">HiSpace Login </h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -126,22 +145,24 @@
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
 							@*<form class="form-row mt-4 align-items-center" action="account-profile.html">*@
-							@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center" }))
+							@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
 							{
 								<div class="form-group col-sm-12">
-									@*<input type="text" class="form-control" placeholder="Username">*@
-									@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+									<input class="form-control" id="Email" name="Email" placeholder="Email Id" type="text" value="">
+									@*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Id" })*@
+									<label for="input" class="control-label">Email*</label><i class="bar"></i>
 								</div>
 								<div class="form-group col-sm-12">
-									@*<input type="Password" class="form-control" placeholder="Password">*@
-									@Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+									<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="">
+									@*@Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "password" })*@
+									<label for="input" class="control-label">Password*</label><i class="bar"></i>
 								</div>
 								<div class="col-sm-6">
-									<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+									<button type="submit" class="btn btn-primary btn-block">Login</button>
 								</div>
 								<div class="col-sm-6">
 									<ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
-										<li class="mr-1"><a href="#"><b>New Lister? Click here to Add list</b></a></li>
+										<li class="mr-1"><a data-toggle="modal" data-target="#signupModal" href="#" class="hover-signup" data-dismiss="modal"><b>New Lister? Click here to <span class="text-sec">Signup</span></b></a></li>
 									</ul>
 								</div>
 								@*</form>*@
@@ -154,6 +175,94 @@
 	</div>
 	<!--=================================
 	  Modal login -->
+	<!--=================================
+	Modal signup -->
+	<div class="modal signup fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-0">
+					<h5 class="modal-title" id="signupModalLabel">HiSpace Signup </h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="tab-content" id="myTabContent">
+						<div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+							@*<form class="form-row mt-4 align-items-center md-form" action="account-profile.html">*@
+								@using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
+								{
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="CompanyName" name="CompanyName" placeholder="Company Name" type="text" value="">
+									@*@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "Company Name" })*@
+									<label for="input" class="control-label">Company Name*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Phone" name="Phone" placeholder="Phone" type="text" value="">
+									@*@Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "text", placeholder = "Phone" })*@
+									<label for="input" class="control-label">Phone*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Email" name="Email" placeholder="abc@gmail.com" type="email" value="">
+									@*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "abc@gmail.com" })*@
+									<label for="input" class="control-label">Email*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="">
+									@*@Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "password" })*@
+									<label for="input" class="control-label">Password*</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Website" name="Website" placeholder="www.abc.com" type="text" value="">
+									@*@Html.TextBoxFor(m => m.Website, new { @class = "form-control", type = "text", placeholder = "www.abc.com" })*@
+									<label for="input" class="control-label">Web Address</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Address" name="Address" placeholder="No.00, Street" type="text" value="">
+									@*@Html.TextBoxFor(m => m.Address, new { @class = "form-control", type = "text", placeholder = "No.00, Street" })*@
+									<label for="input" class="control-label">Address Line</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="City" name="City" placeholder="city" type="text" value="">
+									@*@Html.TextBoxFor(m => m.City, new { @class = "form-control", type = "text", placeholder = "city" })*@
+									<label for="input" class="control-label">City</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="State" name="State" placeholder="state" type="text" value="">
+									@*@Html.TextBoxFor(m => m.State, new { @class = "form-control", type = "text", placeholder = "state" })*@
+									<label for="input" class="control-label">State</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Country" name="Country" placeholder="country" type="text" value="">
+									@*@Html.TextBoxFor(m => m.Country, new { @class = "form-control", type = "text", placeholder = "country" })*@
+									<label for="input" class="control-label">Country</label><i class="bar"></i>
+								</div>
+								<div class="form-group col-sm-6">
+									<input class="form-control" id="Postalcode" name="Postalcode" placeholder="Postal code" type="number" value="">
+									@*@Html.TextBoxFor(m => m.Postalcode, new { @class = "form-control", type = "number", placeholder = "Postal code" })*@
+									<label for="input" class="control-label">Postal Code</label><i class="bar"></i>
+								</div>
+
+								<div class="row width-full">
+									<div class="col-sm-6">
+										<button type="submit" class="btn btn-sec btn-block">Signup</button>
+									</div>
+									<div class="col-sm-6 align-self-center">
+										<ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
+											<li class="mr-1"><a data-toggle="modal" data-target="#loginModal" href="#" class="hover-signup" data-dismiss="modal"><b>Registered user? <span class="text-sec">Login</span></b></a></li>
+										</ul>
+									</div>
+								</div>
+							@*</form>*@
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--=================================
+	  Modal signup -->
 	<!--statring the body section-->
 	@RenderBody()
 	<!--end the body section-->
@@ -262,19 +371,33 @@
 	footer-->
 	<!-- JS Global Compulsory (Do not remove)-->
 	<script src="~/js/jquery-3.4.1.min.js"></script>
+	<script src="~/js/datetimepicker/moment.min.js"></script>
+	<script src="~/js/datetimepicker/datetimepicker.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB59thq3ND2fzB_9zq5IZa3Ko2antbwRGw"></script>
+	@*<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBFdQ1J1MYZYWYDvSlEXRZp-CN9q0po4nM"></script>*@
 	<script src="~/js/popper/popper.min.js"></script>
 	<script src="~/js/bootstrap/bootstrap.min.js"></script>
+	@*<script src="~/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>*@
 	<!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)-->
 	<script src="~/js/jquery.appear.js"></script>
 	<script src="~/js/counter/jquery.countTo.js"></script>
 	<script src="~/js/select2/select2.full.js"></script>
 	<script src="~/js/range-slider/ion.rangeSlider.min.js"></script>
 	<script src="~/js/owl-carousel/owl.carousel.min.js"></script>
+	@*datables*@
+	<script src="~/js/datatables/jquery.dataTables.min.js"></script>
+	<script src="~/js/datatables/dataTables.bootstrap4.min.js"></script>
+	@*<script src="~/js/datatables/dataTables.jqueryui.min.js"></script>*@
+	@*<script src="~/js/datatables/dataTables.foundation.min.js"></script>*@
+	@*<script src="~/js/datatables/dataTables.semanticui.min.js"></script>*@
+
+
 	@*<script src="~/js/jarallax/jarallax.min.js"></script>*@
 	@*<script src="~/js/jarallax/jarallax-video.min.js"></script>*@
 	<script src="~/js/magnific-popup/jquery.magnific-popup.min.js"></script>
 	<!-- Template Scripts (Do not remove)-->
 	<script src="~/js/custom.js"></script>
+	<script src="~/js/customMap.js"></script>
 	<script src="~/js/site.js"></script>
 </body>
 </html>

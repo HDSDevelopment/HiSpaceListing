@@ -5,434 +5,400 @@
 }
 
 
+	<div class="propertydetail">
+		<div class="bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
 
-    <div class="bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+							<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-chevron-right"></i> <span> Property List</span></a></li>
+							<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property Details</span></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                        <li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property Details</span></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="wrapper">
+			<!--=================================
+		Property details -->
+			<section class="space-pt--50 ">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
+							<div class="sticky-top">
+								<div class="widget accordion-sec">
+									<div class="widget-title widget-collapse">
+										<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Lister Detail</h6> <i class="fas fa-chevron-down"></i> </a>
+									</div>
+									<div class="collapse show" id="property-lister">
+										<div class="accordion-sec__detail">
+											<div class="lister-head">
+												<div class="lister-head__name">Highbrow service</div>
+												<img class="lister-head__image img-fluid" src="~/images/listing/logo.png" alt="" />
+											</div>
+											<div class="lister-detail">
+												<div><i class="fas fa-globe"></i><b>Website: </b> <span>www.hdsre.com</span></div>
+												<div><i class="fas fa-mobile-alt"></i><b>Phone: </b><span>9898989898</span></div>
+												<div><i class="fas fa-city"></i><b>Total List </b><span>(5)</span></div>
+											</div>
+											<div class="lister-btn">
+												<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website")">See Details</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="enquiry-form">
+									<div class="">
+										<h3 class="text-center">Enquiry</h3>
+									</div>
+									<form class="md-form form-row ">
 
-    <div class="wrapper">
-        <!--=================================
-    Property details -->
-        <section class="space-pt">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
-                        <div class="sticky-top">
-                            <div class="mb-4">
-                                <h3>Lorem Ipsum</h3>
-                                <span class="d-block mb-3">
-                                    <i class="fas fa-map-marker-alt fa-xs pr-2"></i>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="text" placeholder="Name" />
+												<label for="input" class="control-label">Name</label><i class="bar"></i>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<input type="text" placeholder="9999999999" />
+												<label for="input" class="control-label">Phone</label><i class="bar"></i>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" placeholder="abc@gmail.com" />
+												<label for="input" class="control-label">Email</label><i class="bar"></i>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<textarea type="text" rows="2" placeholder="Enter your message here..."></textarea>
+												<label for="input" class="control-label">Message</label><i class="bar"></i>
+											</div>
+										</div>
+										<div class="col-md-12 d-flex justify-content-center mb-3">
+											<a href="#" class="btn btn-primary btn-sm">Enquiry Now</a>
+										</div>
 
-                                </span>
-                                <span class="price font-xll text-primary d-block">$1500000</span>
-                                <span class="sub-price font-lg text-dark d-block"><b>$6,500/Sqft </b> </span>
-
-                            </div>
-                            <div class="agent-contact">
-                                <div class="d-flex align-items-center p-4 border border-bottom-0">
-                                    <div class="agent-contact-avatar mr-3">
-                                        <img class="img-fluid rounded-circle avatar avatar-xl" src="images/avatar/01.jpg" alt="">
-                                    </div>
-                                    <div class="agent-contact-name">
-                                        <h6>Joana williams</h6>
-                                        <a href="#">Company Agent</a>
-                                        <span class="d-block"><i class="fas fa-phone-volume pr-2 mt-2"></i>(123) 345-6789</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <a href="agency-detail.html" class="btn btn-dark col b-radius-none">Details</a>
-                                    <a href="#" class="btn btn-primary col ml-0 b-radius-none">Enquiry Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 order-lg-1">
-                        <div class="property-detail-img popup-gallery">
-                            <div class="owl-carousel owl-loaded owl-drag" data-animateout="fadeOut" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="0">
-
-
-                                <div class="owl-stage-outer">
-                                    <div class="owl-stage" style="transform: translate3d(-1220px, 0px, 0px); transition: all 1s ease 0s; width: 3660px;">
-                                        <div class="owl-item cloned" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-01.jpg"><img class="img-fluid" src="images/property/big-img-01.jpg" alt=""></a>
-                                            </div>
-                                        </div><div class="owl-item cloned" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-02.jpg"><img class="img-fluid" src="images/property/big-img-02.jpg" alt=""></a>
-                                            </div>
-                                        </div><div class="owl-item active" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-01.jpg"><img class="img-fluid" src="images/property/big-img-01.jpg" alt=""></a>
-                                            </div>
-                                        </div><div class="owl-item" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-02.jpg"><img class="img-fluid" src="images/property/big-img-02.jpg" alt=""></a>
-                                            </div>
-                                        </div><div class="owl-item cloned" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-01.jpg"><img class="img-fluid" src="images/property/big-img-01.jpg" alt=""></a>
-                                            </div>
-                                        </div><div class="owl-item cloned" style="width: 610px;">
-                                            <div class="item">
-                                                <a class="portfolio-img" href="images/property/big-img-02.jpg"><img class="img-fluid" src="images/property/big-img-02.jpg" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fas fa-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="fas fa-chevron-right"></i></button></div><div class="owl-dots disabled"></div>
-                            </div>
-                        </div>
-                        <div class="property-info mt-5">
-                            <div class="row">
-                                <div class="col-sm-3 mb-3 mb-sm-0">
-                                    <h5>Property details</h5>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled">
-                                                <li><b>Property ID:</b> RV151</li>
-                                                <li><b>Price:</b> $484,400</li>
-                                                <li><b>Property Size:</b> 1466 Sq Ft</li>
-                                                <li><b>Car Parking:</b> 4</li>
-                                                <li><b>Bike Parking:</b> 2</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled">
-                                                <li><b>Garage:</b> 1</li>
-                                                <li><b>Garage Size:</b> 458 SqFt</li>
-                                                <li><b>Year Built:</b> 2019-01-09</li>
-                                                <li><b>Property Type:</b> Full Furnished</li>
-                                                <li><b>Property Status:</b> For rent</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <h6 class="text-primary mb-3 mb-sm-0">Additional details</h6>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled mb-0">
-                                                <li><b>Current Ocupancy:</b> 30%</li>
-
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled mb-0">
-                                                <li><b>Amenities:</b> -</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                        <div class="property-description">
-                            <div class="row">
-                                <div class="col-sm-3 mb-3 mb-sm-0">
-                                    <h5>Description</h5>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p>The home features private entry copper-clad door leading to salon with marble floors. Stunning great room has soaring 45 foot ceilings with glass windows, polished concrete floors, exposed brick &amp; sculptural steel beams. The chef's kitchen has honed granite counters, high-end S/S appliances, French cabinets &amp; gas range.</p>
-                                    <p>Floor-to-ceiling windows accentuate the panoramic vistas that sweep across the Golden Gate Bridge, the downtown skyline, the artfully lit Bay Bridge and beyond. The floor plan features two bedroom suites, kitchen, living/dining room, two view terraces and ample storage space. </p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                        <div class="property-features">
-                            <div class="row">
-                                <div class="col-sm-3 mb-3 mb-sm-0">
-                                    <h5>Features</h5>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <ul class="property-list-style-2 list-unstyled mb-0">
-
-                                                <li>Feature 1</li>
-                                                <li>Feature 2</li>
-                                                <li>Feature 3</li>
-                                                <li>Feature 4</li>
-
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="property-list-style-2 list-unstyled mb-0">
-                                                <li>Feature 5</li>
-                                                <li>Feature 6</li>
-                                                <li>Feature 7</li>
-                                                <li>Feature 8</li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                        <div class="property-address">
-                            <div class="row">
-                                <div class="col-sm-3 mb-3 mb-sm-0">
-                                    <h5>Address</h5>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled mb-0">
-                                                <li><b>Address:</b> Virginia drive temple hills</li>
-                                                <li><b>State/County:</b> San francisco</li>
-                                                <li><b>Area:</b> Embarcadero</li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <ul class="property-list list-unstyled mb-0">
-                                                <li><b>City:</b> San francisco</li>
-                                                <li><b>Zip:</b> 4848494</li>
-                                                <li><b>Country:</b> United States</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-8 order-lg-1">
+							<div class="property-detail-img popup-gallery">
+								<div class="owl-carousel owl-loaded owl-drag" data-animateout="fadeOut" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="0">
 
 
+									<div class="owl-stage-outer">
+										<div class="owl-stage" style="transform: translate3d(-1220px, 0px, 0px); transition: all 1s ease 0s; width: 3660px;">
+											<div class="owl-item cloned" style="width: 610px;">
+												<div class="item">
+													<a class="portfolio-img" href="~/images/property/big-img-01.jpg"><img class="img-fluid" src="~/images/property/big-img-01.jpg" alt=""></a>
+												</div>
+											</div>
+											<div class="owl-item cloned" style="width: 610px;">
+												<div class="item">
+													<a class="portfolio-img" href="~/images/property/big-img-02.jpg"><img class="img-fluid" src="~/images/property/big-img-02.jpg" alt=""></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="owl-nav">
+										<button type="button" role="presentation" class="owl-prev"><i class="fas fa-chevron-left"></i></button>
+										<button type="button" role="presentation" class="owl-next"><i class="fas fa-chevron-right"></i></button>
+									</div>
+									<div class="owl-dots disabled"></div>
+								</div>
+							</div>
+							<div class="property-info mt-5">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Property details</h5>
+									</div>
+									<div class="col-sm-9">
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Type:</b> Commercial</li>
+												<li class="col-sm-6"><b>Level:</b> Office</li>
+												<li class="col-sm-6"><b>Size:</b> 1000 - 1500 Sq Ft</li>
+												<li class="col-sm-6"><b>Year Built:</b> 2019-01-09</li>
+												<li class="col-sm-6"><b>Recent Innovation:</b> 2019-01-09</li>
+												<li class="col-sm-6"><b>Infra Type:</b> Shell</li>
+											</ul>
+										</div>
+										<h6 class="text-primary mb-2 mb-sm-2">Additional details</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Meeting Room:</b> 2</li>
+												<li class="col-sm-6"><b>Private Office:</b> 1</li>
+												<li class="col-sm-6"><b>Virtual Office:</b> Available</li>
+												<li class="col-sm-6"><b>Co-Working:</b> 80 seats</li>
+												<li class="col-sm-6"><b>Cafe:</b> 20 seats</li>
+											</ul>
+										</div>
+										<h6 class="text-primary mb-2 mb-sm-2">Price / Occupancy</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Price Range:</b> 400 - 10000</li>
+												<li class="col-sm-6"><b>Availablity:</b> Hour | Day | Month</li>
+												<li class="col-sm-6"><b>Current Occupancy:</b> 40%</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="property-description">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Description</h5>
+									</div>
+									<div class="col-sm-9">
+										<p>The home features private entry copper-clad door leading to salon with marble floors. Stunning great room has soaring 45 foot ceilings with glass windows, polished concrete floors, exposed brick &amp; sculptural steel beams. The chef's kitchen has honed granite counters, high-end S/S appliances, French cabinets &amp; gas range.</p>
+										<p>Floor-to-ceiling windows accentuate the panoramic vistas that sweep across the Golden Gate Bridge, the downtown skyline, the artfully lit Bay Bridge and beyond. The floor plan features two bedroom suites, kitchen, living/dining room, two view terraces and ample storage space. </p>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="property-amenities">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Amenities</h5>
+									</div>
+									<div class="col-sm-9">
+										<div class="row">
+											<div class="mb-3">
+												<ul class="amenities-list list-unstyled row mb-3">
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-sec"></i>
+														Bike Parking
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Car Parking
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Free<span class="text-sufix">(10)</span></span>
+														<span class="spliter">|</span>
+														<span>&#8377;50/Usage</span>
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-sec"></i>
+														High Speed Internet
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Toga station
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Paid</span>
+														<span class="spliter">|</span>
+														<span>&#8377;50/Usage</span>
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-sec"></i>
+														AC
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Snacks
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Paid</span>
+														<span class="spliter">|</span>
+														<span>&#8377;50/Usage</span>
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Child Care
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Paid</span>
+														<span class="spliter">|</span>
+														<span>&#8377;1000/Usage</span>
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Personal Locker
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Paid</span>
+														<span class="spliter">|</span>
+														<span>&#8377;50/Usage</span>
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-sec"></i>
+														Kitchen
+													</li>
+													<li class="col-sm-6">
+														<i class="fas fa-check-circle text-pry"></i>
+														Standing Desk
+														<span class="spliter">|</span>
+														<span class="font-weight-bold">Free<span class="text-sufix">(10)</span></span>
+														<span class="spliter">|</span>
+														<span>&#8377;500/Usage</span>
+													</li>
+												</ul>
+											</div>
+											<div class="note">
+												<div>
+													<i class="fas fa-check-circle text-sec"></i>
+													<span class="font-weight-bold">Free Aminities</span>
+												</div>
+												<div>
+													<i class="fas fa-check-circle text-pry"></i>
+													<span class="font-weight-bold">Paid (or) Partialy Paid Aminities</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="property-facilities">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Facilities</h5>
+									</div>
+									<div class="col-sm-9">
+										<div class="mb-3">
+											<ul class="property-list facilities-list list-unstyled row mb-3">
+												<li class="col-sm-6">
+													<i class="fab fa-gratipay text-info"></i>Bus Terminal
+													<span>0 to .5KM</span>
+												</li>
+												<li class="col-sm-6">
+													<i class="fab fa-gratipay text-info"></i>Railway Station
+													<span>.5 to 1KM</span>
+												</li>
+												<li class="col-sm-6">
+													<i class="fab fa-gratipay text-info"></i>Airport
+													<span>5 to 10KM</span>
+												</li>
+												<li class="col-sm-6">
+													<i class="fab fa-gratipay text-info"></i>Hotels
+													<span>.5 to 1KM</span>
+												</li>
+												<li class="col-sm-6">
+													<i class="fab fa-gratipay text-info"></i>Park
+													<span>1 to 2KM</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="property-available">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Available Time</h5>
+									</div>
+									<div class="col-sm-9">
+										<div class="mb-3">
+											<ul class="property-list available-list list-unstyled row mb-3">
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>24/7</b>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Monday: </b>
+													<span>10:00AM</span> - <span>06:00PM</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Tuesday: </b>
+													<span>10:00AM</span> - <span>06:00PM</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Wednesday: </b>
+													<span>10:00AM</span> - <span>06:00PM</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Thursday: </b>
+													<span>10:00AM</span> - <span>06:00PM</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Friday: </b>
+													<span>10:00AM</span> - <span>06:00PM</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Saturday: </b>
+													<span>Closed</span>
+												</li>
+												<li class="col-sm-12">
+													<i class="fas fa-business-time"></i><b>Sunday: </b>
+													<span>Closed</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="property-schedule">
+								<div class="row">
+									<div class="col-sm-3 mb-3 mb-sm-0">
+										<h5>Schedule a tour</h5>
+									</div>
+									<div class="col-sm-9">
+										<form class="form-row md-form">
+											<div class="form-group col-sm-6 datetimepickers">
+												<div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
+													<input type="text" class="datetimepicker-input" data-target="#datetimepicker-01" placeholder="MM/DD/YYY">
+													<label for="input" class="control-label">Date</label><i class="bar"></i>
+													<div class="input-group-append" data-target="#datetimepicker-01" data-toggle="datetimepicker">
+														<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+													</div>
+
+												</div>
+
+											</div>
+											<div class="form-group col-sm-6 datetimepickers">
+												<div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
+													<input type="text" class="datetimepicker-input" placeholder="10:10AM" data-target="#datetimepicker-03">
+													<label for="input" class="control-label">Time</label><i class="bar"></i>
+													<div class="input-group-append" data-target="#datetimepicker-03" data-toggle="datetimepicker">
+														<div class="input-group-text"><i class="far fa-clock"></i></div>
+													</div>
+												</div>
+
+											</div>
+											<div class="form-group col-sm-6">
+												<input type="text" placeholder="Name">
+												<label for="input" class="control-label">Name</label><i class="bar"></i>
+											</div>
+											<div class="form-group col-sm-6">
+												<input type="Text" placeholder="9999999999">
+												<label for="input" class="control-label">Phone</label><i class="bar"></i>
+											</div>
+											<div class="form-group col-sm-12">
+												<input type="email" placeholder="abc@gmail.com">
+												<label for="input" class="control-label">Email</label><i class="bar"></i>
+											</div>
+
+											<div class="form-group col-sm-12">
+												<textarea class="" rows="2" placeholder="Enter your message here..."></textarea>
+												<label for="input" class="control-label">Message</label><i class="bar"></i>
+											</div>
+											<div class="form-group col-sm-12">
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>
+											<div class="col-sm-6"></div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+							<div class="map-info row">
+								<div id="map"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--=================================
+		Property details -->
 
 
-                        <hr class="mt-4 mb-4 mb-sm-5 mt-sm-5">
-                        <div class="property-schedule">
-                            <div class="row">
-                                <div class="col-sm-3 mb-3 mb-sm-0">
-                                    <h5>Schedule a tour</h5>
-                                </div>
-                                <div class="col-sm-9">
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-6 datetimepickers">
-                                            <div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#datetimepicker-01">
-                                                <div class="input-group-append" data-target="#datetimepicker-01" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-6 datetimepickers">
-                                            <div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" placeholder="Time" data-target="#datetimepicker-03">
-                                                <div class="input-group-append" data-target="#datetimepicker-03" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <input type="text" class="form-control" placeholder="Name">
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <input type="email" class="form-control" placeholder="Email">
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <input type="Text" class="form-control" placeholder="Phone">
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <textarea class="form-control" rows="4" placeholder="Message"></textarea>
-                                        </div>
-                                        <div class="form-group col-sm-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                        <div class="col-sm-6"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="space-pt">
-            <div class="container">
-                <hr class="mb-5 mt-0">
-                <h5 class="mb-4">Similar our properties</h5>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="property-item">
-                            <div class="property-image bg-overlay-gradient-04">
-                                <img class="img-fluid" src="images/property/grid/01.jpg" alt="">
-                                <div class="property-lable">
-
-                                    <span class="badge badge-md badge-info">Office </span>
-                                </div>
-
-                                <div class="property-agent">
-                                    <div class="property-agent-image">
-                                        <img class="img-fluid" src="images/avatar/01.jpg" alt="">
-                                    </div>
-                                    <div class="property-agent-info">
-                                        <a class="property-agent-name" href="#">Alice Williams</a>
-                                        <span class="d-block">Company Agent</span>
-                                        <ul class="property-agent-contact list-unstyled">
-                                            <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
-                                            <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="property-agent-popup">
-                                    <a href="#"><i class="fas fa-camera"></i> 06</a>
-                                </div>
-                            </div>
-                            <div class="property-details">
-                                <div class="property-details-inner">
-                                    <h5 class="property-title"><a href="property-detail-style-01.html">Lorem Ipsum </a></h5>
-                                    <span class="property-address">
-                                        <i class="fas fa-map-marker-alt fa-xs"></i>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-
-                                    </span>
-                                    <span class="property-agent-date"><i class="far fa-clock fa-md"></i>10 days ago</span>
-                                    <div class="property-price">$150.00<span> / month</span> </div>
-                                    <ul class="property-info list-unstyled d-flex">
-                                        <li class="flex-fill property-bed"><i class="fas fa-car"></i>Car Parking<span>1</span></li>
-
-                                        <li class="flex-fill property-m-sqft"><i class="far fa-square"></i>sqft<span>145m</span></li>
-                                    </ul>
-                                </div>
-                                <div class="property-btn">
-                                    <a class="property-link" href="property-detail-style-01.html">See Details</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="property-item">
-                            <div class="property-image bg-overlay-gradient-04">
-                                <img class="img-fluid" src="images/property/grid/02.jpg" alt="">
-                                <div class="property-lable">
-                                    <span class="badge badge-md badge-info">Office </span>
-                                </div>
-                                <div class="property-agent">
-                                    <div class="property-agent-image">
-                                        <img class="img-fluid" src="images/avatar/02.jpg" alt="">
-                                    </div>
-                                    <div class="property-agent-info">
-                                        <a class="property-agent-name" href="#">John doe</a>
-                                        <span class="d-block">Company Agent</span>
-                                        <ul class="property-agent-contact list-unstyled">
-                                            <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
-                                            <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="property-agent-popup">
-                                    <a href="#"><i class="fas fa-camera"></i> 12</a>
-                                </div>
-                            </div>
-                            <div class="property-details">
-                                <div class="property-details-inner">
-                                    <h5 class="property-title"><a href="property-detail-style-01.html">Lorem Ipsum</a></h5>
-                                    <span class="property-address">
-                                        <i class="fas fa-map-marker-alt fa-xs"></i>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-
-                                    </span>
-                                    <span class="property-agent-date"><i class="far fa-clock fa-md"></i>2 months ago</span>
-                                    <div class="property-price">$326.00<span> / month</span> </div>
-                                    <ul class="property-info list-unstyled d-flex">
-                                        <li class="flex-fill property-bed"><i class="fas fa-car"></i>Car Parking<span>1</span></li>
-
-                                        <li class="flex-fill property-m-sqft"><i class="far fa-square"></i>sqft<span>145m</span></li>
-                                    </ul>
-                                </div>
-                                <div class="property-btn">
-                                    <a class="property-link" href="property-detail-style-01.html">See Details</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="property-item">
-                            <div class="property-image bg-overlay-gradient-04">
-                                <img class="img-fluid" src="images/property/grid/03.jpg" alt="">
-                                <div class="property-lable">
-                                    <span class="badge badge-md badge-info">Office </span>
-                                </div>
-                                <span class="property-trending" title="trending"><i class="fas fa-bolt"></i></span>
-                                <div class="property-agent">
-                                    <div class="property-agent-image">
-                                        <img class="img-fluid" src="images/avatar/03.jpg" alt="">
-                                    </div>
-                                    <div class="property-agent-info">
-                                        <a class="property-agent-name" href="#">Felica queen</a>
-                                        <span class="d-block">Investment</span>
-                                        <ul class="property-agent-contact list-unstyled">
-                                            <li><a href="#"><i class="fas fa-mobile-alt"></i> </a></li>
-                                            <li><a href="#"><i class="fas fa-envelope"></i> </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="property-agent-popup">
-                                    <a href="#"><i class="fas fa-camera"></i> 03</a>
-                                </div>
-                            </div>
-                            <div class="property-details">
-                                <div class="property-details-inner">
-                                    <h5 class="property-title">
-                                        <a href="property-detail-style-01.html">
-                                            Lorem Ipsum
-                                        </a>
-                                    </h5>
-                                    <span class="property-address">
-                                        <i class="fas fa-map-marker-alt fa-xs"></i>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-
-                                    </span>
-                                    <span class="property-agent-date"><i class="far fa-clock fa-md"></i>6 months ago</span>
-                                    <div class="property-price">$658.00<span> / month</span> </div>
-                                    <ul class="property-info list-unstyled d-flex">
-                                        <li class="flex-fill property-bed"><i class="fas fa-car"></i>Car Parking<span>1</span></li>
-
-                                        <li class="flex-fill property-m-sqft"><i class="far fa-square"></i>sqft<span>145m</span></li>
-                                    </ul>
-                                </div>
-                                <div class="property-btn">
-                                    <a class="property-link" href="property-detail-style-01.html">See Details</a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--=================================
-    Property details -->
-
-
-    </div>
-
-    <section class="py-5 bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <h3 class="text-white mb-0">Sign up to our newsletter to get the latest news and offers.</h3>
-                </div>
-                <div class="col-md-7 mt-3 mt-md-0">
-                    <div class="newsletter">
-                        <form>
-                            <div class="form-group mb-0">
-                                <input type="email" class="form-control" placeholder="Enter email">
-                            </div>
-                            <button type="submit" class="btn btn-dark b-radius-left-none">Get notified</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+		</div>
+	</div>

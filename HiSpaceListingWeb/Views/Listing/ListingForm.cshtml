@@ -1,292 +1,657 @@
-﻿@{
-    ViewData["Title"] = "ListingForm";
-    Layout = "~/Views/Shared/_WebLayout.cshtml";
-    @using Microsoft.AspNetCore.Http
+﻿
+@{
+	ViewData["Title"] = "ListingForm";
+	Layout = "~/Views/Shared/_WebLayout.cshtml";
 }
 
+<div class="listingform scroll-padding">
+	<div class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
 
-    <div class="bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-chevron-right"></i> <span>List Table</span></a></li>
+						<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span>Add List</span></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="">
+		<div class="container p-0">
+			<div class="row no-gutters">
+				<div class="col-md-12">
+					<div class="section-title d-flex align-items-center m--tb-15">
+						<h2>Add Your Listing</h2>
+					</div>
+				</div>
+			</div>
+			<div class="">
+				<form class="form-row align-items-center md-form" action="account-profile.html">
+					<div class="col-12 hi-tabform">
+						@*tab headers*@
+						<div class="card">
+							<div class="card-body hi-form__head p-0">
+								<ul class="nav nav-tabs nav-tabs-03 nav-fill hi-tab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active show" id="head-1" data-id="1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-01" aria-selected="true">
+											<span>01</span>
+											List Information
+										</a>
+									</li>
+									<li class="nav-item cursor-no-drop">
+										<a class="nav-link pointer-event-none" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-02" aria-selected="false">
+											<span>02</span>
+											Address / Map
+										</a>
+									</li>
+									<li class="nav-item cursor-no-drop">
+										<a class="nav-link pointer-event-none" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-03" aria-selected="false">
+											<span>03</span>
+											Contact Details
+										</a>
+									</li>
 
-                        <li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span>Add List</span></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+								</ul>
+							</div>
+						</div>
+						@*tab Body*@
+						<div class="tab-content border-l-pry" id="myTabContent">
 
-    <section class="space-ptb">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title d-flex align-items-center">
-                        <h2>Add List</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="nav nav-tabs nav-tabs-03 nav-fill" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="tab-01-tab" data-toggle="tab" href="#tab-01" role="tab" aria-controls="tab-01" aria-selected="true">
-                                        <span>01</span>
-                                        Basic Information
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab-02-tab" data-toggle="tab" href="#tab-02" role="tab" aria-controls="tab-02" aria-selected="false">
-                                        <span>02</span>
-                                        Documents
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab-03-tab" data-toggle="tab" href="#tab-03" role="tab" aria-controls="tab-03" aria-selected="false">
-                                        <span>03</span>
-                                        List
-                                    </a>
-                                </li>
+							<div class="card m--tb-15">
+								<div class="card-body hi-form__body">
+									<div class="tab-content">
 
-                            </ul>
-                            <div class="tab-content mt-4" id="myTabContent">
-                                <div class="tab-pane fade show active" id="tab-01" role="tabpanel" aria-labelledby="tab-01-tab">
-                                    <form>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label>Name </label>
-                                                <input type="text" class="form-control" placeholder="Lister Name">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Location</label>
-                                                <input type="text" class="form-control" placeholder="Location">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Permanent Address</label>
-                                                <input type="text" class="form-control" placeholder="Permanent Address">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Secondary Address</label>
-                                                <input type="text" class="form-control" placeholder="Secondary Address">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Email</label>
-                                                <input type="text" class="form-control" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Mobile</label>
-                                                <input type="text" class="form-control" placeholder="Mobile No">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Alternate Mobile</label>
-                                                <input type="text" class="form-control" placeholder="Alternate Mobile No">
-                                            </div>
+										<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="head-1">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="Name" class=" required-input" placeholder="List Name">
+														<label for="Name" class="control-label">List Name*</label>
+														<i class="bar"></i>
+													</div>
+													<span class="hi-error d-none">Name is required</span>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="l_Email" class=" required-input" placeholder="abc@gmail.com">
+														<label for="l_Email" class="control-label">Email*</label>
+														<i class="bar"></i>
+													</div>
+													<span class="hi-error d-none">Email is required</span>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="Phone" class=" required-input" placeholder="9999999999">
+														<label for="Phone" class="control-label">Phone*</label>
+														<i class="bar"></i>
+													</div>
+													<span class="hi-error d-none">Phone is required</span>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="SecondaryPhone" class=" required-input" placeholder="abc@gmail.com">
+														<label for="8888888888" class="control-label">SecondaryPhone</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											<div class="row justify-content-center align-items-center">
+												<div class="col-md-6">
+													<div class="form-group">
+														<select class="form-control basic-select" id="list-type">
+															<option value="1">Commercial</option>
+															<option value="2">Co-Working</option>
+															<option value="3">RE-Professionals</option>
+														</select>
+														<label for="select" class="control-label">List Type</label><i class="bar"></i>
+													</div>
+												</div>
+												@*type 1*@
+												<div class="col-md-6 type-style type-1">
+													<div class="type-icon">
+														<i class="flaticon-building-2"></i>
+													</div>
+													<div>
+														<div class="type-desc">
+															The Commercial property used exclusively for business purposes or to provide a workspace rather than a living space. Most often, commercial real estate is leased to tenants to conduct business.
+														</div>
+														<div class="type-ty">
+															<span>Types: </span>
+															"Retail, Industries, Warehouse"
+														</div>
+													</div>
+												</div>
+												@*type 2*@
+												<div class="col-md-6 type-style type-2 d-none">
+													<div class="type-icon">
+														<i class="flaticon-skyline"></i>
+													</div>
+													<div>
+														<div class="type-desc">
+															The Co-Working property used exclusively for business purposes or to provide a workspace rather than a living space. Most often, commercial real estate is leased to tenants to conduct business.
+														</div>
+														<div class="type-ty">
+															<span>Types: </span>
+															"Office Space, Cafe"
+														</div>
+													</div>
+												</div>
+												@*type 3*@
+												<div class="col-md-6 type-style type-3 d-none">
+													<div class="type-icon">
+														<i class="flaticon-apartment"></i>
+													</div>
+													<div>
+														<div class="type-desc">
+															The RealEstate Professionals property used exclusively for business purposes or to provide a workspace rather than a living space.
+														</div>
+														<div class="type-ty">
+															<span>Types: </span>
+															"Property Developers, Leasing, Interior Designer, co-Working Architecture, Investor"
+														</div>
+													</div>
+												</div>
+											</div>
+											@*row 3 all type-1*@
+											<div class="row type-1">
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<select class="form-control basic-select" id="level-type">
+															<option value="Retail">Retail</option>
+															<option value="Industries">Industries</option>
+															<option value="Warehouse">Warehouse</option>
+														</select>
+														<label for="select" class="control-label">Category</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<select class="form-control basic-select" id="level-infra">
+															<option value="Shell">Shell (Empty/unfurnished)</option>
+															<option value="Semi">Semi Furnished</option>
+															<option value="Fully">Fully Furnished</option>
+														</select>
+														<label for="select" class="control-label">Infrastucture</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="Size" class="" placeholder="100">
+														<label for="Size" class="control-label">Space Size (Sq.ft)</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="checkbox-group">
+														<div class="checkbox-lable">
+															Rental Options
+														</div>
+														<div class="checkbox-items">
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Hour
+																</label>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Day
+																</label>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" checked="checked" /><i class="helper"></i>Month
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="MinPrice" class="" placeholder="000">
+														<label for="MinPrice" class="control-label">Min Price &#8377;</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="MaxPrice" class="" placeholder="100000">
+														<label for="MaxPrice" class="control-label">Max Size &#8377;</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="form-group col-md-3 col-sm-6 datetimepickers">
+													<div class="input-group date" id="datetimepicker-builtyear" data-target-input="nearest">
+														<input type="text" class="datetimepicker-input" data-target="#datetimepicker-builtyear" placeholder="MM/DD/YYY">
+														<label for="input" class="control-label">Build Year</label><i class="bar"></i>
+														<div class="input-group-append" data-target="#datetimepicker-builtyear" data-toggle="datetimepicker">
+															<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+														</div>
 
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Password</label>
-                                                <input type="text" class="form-control" placeholder="******">
-                                            </div>
-                                            <div class="form-group col-md-6 select-border">
-                                                <label>Website</label>
-                                                <input type="text" class="form-control" placeholder="Website">
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label>Short Description</label>
-                                                <textarea class="form-control" rows="4" placeholder="Short Description"></textarea>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label>Full Description</label>
-                                                <textarea class="form-control" rows="4" placeholder="Full Description"></textarea>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <a class="btn btn-primary pull-right" style="float:right" href="#">Next</a>
-                                            </div>
+													</div>
 
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="tab-pane fade" id="tab-02" role="tabpanel" aria-labelledby="tab-02-tab">
-                                    <form>
-                                        <div class="form-row">
-                                            <div class="form-group col-md-5">
-                                                <label>Document</label>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose a file</label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-md-5">
-                                                <label>Description </label>
-                                                <input type="text" class="form-control" placeholder="Description">
-                                            </div>
+												</div>
+												<div class="form-group col-md-3 col-sm-6 datetimepickers">
+													<div class="input-group date" id="datetimepicker-recent" data-target-input="nearest">
+														<input type="text" class="datetimepicker-input" data-target="#datetimepicker-recent" placeholder="MM/DD/YYY">
+														<label for="input" class="control-label">Recent Innovation</label><i class="bar"></i>
+														<div class="input-group-append" data-target="#datetimepicker-recent" data-toggle="datetimepicker">
+															<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+														</div>
 
-                                            <div class="form-group col-md-2">
+													</div>
 
-                                                <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                            </div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="CurrentOccupancy" class="" placeholder="00">
+														<label for="CurrentOccupancy" class="control-label">Current Occupancy %</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													<div class="radio-group">
+														<div class="radio-lable">
+															Interested in modifying to Co-Working
+														</div>
+														<div class="form-radio radio-items">
+															<div class="radio">
+																<label>
+																	<input type="radio" name="radio_1" checked="checked" />
+																	<i class="helper"></i>Yes
+																</label>
+															</div>
+															<div class="radio">
+																<label>
+																	<input type="radio" name="radio_1" />
+																	<i class="helper"></i>No
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											@*row 3 all type-2*@
+											<div class="row type-2 d-none">
+												<div class="col-md-3 col-sm-6 align-self-center">
+													<div class="form-group">
+														<select class="form-control basic-select" id="level-type-2">
+															<option value="Office">Office</option>
+															<option value="Cafe">Cafe</option>
+														</select>
+														<label for="select" class="control-label">Category</label><i class="bar"></i>
+													</div>
+												</div>
+												@*type 2 sub level*@
+												<div class="type-2-sub col-md-3 col-sm-6 mt-1rem align-self-center">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" /><i class="helper"></i>Shared Space
+														</label>
+													</div>
+													<div class="check-view row d-none">
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="ss_no" class="" placeholder="0">
+																<label for="ss_no" class="control-label">No. of Space</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="ss_total" class="" placeholder="0">
+																<label for="ss_total" class="control-label">Total Seats</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="type-2-sub col-md-3 col-sm-6 mt-1rem align-self-center">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" /><i class="helper"></i>Private Space
+														</label>
+													</div>
+													<div class="check-view row d-none">
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="ps_no" class="" placeholder="0">
+																<label for="ps_no" class="control-label">No. of Space</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="ps_total" class="" placeholder="0">
+																<label for="ps_total" class="control-label">Total Seats</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="type-2-sub col-md-3 col-sm-6 mt-1rem align-self-center">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" /><i class="helper"></i>Meeting Room
+														</label>
+													</div>
+													<div class="check-view row d-none">
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="mr_no" class="" placeholder="0">
+																<label for="mr_no" class="control-label">No. of Space</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+														<div class="col-md-6 col-sm-12">
+															<div class="form-group">
+																<input type="number" id="mr_total" class="" placeholder="0">
+																<label for="mr_total" class="control-label">Total Seats</label>
+																<i class="bar"></i>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="type-2-sub col-md-3 col-sm-6">
+													<div class="radio-group">
+														<div class="radio-lable">
+															Virtual Office
+														</div>
+														<div class="form-radio radio-items">
+															<div class="radio">
+																<label>
+																	<input type="radio" name="radio_2" checked="checked" />
+																	<i class="helper"></i>Yes
+																</label>
+															</div>
+															<div class="radio">
+																<label>
+																	<input type="radio" checked name="radio_2" />
+																	<i class="helper"></i>No
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="Size" class="" placeholder="100">
+														<label for="Size" class="control-label">Total Space Size (Sq.ft)</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="checkbox-group">
+														<div class="checkbox-lable">
+															Rental Options
+														</div>
+														<div class="checkbox-items">
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Hour
+																</label>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Day
+																</label>
+															</div>
+															<div class="checkbox">
+																<label>
+																	<input type="checkbox" checked="checked" /><i class="helper"></i>Month
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="CurrentOccupancy" class="" placeholder="00">
+														<label for="CurrentOccupancy" class="control-label">Total Current Occupancy %</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="MinPrice" class="" placeholder="000">
+														<label for="MinPrice" class="control-label">Min Price &#8377;</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="number" id="MaxPrice" class="" placeholder="100000">
+														<label for="MaxPrice" class="control-label">Max Size &#8377;</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="form-group col-md-3 col-sm-6 datetimepickers">
+													<div class="input-group date" id="datetimepicker-builtyear-cw" data-target-input="nearest">
+														<input type="text" class="datetimepicker-input" data-target="#datetimepicker-builtyear-cw" placeholder="MM/DD/YYY">
+														<label for="input" class="control-label">Build Year</label><i class="bar"></i>
+														<div class="input-group-append" data-target="#datetimepicker-builtyear-cw" data-toggle="datetimepicker">
+															<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+														</div>
+
+													</div>
+
+												</div>
+												<div class="form-group col-md-3 col-sm-6 datetimepickers">
+													<div class="input-group date" id="datetimepicker-recent-cw" data-target-input="nearest">
+														<input type="text" class="datetimepicker-input" data-target="#datetimepicker-recent-cw" placeholder="MM/DD/YYY">
+														<label for="input" class="control-label">Recent Innovation</label><i class="bar"></i>
+														<div class="input-group-append" data-target="#datetimepicker-recent-cw" data-toggle="datetimepicker">
+															<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+														</div>
+
+													</div>
+
+												</div>
+											</div>
+											@*row 3 all type-3*@
+											<div class="row type-3 d-none">
+												<div class="col-md-3 col-sm-6 align-self-center">
+													<div class="form-group">
+														<select class="form-control basic-select" id="level-type-3">
+															<option value="1">Property Developer</option>
+															<option value="2">Leasing</option>
+															<option value="3">Interior Designer</option>
+															<option value="4">co-Working Architecture</option>
+															<option value="5">Investor</option>
+														</select>
+														<label for="select" class="control-label">Category</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-9 col-sm-12">
+													<div class="checkbox-group">
+														<div class="checkbox-lable">
+															Interest / Specialist
+														</div>
+														<div class="checkbox-items row">
+															<div class="checkbox col-md-3 m-0">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Warehouse
+																</label>
+															</div>
+															<div class="checkbox col-md-3 m-0">
+																<label>
+																	<input type="checkbox" /><i class="helper"></i>Office
+																</label>
+															</div>
+															<div class="checkbox col-md-3 m-0">
+																<label>
+																	<input type="checkbox" checked="checked" /><i class="helper"></i>Retail
+																</label>
+															</div>
+															<div class="checkbox col-md-3 m-0">
+																<label>
+																	<input type="checkbox" checked="checked" /><i class="helper"></i>Co-Working
+																</label>
+															</div>
+															<div class="checkbox col-md-3 m-0">
+																<label>
+																	<input type="checkbox" checked="checked" /><i class="helper"></i>Property Management
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										@*map and address section*@
+										<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="head-2">
+											<div class="row justify-content-center">
+												<!-- Autocomplete location search input -->
+												<div class="form-group">
+													<input type="hidden" id="loc_lat" />
+													<input type="hidden" id="loc_long" />
+												</div>
+
+												<!-- Display latitude and longitude -->
+												<div class="latlong-view col-sm-10">
+													<p class="m--0"><b>Latitude:</b> <span id="latitude_view"></span></p>
+													<p class="m--0"><b>Longitude:</b> <span id="longitude_view"></span></p>
+												</div>
+												<div class="col-md-10 address-text">
+													<h6>Let's try to find your location on the map.</h6>
+													<p>Type your address into the field below and select your space from the dropdown menu. If your space doesn't appear, type your street address in instead.</p>
+												</div>
+												<div class="col-md-10">
+													<div class="pac-card" id="pac-card">
+														<div class="pac-select">
+															<div id="type-selector" class="pac-controls hide">
+																<input type="radio" name="type" id="changetype-all" checked="checked">
+																<label for="changetype-all">All</label>
+
+																<input type="radio" name="type" id="changetype-establishment">
+																<label for="changetype-establishment">Establishments</label>
+
+																<input type="radio" name="type" id="changetype-address">
+																<label for="changetype-address">Addresses</label>
+
+																<input type="radio" name="type" id="changetype-geocode">
+																<label for="changetype-geocode">Geocodes</label>
+															</div>
+															<div id="strict-bounds-selector" class="pac-controls">
+																<input type="checkbox" id="use-strict-bounds" value="">
+																<label for="use-strict-bounds">Strict Bounds</label>
+															</div>
+														</div>
+														<div id="pac-container">
+															<input id="pac-input" type="text"
+																   placeholder="Enter a location">
+														</div>
+													</div>
+													<div id="map"></div>
+													<div id="infowindow-content">
+														<img src="" width="16" height="16" id="place-icon">
+														<span id="place-name" class="title"></span><br>
+														<span id="place-address"></span>
+													</div>
+													<p class="address-foot">Confirm and complete any missing details in the location information below:</p>
+													<table id="address">
+														<tbody class="row">
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">Address Line 1</td>
+																<td class="slimField col-sm-6"><input class="field" id="street_number" /></td>
+															</tr>
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">Address Line 2</td>
+																<td class="wideField col-sm-6"><input class="field" id="route" /></td>
+
+															</tr>
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">City</td>
+																<td class="wideField col-sm-6"><input class="field" id="locality" /></td>
+															</tr>
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">State</td>
+																<td class="slimField col-sm-6"><input class="field" id="administrative_area_level_1" /></td>
+															</tr>
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">Country</td>
+																<td class="wideField col-sm-6" colspan="3"><input class="field" id="country" /></td>
+															</tr>
+															<tr class="col-sm-6">
+																<td class="label col-sm-6">Zip code</td>
+																<td class="wideField col-sm-6"><input class="field" id="postal_code" /></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+										@*contact details section*@
+										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="Fax" class="" placeholder="123456798">
+														<label for="Fax" class="control-label">Fax</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="Pry_name" class="" placeholder="Name">
+														<label for="Pry_name" class="control-label">Primary Contact Person</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<input type="text" id="Pry_phone" class="" placeholder="9999999999">
+														<label for="Pry_phone" class="control-label">Primary Contact Phone</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-3 col-sm-6">
+													<div class="form-group">
+														<textarea rows="5" id="desc" class="" placeholder="Enter your text here..."></textarea>
+														<label for="desc" class="control-label">Description</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													<div class="checkbox m-0">
+														<label>
+															<input type="checkbox" /><i class="helper"></i>Activate
+														</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						@*tab Footer*@
+						<div class="card mb-4">
+							<div class="card-body hi-form__foot">
+								<div class="row hi-btn-event">
+									<div class="col-12">
+										<a href="javascript:void(0);" onclick="tabNavigation(0);" class="btn btn-primary text-uppercase tab-back-btn">Back</a>
+										<a href="javascript:void(0);" onclick="tabNavigation(1);" class="btn btn-primary text-uppercase tab-next-btn float-right">Next</a>
+										<input href="javascript:void(0);" onclick="tabNavigation(2);" type="submit" class="btn btn-success text-uppercase tab-submit float-right bmw-submit" value="Submit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</section>
+</div>
 
 
-                                        </div>
-                                    </form>
-                                    <a class="btn btn-primary mt-3" href="#"><i class="fas fa-plus-circle"></i> New Document</a>
-                                    <a class="btn btn-primary pull-right" style="float:right" href="#">Next</a>
-                                </div>
-                                <div class="tab-pane fade" id="tab-03" role="tabpanel" aria-labelledby="tab-03-tab">
-                                    <form>
-                                        <div class="form-row">
 
-
-                                            <div class="form-group col-md-10 select-border">
-
-
-                                                <label>List Category</label>
-                                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                                    <option value="value 01" selected="selected" data-select2-id="3">Commercial </option>
-                                                    <option value="value 02">Co-Working </option>
-                                                    <option value="value 03">RE Professional</option>
-
-                                                </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-idcq-container"><span class="select2-selection__rendered" id="select2-idcq-container" role="textbox" aria-readonly="true" title="Commercial ">Commercial </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>
-
-                                            <div class="form-group col-md-2">
-
-                                                <a href="#"><i class="far fa-trash-alt text-danger"></i></a>
-                                            </div>
-
-
-                                            <div class="form-group col-md-5 select-border">
-
-
-                                                <label>Type</label>
-                                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="4" tabindex="-1" aria-hidden="true">
-                                                    <option value="value 01" selected="selected" data-select2-id="6">Office </option>
-                                                    <option value="value 02">Rental </option>
-                                                    <option value="value 03">Industries</option>
-                                                    <option value="value 03">Warehouse</option>
-                                                </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-7211-container"><span class="select2-selection__rendered" id="select2-7211-container" role="textbox" aria-readonly="true" title="Office ">Office </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Location</label>
-                                                <input type="text" class="form-control" placeholder="Location">
-                                            </div>
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Size</label>
-                                                <input type="text" class="form-control" placeholder="Size">
-                                            </div>
-
-
-                                            <div class="form-group col-md-5 select-border">
-
-
-                                                <label>Parking</label>
-                                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="7" tabindex="-1" aria-hidden="true">
-
-                                                    <option value="value 01" selected="selected" data-select2-id="9">Free </option>
-                                                    <option value="value 02">Paid </option>
-                                                    <option value="value 03">NO</option>
-                                                </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="8" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-twi9-container"><span class="select2-selection__rendered" id="select2-twi9-container" role="textbox" aria-readonly="true" title="Free ">Free </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>
-
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Built Year</label>
-                                                <input type="text" class="form-control" placeholder="Built Year">
-                                            </div>
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Renovation Year</label>
-                                                <input type="text" class="form-control" placeholder="Renovation Year">
-                                            </div>
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Current Occupancy</label>
-                                                <input type="text" class="form-control" placeholder="Current Occupancy">
-                                            </div>
-
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Interested In Co-working</label>
-                                                <select class="form-control basic-select select2-hidden-accessible" data-select2-id="10" tabindex="-1" aria-hidden="true">
-
-                                                    <option value="value 01" selected="selected" data-select2-id="12">Yes </option>
-                                                    <option value="value 02">No </option>
-                                                    <option value="value 03">In Future</option>
-                                                </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-s8r9-container"><span class="select2-selection__rendered" id="select2-s8r9-container" role="textbox" aria-readonly="true" title="Yes ">Yes </span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            </div>
-                                            <div class="form-group col-md-5 select-border">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Address">
-                                            </div>
-                                            <div class="form-group col-md-5">
-                                                <label>Lat</label>
-                                                <input type="text" class="form-control" placeholder="Lat">
-                                            </div>
-                                            <div class="form-group col-md-5">
-                                                <label>Lan</label>
-                                                <input type="text" class="form-control" placeholder="Lan">
-                                            </div>
-
-                                            <div class="form-group col-md-5">
-                                                <label>Price From</label>
-                                                <input type="text" class="form-control" placeholder="From">
-                                            </div>
-                                            <div class="form-group col-md-5">
-                                                <label>Price To</label>
-                                                <input type="text" class="form-control" placeholder="To">
-                                            </div>
-
-                                            <div class="form-group col-md-11">
-                                                <label>Short Description</label>
-                                                <textarea class="form-control" rows="4" placeholder="Short Description"></textarea>
-                                            </div>
-                                            <div class="form-group col-md-11">
-                                                <label>Full Description</label>
-                                                <textarea class="form-control" rows="4" placeholder="Full Description"></textarea>
-                                            </div>
-
-
-                                            <div class="form-group col-md-11">
-                                                <label>Inclusion</label>
-                                                <textarea class="form-control" rows="4" placeholder="Inclusion"></textarea>
-                                            </div>
-                                            <div class="form-group col-md-11">
-                                                <label>Exclusion</label>
-                                                <textarea class="form-control" rows="4" placeholder="Exclusion"></textarea>
-                                            </div>
-
-                                            <div class="form-group col-md-11">
-                                                <label>Note</label>
-                                                <textarea class="form-control" rows="4" placeholder="Note"></textarea>
-                                            </div>
-                                        </div>
-
-
-                                    </form>
-                                    <a class="btn btn-primary mt-3" href="#"><i class="fas fa-plus-circle"></i> New List</a>
-                                    <a class="btn btn-primary pull-right" style="float:right" href="#">Submit</a>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <h3 class="text-white mb-0">Sign up to our newsletter to get the latest news and offers.</h3>
-                </div>
-                <div class="col-md-7 mt-3 mt-md-0">
-                    <div class="newsletter">
-                        <form>
-                            <div class="form-group mb-0">
-                                <input type="email" class="form-control" placeholder="Enter email">
-                            </div>
-                            <button type="submit" class="btn btn-dark b-radius-left-none">Get notified</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>

@@ -30,6 +30,10 @@ namespace HiSpaceListingWeb.Controllers
 		{
 			return View();
 		}
+		public ActionResult PropertyLister()
+		{
+			return View();
+		}
 		public ActionResult PropertyListMap()
 		{
 			return View();

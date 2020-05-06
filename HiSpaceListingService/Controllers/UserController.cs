@@ -30,7 +30,7 @@ namespace HiSpaceListingService.Controllers
 		[Route("AuthenticateUser")]
 		public async Task<ActionResult<User>> AuthenticateUser([FromBody] User user)
 		{
-			var _user = await _context.Users.FirstOrDefaultAsync(d => d.Email == user.Email && d.Password == user.Password && d.Status == true);
+			var _user = await _context.Users.FirstOrDefaultAsync(d => d.Email == user.Email && d.Password == user.Password);
 
 			if (_user == null)
 			{
@@ -123,7 +123,7 @@ namespace HiSpaceListingService.Controllers
 					_context.Entry(user).State = EntityState.Modified;
 
 					try
-					{
+				{
 						await _context.SaveChangesAsync();
 					}
 					catch (DbUpdateConcurrencyException)
@@ -140,7 +140,7 @@ namespace HiSpaceListingService.Controllers
 
 					trans.Commit();
 				}
-				catch (Exception err)
+				catch (Exception)
 				{
 					trans.Rollback();
 				}

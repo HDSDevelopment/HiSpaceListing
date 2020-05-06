@@ -73,7 +73,7 @@ NOTE: This file contains all scripts for the actual Template.
 
 POTENZA.isSticky = function () {
   $(window).scroll(function(){
-    if ($(this).scrollTop() > 150) {
+    if ($(this).scrollTop() > 50) {
        $('.header-sticky').addClass('is-sticky');
     } else {
        $('.header-sticky').removeClass('is-sticky');
@@ -240,16 +240,16 @@ $('[data-toggle="popover"]').popover()
   /*************************
       datetimepicker
   *************************/
-  POTENZA.datetimepickers = function () {
-    if ($('.datetimepickers').exists()) {
-      $('#datetimepicker-01, #datetimepicker-02').datetimepicker({
-        format: 'L'
-      });
-      $('#datetimepicker-03, #datetimepicker-04').datetimepicker({
-        format: 'LT'
-      });
-    }
-  };
+  //POTENZA.datetimepickers = function () {
+  //  if ($('.datetimepickers').exists()) {
+  //    $('#datetimepicker-01, #datetimepicker-02').datetimepicker({
+  //      format: 'L'
+  //    });
+  //    $('#datetimepicker-03, #datetimepicker-04').datetimepicker({
+  //      format: 'LT'
+  //    });
+  //  }
+  //};
 
   /*************************
       select2
@@ -392,7 +392,7 @@ POTENZA.streetviewtabs = function () {
   $document.ready(function () {
     POTENZA.counters(),
     POTENZA.slickslider(),
-    POTENZA.datetimepickers(),
+    //POTENZA.datetimepickers(),
     POTENZA.select2(),
     POTENZA.dropdownmenu(),
     POTENZA.isSticky(),

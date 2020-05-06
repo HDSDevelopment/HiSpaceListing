@@ -1,0 +1,241 @@
+﻿@{
+	ViewData["Title"] = "PropertyLister";
+	Layout = "~/Views/Shared/_WebLayout.cshtml";
+	@using Microsoft.AspNetCore.Http
+}
+
+<div class="property-list">
+	<div class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+						<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Lister Property </span></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="space-ptb">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 mb-5 mb-lg-0">
+					<div class="">
+						<div class="widget accordion-sec">
+							<div class="widget-title widget-collapse">
+								<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Lister Detail</h6> <i class="fas fa-chevron-down"></i> </a>
+							</div>
+							<div class="collapse show" id="property-lister">
+								<div class="accordion-sec__detail">
+									<div class="lister-head">
+										<div class="lister-head__name">Highbrow service</div>
+										<img class="lister-head__image img-fluid" src="~/images/listing/logo.png" alt="" />
+									</div>
+									<div class="lister-detail">
+										<div><i class="fas fa-globe"></i><b>Website: </b> <span>www.hdsre.com</span></div>
+										<div><i class="fas fa-mobile-alt"></i><b>Phone: </b><span>9898989898</span></div>
+										<div><i class="fas fa-city"></i><b>Total List </b><span>(5)</span></div>
+									</div>
+									@*<div class="lister-btn">
+										<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website")">See Details</a>
+									</div>*@
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="property-item property-col-list mt-4">
+						<div class="row no-gutters">
+							<div class="col-lg-4 col-md-5 prop-image">
+								<div class="property-image bg-overlay-gradient-04">
+									<img class="img-fluid" src="~/images/property/list/01.jpg" alt="">
+									<div class="property-lable">
+										<span class="badge badge-md badge-primary">Office</span>
+									</div>
+									<div class="property-agent">
+										<div class="property-agent-image">
+											<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+										</div>
+										<div class="property-agent-info">
+											<a class="property-agent-name" href="#">Sara lisbon</a>
+											<span class="d-block">Company Agent</span>
+
+										</div>
+									</div>
+									<div class="property-agent-popup">
+										<a href="#"><i class="fas fa-camera"></i> 03</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-7 prop-details">
+								<div class="property-details">
+									<div class="property-details__head">
+										<div class="property-details__header">Coworking name</div>
+										<div class="property-details__amenities">
+											<span class="property-details__am">Amenities (10)</span>
+											<span class="property-details__fa">Facilities (5)</span>
+										</div>
+									</div>
+									<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
+									<div class="property-details__section">
+										<div>
+											<span class="property-span__head">Type: </span>
+											<span class="property-span__type">Office </span>
+										</div>
+										<div>
+											<span class="property-span__head">Rent: </span>
+											<span class="property-span__rent">Day | Month</span>
+										</div>
+									</div>
+									<div class="property-details__footer">
+										<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
+										<div class="property-details__total">
+
+											<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
+											<span class="property-span__head"> | </span>
+											<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
+										</div>
+									</div>
+
+								</div>
+								<div class="property-btn">
+									<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="property-item property-col-list mt-4">
+						<div class="row no-gutters">
+							<div class="col-lg-4 col-md-5 prop-image">
+								<div class="property-image bg-overlay-gradient-04">
+									<img class="img-fluid" src="~/images/property/list/02.jpg" alt="">
+									<div class="property-lable">
+										<span class="badge badge-md badge-primary">Office</span>
+									</div>
+									<div class="property-agent">
+										<div class="property-agent-image">
+											<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+										</div>
+										<div class="property-agent-info">
+											<a class="property-agent-name" href="#">Sara lisbon</a>
+											<span class="d-block">Company Agent</span>
+
+										</div>
+									</div>
+									<div class="property-agent-popup">
+										<a href="#"><i class="fas fa-camera"></i> 03</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-7 prop-details">
+								<div class="property-details">
+									<div class="property-details__head">
+										<div class="property-details__header">Coworking name</div>
+										<div class="property-details__amenities">
+											<span class="property-details__am">Amenities (10)</span>
+											<span class="property-details__fa">Facilities (5)</span>
+										</div>
+									</div>
+									<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
+									<div class="property-details__section">
+										<div>
+											<span class="property-span__head">Type: </span>
+											<span class="property-span__type">Office </span>
+										</div>
+										<div>
+											<span class="property-span__head">Rent: </span>
+											<span class="property-span__rent">Hour | Day | Month</span>
+										</div>
+									</div>
+									<div class="property-details__footer">
+										<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
+										<div class="property-details__total">
+
+											<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
+											<span class="property-span__head"> | </span>
+											<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
+										</div>
+									</div>
+
+								</div>
+								<div class="property-btn">
+									<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="property-item property-col-list mt-4">
+						<div class="row no-gutters">
+							<div class="col-lg-4 col-md-5 prop-image">
+								<div class="property-image bg-overlay-gradient-04">
+									<img class="img-fluid" src="~/images/property/list/03.jpg" alt="">
+									<div class="property-lable">
+										<span class="badge badge-md badge-primary">Private Office</span>
+									</div>
+									<div class="property-agent">
+										<div class="property-agent-image">
+											<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+										</div>
+										<div class="property-agent-info">
+											<a class="property-agent-name" href="#">Sara lisbon</a>
+											<span class="d-block">Company Agent</span>
+
+										</div>
+									</div>
+									<div class="property-agent-popup">
+										<a href="#"><i class="fas fa-camera"></i> 03</a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-7 prop-details">
+								<div class="property-details">
+									<div class="property-details__head">
+										<div class="property-details__header">Coworking name</div>
+										<div class="property-details__amenities">
+											<span class="property-details__am">Amenities (10)</span>
+											<span class="property-details__fa">Facilities (5)</span>
+										</div>
+									</div>
+									<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
+									<div class="property-details__section">
+										<div>
+											<span class="property-span__head">Type: </span>
+											<span class="property-span__type">Private Office </span>
+										</div>
+										<div>
+											<span class="property-span__head">Rent: </span>
+											<span class="property-span__rent">Month</span>
+										</div>
+									</div>
+									<div class="property-details__footer">
+										<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
+										<div class="property-details__total">
+
+											<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
+											<span class="property-span__head"> | </span>
+											<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
+										</div>
+									</div>
+
+								</div>
+								<div class="property-btn">
+									<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+</div>

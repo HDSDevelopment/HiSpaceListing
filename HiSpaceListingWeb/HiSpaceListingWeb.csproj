@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <Folder Include="wwwroot\css\datatables\" />
   </ItemGroup>
 
 </Project>
