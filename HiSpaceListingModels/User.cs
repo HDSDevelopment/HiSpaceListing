@@ -63,5 +63,6 @@ namespace HiSpaceListingModels
 		public int? ModifyBy { set; get; }
 
 		public DateTime? ModidyDateTime { get; set; }
+		public string UserStatus { get; set; }
 	}
 }
