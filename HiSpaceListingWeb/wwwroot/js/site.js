@@ -505,3 +505,20 @@ function deleteRowFacilities(that) {
 	$(that).closest('.facilities-upload__row').remove();
 };
 //facilities upload section end
+
+$(function () {
+	//model open for the list image section
+	$('body').on('click', '.modal-link__image', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__image").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__image" class="modal image fade modal-try" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-lg modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+});

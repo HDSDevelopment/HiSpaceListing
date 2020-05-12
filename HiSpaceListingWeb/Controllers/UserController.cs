@@ -86,7 +86,7 @@ namespace HiSpaceListingWeb.Controllers
 		}
 		// POST: Edit
 		[HttpPost]
-		public ActionResult Edit(UserViewModel model)
+		public ActionResult Edit(UserMasterViewModel model)
 		{
 			SetSessionVariables();
 

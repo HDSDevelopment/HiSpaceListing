@@ -1,7 +1,7 @@
 ﻿
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-@model HiSpaceListingWeb.ViewModel.UserViewModel
+@model HiSpaceListingWeb.ViewModel.UserMasterViewModel
 @*@model HiSpaceListingModels.User*@
 @{
 	ViewData["Title"] = "ListingTable";
@@ -33,7 +33,7 @@
 					<div class="collapse show" id="property-lister">
 						<div class="accordion-sec__detail">
 							@*<form class="form-row align-items-center md-form p-3" action="account-profile.html">*@
-							@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-row align-items-center md-form p-3", enctype = "multipart/form-data"  }))
+							@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "form-row align-items-center md-form p-3", enctype = "multipart/form-data" }))
 							{
 								@Html.AntiForgeryToken()
 								@Html.HiddenFor(m => m.User.UserId)
@@ -124,62 +124,62 @@
 								<div class="form-group col-md-3 col-sm-6">
 									@*<input type="file" class="form-control" accept="image/*">*@
 									@*@Html.EditorFor(m => m.User.Doc_PANCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-									<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
+										<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
 									<p class="label-head mb-10">PAN Certificate</p>
-										@if (Model.User.Doc_PANCopy != null)
-										{
+									@if (Model.User.Doc_PANCopy != null)
+									{
 
-											<div class="gallery">
-												@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
-												<p><a href="@Url.Content(Model.User.Doc_PANCopy)" target="_blank">PAN</a></p>
-											</div>
-										}
-										else
-										{
+										<div class="gallery">
 											@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
-										}
+											<a href="@Url.Content(Model.User.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
+											<p><a href="@Url.Content(Model.User.Doc_PANCopy)" target="_blank">PAN</a></p>
+										</div>
+									}
+									else
+									{
+										@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
+										<p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
+									}
 								</div>
 								<div class="form-group col-md-3 col-sm-6">
 									@*<input type="file" class="form-control" accept="image/*">*@
 									@*@Html.EditorFor(m => m.User.Doc_RCCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-									<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
+										<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
 									<p class="label-head mb-10">Registration Certificate</p>
-										@if (Model.User.Doc_RCCopy != null)
-										{
+									@if (Model.User.Doc_RCCopy != null)
+									{
 
-											<div class="gallery">
-												@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
-												<p><a href="@Url.Content(Model.User.Doc_RCCopy)" target="_blank">RCCopy</a></p>
-											</div>
-										}
-										else
-										{
+										<div class="gallery">
 											@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
-										}
+											<a href="@Url.Content(Model.User.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
+											<p><a href="@Url.Content(Model.User.Doc_RCCopy)" target="_blank">RCCopy</a></p>
+										</div>
+									}
+									else
+									{
+										@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+										<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+									}
 								</div>
 								<div class="form-group col-md-3 col-sm-6">
 									@*<input type="file" class="form-control" accept="image/*">*@
 									@*@Html.EditorFor(m => m.User.Doc_CompanyLogo, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-									<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
+										<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
 									<p class="label-head mb-10">Logo</p>
-										@if (Model.User.Doc_CompanyLogo != null)
-										{
+									@if (Model.User.Doc_CompanyLogo != null)
+									{
 
-											<div class="gallery">
-												@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_CompanyLogo)" class="view1"><img src="@Url.Content(Model.User.Doc_CompanyLogo)" class="img-fluid" alt="Logo"></a>
-												<p><a href="@Url.Content(Model.User.Doc_CompanyLogo)" target="_blank">Logo</a></p>
-											</div>
-										}
-										else
-										{
+										<div class="gallery">
 											@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">Logo Not Uploaded!</p>
-										}
+											<a href="@Url.Content(Model.User.Doc_CompanyLogo)" class="view1"><img src="@Url.Content(Model.User.Doc_CompanyLogo)" class="img-fluid" alt="Logo"></a>
+											<p><a href="@Url.Content(Model.User.Doc_CompanyLogo)" target="_blank">Logo</a></p>
+										</div>
+									}
+									else
+									{
+										@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
+										<p class="font-15 text-danger">Logo Not Uploaded!</p>
+									}
 								</div>
 								<div class="col-md-12 col-sm-12">
 									<div class="checkbox m-0">
@@ -250,224 +250,118 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>HDS Workarea</td>
-											<td><span class="font-weight-bold text-sec">Co-Working</span></td>
-											<td>9898989898</td>
-											<td>chennai</td>
-											<td>20%</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
-															<i class="fas fa-business-time btn-icon text-pry"></i>
+										@foreach (var item in Model.ListingList)
+										{
+											//checking the status
+											@if (item.Status == true)
+											{
+												ViewBag.ListStatus = @Html.Raw("<i class='fas fa-check text-success'></i>");
+											}
+											else
+											{
+												ViewBag.ListStatus = @Html.Raw("<i class='fas fa-times text-danger'></i>");
+											}
+											//checking the type and addons
+											@if (item.ListingType == "commercial")
+											{
+												ViewBag.TypeClass = "text-pry";
+												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
+										"<span data-toggle='modal' data-target='#amenitiesModal' data-dismiss='modal'>" +
+											"<a href='#' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title=' data-original-title='Click to list the aminities'>" +
+												"<i class='fas fa-wifi btn-icon text-primary'></i>" +
+											"</a>" +
+										"</span>" +
+"<span data-toggle='modal' data-target='#facilitiesModal' data-dismiss='modal'>" +
+								"<a href='#' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title=' data-original-title='Click to list the facilities'>" +
+									"<i class='fas fa-bus btn-icon text-sec'></i>" +
+								"</a>" +
+"</span>" +
+"</div>");
+											}
+											else if (item.ListingType == "coworking")
+											{
+												ViewBag.TypeClass = "text-sec";
+												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
+																	  "<span data-toggle='modal' data-target='#amenitiesModal' data-dismiss='modal'>" +
+																		  "<a href='#' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title=' data-original-title='Click to list the aminities'>" +
+																			  "<i class='fas fa-wifi btn-icon text-primary'></i>" +
+																		  "</a>" +
+																	  "</span>" +
+														  "<span data-toggle='modal' data-target='#facilitiesModal' data-dismiss='modal'>" +
+															  "<a href='#' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title=' data-original-title='Click to list the facilities'>" +
+																  "<i class='fas fa-bus btn-icon text-sec'></i>" +
+															  "</a>" +
+														  "</span>" +
+													  "</div>");
+											}
+											else if (item.ListingType == "reprofessional")
+											{
+												ViewBag.TypeClass = "text-info";
+												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
+																	  "<span data-toggle='modal' data-target='#projectModal' data-dismiss='modal'>" +
+																		  "<a href='#' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title=' data-original-title='Click to list the RE project'>" +
+																			  "<i class='fas fa-city btn-icon text-info'></i>" +
+																		  "</a>" +
+																	  "</span>" +
+													  "</div>");
+											}
+											<tr>
+												<td>
+													@Html.DisplayFor(modelItem => item.Name)
+												</td>
+												<td>
+													<span class="font-weight-bold  @ViewBag.TypeClass">@Html.DisplayFor(modelItem => item.ListingType)</span>
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.Phone)
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.City)
+												</td>
+												<td>
+													@Html.DisplayFor(modelItem => item.CurrentOccupancy)
+												</td>
+												<td class="p-0">
+													<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+														<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
+															<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
+																<i class="fas fa-business-time btn-icon text-pry"></i>
+															</a>
+														</span>
+													</div>
+												</td>
+												<td class="p-0">
+													<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+														<span class="modal-link__image"  data-targeturl="@Url.Action("AddImage","Listing",new { id = item.ListingId })">
+															<a href="javascript:function() { return false; }" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
+																<i class="fas fa-image btn-icon text-try"></i>
+															</a>
+														</span>
+													</div>
+												</td>
+												<td class="p-0">
+													@ViewBag.TypeAddons
+												</td>
+												<td>
+													<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
+														@ViewBag.ListStatus
+													</div>
+												</td>
+												<td class="p-0">
+													<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
+														<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+															<i class="fas fa-eye btn-icon text-info"></i>
 														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
-															<i class="fas fa-image btn-icon text-try"></i>
+														<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+															<i class="fas fa-edit btn-icon text-warning"></i>
 														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<span data-toggle="modal" data-target="#amenitiesModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the aminities">
-															<i class="fas fa-wifi btn-icon text-primary"></i>
+														<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+															<i class="fas fa-trash-alt btn-icon text-danger"></i>
 														</a>
-													</span>
-													<span data-toggle="modal" data-target="#facilitiesModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the facilities">
-															<i class="fas fa-bus btn-icon text-sec"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td>
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<i class="fas fa-check text-success"></i>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
-														<i class="fas fa-eye btn-icon text-info"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fas fa-edit btn-icon text-warning"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-														<i class="fas fa-trash-alt btn-icon text-danger"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>HDS Commercial</td>
-											<td><span class="font-weight-bold text-pry">Commercial</span></td>
-											<td>9898989898</td>
-											<td>chennai</td>
-											<td>20%</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
-															<i class="fas fa-business-time btn-icon text-pry"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
-															<i class="fas fa-image btn-icon text-try"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<span data-toggle="modal" data-target="#amenitiesModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the aminities">
-															<i class="fas fa-wifi btn-icon text-primary"></i>
-														</a>
-													</span>
-													<span data-toggle="modal" data-target="#facilitiesModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the facilities">
-															<i class="fas fa-bus btn-icon text-sec"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td>
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<i class="fas fa-check text-success"></i>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
-														<i class="fas fa-eye btn-icon text-info"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fas fa-edit btn-icon text-warning"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-														<i class="fas fa-trash-alt btn-icon text-danger"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>HDS Professional</td>
-											<td><span class="font-weight-bold text-info">Re-Proff.</span></td>
-											<td>9898989898</td>
-											<td>chennai</td>
-											<td>20%</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
-															<i class="fas fa-business-time btn-icon text-pry"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
-															<i class="fas fa-image btn-icon text-try"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<span data-toggle="modal" data-target="#projectModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the RE project">
-															<i class="fas fa-city btn-icon text-info"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td>
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<i class="fas fa-times text-danger"></i>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
-														<i class="fas fa-eye btn-icon text-info"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fas fa-edit btn-icon text-warning"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-														<i class="fas fa-trash-alt btn-icon text-danger"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>Hi Professional</td>
-											<td><span class="font-weight-bold text-info">Re-Proff.</span></td>
-											<td>9898989898</td>
-											<td>chennai</td>
-											<td>20%</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#hoursModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
-															<i class="fas fa-business-time btn-icon text-pry"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<span data-toggle="modal" data-target="#imageModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
-															<i class="fas fa-image btn-icon text-try"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<span data-toggle="modal" data-target="#projectModal" data-dismiss="modal">
-														<a href="#" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the RE project">
-															<i class="fas fa-city btn-icon text-info"></i>
-														</a>
-													</span>
-												</div>
-											</td>
-											<td>
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-													<i class="fas fa-check text-success"></i>
-												</div>
-											</td>
-											<td class="p-0">
-												<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
-														<i class="fas fa-eye btn-icon text-info"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-														<i class="fas fa-edit btn-icon text-warning"></i>
-													</a>
-													<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-														<i class="fas fa-trash-alt btn-icon text-danger"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
+													</div>
+												</td>
+											</tr>
+										}
 									</tbody>
 								</table>
 							</div>
@@ -1072,65 +966,6 @@
 	</div>
 </div>
 @*schedualr section end*@
-@*Adding image section start*@
-<div class="modal image fade modal-try" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header border-0">
-				<h5 class="modal-title" id="imageModalLabel"><i class="fas fa-image"> </i> Image </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="tab-content" id="">
-					<div class="tab-pane fade show active" id="image" role="tabpanel" aria-labelledby="image-tab">
-						<div class="btn btn-try add-btn" onclick="addImage()"> <i class="fa fa-plus-circle"></i>Image</div>
-						<form class=" mt-4 align-items-center md-form" action="account-profile.html">
-							@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
-							@*{*@
-							<div class="image-upload">
-								<div class="row image-upload__row">
-									<div class=" col-md-4 col-sm-6">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Image Name">
-											<label for="input" class="control-label">Image Name</label><i class="bar"></i>
-										</div>
-									</div>
-									<div class=" col-md-4 col-sm-6">
-										<div class="form-group">
-											<input type="file" class="form-control" accept="image/*">
-											<label for="input" class="control-label">Upload Image</label><i class="bar"></i>
-										</div>
-									</div>
-									<div class="col-md-2 col-sm-6 m-b--15 align-self-center">
-										<div class="checkbox m-0">
-											<label>
-												<input type="checkbox" /><i class="helper"></i> Active
-											</label>
-										</div>
-									</div>
-									<div class="col-md-2 col-sm-6">
-										<span class="delete-btn" onclick="deleteRowImage(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
-									</div>
-								</div>
-							</div>
-
-
-							<div class="row width-full justify-content-center">
-								<div class="col-sm-6">
-									<button type="submit" class="btn btn-try btn-block">Submit Images</button>
-								</div>
-							</div>
-						</form>
-						@*}*@
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@*Adding image section end*@
 
 @*Adding project section start*@
 <div class="modal project fade modal-info" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
@@ -2182,3 +2017,10 @@
 </div>
 @*facilities section end*@
 
+<!-- The below code is for the modal dialog Image section-->
+<div id="modal-container__image" class="modal fade" tabindex="-1" role="dialog">
+	<a href="#close" title="Close" class="modal-close-btn">X</a>
+	<div class="modal-content">
+		<div class="modal-body"></div>
+	</div>
+</div>

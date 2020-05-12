@@ -20,6 +20,19 @@ namespace HiSpaceListingService.Controllers
 		{
 			_context = context;
 		}
+
+		/// <summary>
+		/// Gets the list of all Listings by userId.
+		/// </summary>
+		/// <returns>The list of Listings.</returns>
+		// GET: api/Listing/Listings/1
+		[HttpGet]
+		[Route("GetListingsByUserId/{UserId}")]
+		public async Task<ActionResult<IEnumerable<Listing>>> GetListingsByUserId(int UserId)
+		{
+			return await _context.Listings.Where(d => d.UserId == UserId).ToListAsync();
+		}
+
 		/// <summary>
 		/// Gets the list of all Listings.
 		/// </summary>
@@ -27,7 +40,7 @@ namespace HiSpaceListingService.Controllers
 		// GET: api/Listing/Listings
 		[HttpGet]
 		[Route("GetListings")]
-		public async Task<ActionResult<IEnumerable<Listing>>> GetUsers()
+		public async Task<ActionResult<IEnumerable<Listing>>> GetListings()
 		{
 			return await _context.Listings.ToListAsync();
 		}
@@ -40,7 +53,7 @@ namespace HiSpaceListingService.Controllers
 		//[HttpGet("GetListing/{ListingId}")]
 		[HttpGet]
 		[Route("GetListing/{ListingId}")]
-		public async Task<ActionResult<Listing>> GetListingr(int ListingId)
+		public async Task<ActionResult<Listing>> GetListing(int ListingId)
 		{
 			var listing = await _context.Listings.FindAsync(ListingId);
 

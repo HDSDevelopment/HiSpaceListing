@@ -21,6 +21,15 @@ namespace HiSpaceListingWeb.Controllers
         {
             return View();
         }
+
+		public IActionResult AddImage(int id)
+		{
+			ListingImages model = new ListingImages
+			{
+				ListingId = id
+			};
+			return PartialView("_AddImagePartialView", model);
+		}
 		//public IActionResult ListingTable()
 		//{
 		//	SetSessionVariables();
@@ -38,13 +47,12 @@ namespace HiSpaceListingWeb.Controllers
 		public IActionResult ListingTable(int UserID)
 		{
 			SetSessionVariables();
-			User user = null;
-			UserViewModel userViewModel = null;
+			UserMasterViewModel vModel = new UserMasterViewModel();
 			if (UserID != 0)
 			{
-				
 				using (var client = new HttpClient())
 				{
+					//User user = null;
 					client.BaseAddress = new Uri(Common.Instance.ApiUserControllerName);
 					//HTTP GET
 					var responseTask = client.GetAsync(Common.Instance.ApiUserGetUser + UserID.ToString());
@@ -55,17 +63,34 @@ namespace HiSpaceListingWeb.Controllers
 					{
 						var readTask = result.Content.ReadAsAsync<User>();
 						readTask.Wait();
-						user = readTask.Result;
+						//user = readTask.Result;
+						vModel.User = readTask.Result;
 					}
-					//user = new User();
-					userViewModel = new UserViewModel
-					{
-						User = user
-					};
 				}
-				
 
-				return View(userViewModel);
+				using (var client = new HttpClient())
+				{
+					//IEnumerable<Listing> listingList = null;
+					client.BaseAddress = new Uri(Common.Instance.ApiListingControllerName);
+					//HTTP GET
+					var responseTask = client.GetAsync(Common.Instance.ApiListingsByUserId + UserID.ToString());
+					responseTask.Wait();
+
+					var result = responseTask.Result;
+					if (result.IsSuccessStatusCode)
+					{
+						var readTask = result.Content.ReadAsAsync<IList<Listing>>();
+						readTask.Wait();
+						//listingList = readTask.Result.ToList();
+						vModel.ListingList = readTask.Result.ToList();
+					}
+					else
+					{
+						//vModel.ListingList = Enumerable.Empty<Listing>();
+						ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+					}
+				}
+				return View(vModel);
 			}
 			else
 			{

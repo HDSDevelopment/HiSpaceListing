@@ -102,6 +102,7 @@ namespace HiSpaceListingWeb.Utilities
 
 		public string ApiListingAuthenticateListing = "AuthenticateListing/";
 		public string ApiListingGetListings = "GetListings/";
+		public string ApiListingsByUserId = "GetListingsByUserId/";
 		public string ApiListingGetListing = "GetListing/";
 		public string ApiListingAddListing = "AddListing/";
 		public string ApiListingUpdateListing = "UpdateListing/";
