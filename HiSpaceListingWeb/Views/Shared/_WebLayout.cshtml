@@ -27,6 +27,7 @@
 	<!-- CSS Global Compulsory (Do not remove)-->
 	<link rel="stylesheet" href="~/css/font-awesome/all.min.css" />
 	<link rel="stylesheet" href="~/css/flaticon/flaticon.css" />
+
 	<link rel="stylesheet" href="~/css/bootstrap/bootstrap.min.css" />
 	<!-- Page CSS Implementing Plugins (Remove the plugin CSS here if site does not use that feature)-->
 	<link rel="stylesheet" href="~/css/select2/select2.css" />
@@ -41,12 +42,13 @@
 	@*<link rel="stylesheet" href="~/css/datatables/dataTables.semanticui.min" />*@
 
 
-	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker.css">*@
-	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker-standalone.css">*@
-	<link rel="stylesheet" href="~/css/datetimepicker/datetimepicker.min.css" />
+	<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker-standalone.css">
+	@*<link rel="stylesheet" href="~/css/datetimepicker/datetimepicker.min.css" />*@
 	<!-- Template Style -->
 	<link rel="stylesheet" href="~/css/style.css" />
 	<link rel="stylesheet" href="~/css/custom.css" />
+
 	<link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -190,8 +192,8 @@
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
 							@*<form class="form-row mt-4 align-items-center md-form" action="account-profile.html">*@
-								@using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
-								{
+							@using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
+							{
 								<div class="form-group col-sm-6">
 									<input class="form-control" id="CompanyName" name="CompanyName" placeholder="Company Name" type="text" value="">
 									@*@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "Company Name" })*@
@@ -253,7 +255,7 @@
 										</ul>
 									</div>
 								</div>
-							@*</form>*@
+								@*</form>*@
 							}
 						</div>
 					</div>
@@ -372,7 +374,8 @@
 	<!-- JS Global Compulsory (Do not remove)-->
 	<script src="~/js/jquery-3.4.1.min.js"></script>
 	<script src="~/js/datetimepicker/moment.min.js"></script>
-	<script src="~/js/datetimepicker/datetimepicker.min.js"></script>
+	<script src="~/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+	@*<script src="~/js/datetimepicker/datetimepicker.min.js"></script>*@
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyB59thq3ND2fzB_9zq5IZa3Ko2antbwRGw"></script>
 	@*<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyBFdQ1J1MYZYWYDvSlEXRZp-CN9q0po4nM"></script>*@
 	<script src="~/js/popper/popper.min.js"></script>
@@ -395,6 +398,7 @@
 	@*<script src="~/js/jarallax/jarallax.min.js"></script>*@
 	@*<script src="~/js/jarallax/jarallax-video.min.js"></script>*@
 	<script src="~/js/magnific-popup/jquery.magnific-popup.min.js"></script>
+
 	<!-- Template Scripts (Do not remove)-->
 	<script src="~/js/custom.js"></script>
 	<script src="~/js/customMap.js"></script>

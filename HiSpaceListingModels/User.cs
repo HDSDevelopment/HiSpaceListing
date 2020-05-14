@@ -56,7 +56,7 @@ namespace HiSpaceListingModels
 
 		public DateTime? LastLoginDateTime { set; get; }
 
-		public bool? Status { set; get; }
+		public bool Status { set; get; }
 
 		public DateTime? CreatedDateTime { set; get; }
 

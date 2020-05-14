@@ -74,7 +74,7 @@ namespace HiSpaceListingService.Controllers
 		[Route("AddListing")]
 		public async Task<ActionResult<Listing>> AddListing([FromBody] Listing listing)
 		{
-			listing.CreatedDateTime = DateTime.Now;
+			//listing.CreatedDateTime = DateTime.Now;
 
 			_context.Listings.Add(listing);
 			await _context.SaveChangesAsync();

@@ -17,12 +17,12 @@ namespace HiSpaceListingWeb.Controllers
 {
     public class ListingController : Controller
     {
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
 
-		public IActionResult AddImage(int id)
+		public ActionResult AddImage(int id)
 		{
 			ListingImages model = new ListingImages
 			{
@@ -44,7 +44,7 @@ namespace HiSpaceListingWeb.Controllers
 
 		//}
 
-		public IActionResult ListingTable(int UserID)
+		public ActionResult ListingTable(int UserID)
 		{
 			SetSessionVariables();
 			UserMasterViewModel vModel = new UserMasterViewModel();
@@ -99,11 +99,6 @@ namespace HiSpaceListingWeb.Controllers
 				
 		}
 		
-		public IActionResult ListingForm()
-		{
-			SetSessionVariables();
-			return View();
-		}
 		public void SetSessionVariables()
 		{
 			#region

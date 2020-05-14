@@ -1638,3 +1638,12 @@ form.md-form .checkbox.checbox-switch-small {
 	padding: 3px 12px;
 	font-size: 12px;
 }
+
+.md-form .form-group.datetimepickers {
+	margin: 0;
+}
+	.md-form .form-group.datetimepickers .fa-calendar-alt {
+		color: var(--pry-color);
+		position: relative;
+		top: 5px;
+	}

@@ -13,7 +13,7 @@ namespace HiSpaceListingModels
 		public string ProjectName { set; get; }
 		public string ImageUrl { set; get; }
 		public string Description { set; get; }
-		public bool? Status { set; get; }
+		public bool Status { set; get; }
 		public DateTime? CreatedDateTime { set; get; }
 		public int? ModifyBy { set; get; }
 		public DateTime? ModifyDateTime { set; get; }

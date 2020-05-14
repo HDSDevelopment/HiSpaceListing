@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using HiSpaceListingWeb.Models;
 
 namespace HiSpaceListingWeb.Utilities
 {
@@ -111,5 +112,54 @@ namespace HiSpaceListingWeb.Utilities
 		#endregion Listing Controller
 
 		#endregion API Methods
+
+		#region DropDown Methods
+		
+		public static List<ListingType> GetListingType()
+		{
+			List<ListingType> types = new List<ListingType>();
+			types.Add(new ListingType() { ListingTypeId = 1, ListingTypeName = "Commercial" });
+			types.Add(new ListingType() { ListingTypeId = 2, ListingTypeName = "Co-Working" });
+			types.Add(new ListingType() { ListingTypeId = 3, ListingTypeName = "RE-Professional" });
+			return types;
+		}
+
+		public static List<CommercialCategory> GetCommercialCategory()
+		{
+			List<CommercialCategory> types = new List<CommercialCategory>();
+			types.Add(new CommercialCategory() { CommercialCategoryId = 1, CommercialCategoryName = "Retail" });
+			types.Add(new CommercialCategory() { CommercialCategoryId = 2, CommercialCategoryName = "Industry" });
+			types.Add(new CommercialCategory() { CommercialCategoryId = 3, CommercialCategoryName = "Warehouse" });
+			return types;
+		}
+		public static List<CommercialInfa> GetCommercialInfa()
+		{
+			List<CommercialInfa> types = new List<CommercialInfa>();
+			types.Add(new CommercialInfa() { CommercialInfaId = 1, CommercialInfaName = "Shell", CommercialInfaDisplay = "Shell (Empty/Unfurninshed)" });
+			types.Add(new CommercialInfa() { CommercialInfaId = 2, CommercialInfaName = "Semi-Furnished", CommercialInfaDisplay = "Semi Furnished" });
+			types.Add(new CommercialInfa() { CommercialInfaId = 3, CommercialInfaName = "Fully-Furnished", CommercialInfaDisplay = "Fully Furnished" });
+			return types;
+		}
+
+		public static List<CoworkingCategory> GetCoworkingCategory()
+		{
+			List<CoworkingCategory> types = new List<CoworkingCategory>();
+			types.Add(new CoworkingCategory() { CoworkingCategoryId = 1, CoworkingCategoryName = "Office" });
+			types.Add(new CoworkingCategory() { CoworkingCategoryId = 2, CoworkingCategoryName = "Cafe" });
+			return types;
+		}
+		public static List<ProfessionalCategory> GetProfessionalCategory()
+		{
+			List<ProfessionalCategory> types = new List<ProfessionalCategory>();
+			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 1, ProfessionalCategoryName = "PropertyDeveloper", ProfessionalCategoryDisplay = "Property Developer" });
+			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 2, ProfessionalCategoryName = "Leasing", ProfessionalCategoryDisplay = "Leasing" });
+			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 3, ProfessionalCategoryName = "InteriorDesigner", ProfessionalCategoryDisplay = "Interior Designer" });
+			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 4, ProfessionalCategoryName = "CoworkingArchitecture", ProfessionalCategoryDisplay = "Co-working Architecture" });
+			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 5, ProfessionalCategoryName = "Investor", ProfessionalCategoryDisplay = "Investor" });
+			return types;
+		}
+
+
+		#endregion DropDown Methods
 	}
 }

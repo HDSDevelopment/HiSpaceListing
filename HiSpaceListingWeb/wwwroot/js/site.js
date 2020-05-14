@@ -16,13 +16,19 @@
 //		$('.scroll-padding').css({ "padding-top": "0" });
 //	}
 //});
+$('#BuildYear, #RecentInnovation, #BuildYearDiv, #RecentInnovationDiv').datetimepicker({
+	//viewMode: 'years',
+	format: 'YYYY/MM/DD',
+	//debug: true,
+});
 $(document).ready(function () {
-	$('#datetimepicker-01, #datetimepicker-02, #datetimepicker-recent,#datetimepicker-recent-cw, #datetimepicker-builtyear,#datetimepicker-builtyear-cw').datetimepicker({
-		format: 'L'
-	});
-	$('#datetimepicker-03, #datetimepicker-04').datetimepicker({
-		format: 'LT'
-	});
+	
+	//$('#datetimepicker-01, #datetimepicker-02, #RecentInnovation,#datetimepicker-recent-cw, #BuildYear,#datetimepicker-builtyear-cw').datetimepicker({
+	//	format: 'L'
+	//});
+	//$('#datetimepicker-03, #datetimepicker-04').datetimepicker({
+	//	format: 'LT'
+	//});
 
 	$('#example').DataTable();
 
@@ -36,30 +42,44 @@ $(document).ready(function () {
 	}
 
 	//type selection
-		$('#list-type').on('change', function () {
-			var value = $(this).val();
+	$('#ListingType').on('change', function () {
+		var value = $(this).val();
+		var coWorkingValue = $('#CoworkingType').val();
 			//alert(value)
-			if (value == 1) {
-				$('.type-1').removeClass('d-none');
-				$('.type-2, .type-3').addClass('d-none');
+		//if (coWorkingValue == "Cafe") {
+		//	$('.type-2-sub__input').addClass('d-none');
+		//}
+		//else if (coWorkingValue == "Office") {
+		//	$('.type-2-sub__input').removeClass('d-none');
+		//}
+		if (value == "Commercial") {
+			$('.form-type').removeClass('type-2');
+			$('.form-type').removeClass('type-3');
+			$('.form-type').addClass('type-1');
+			$('.type-2__input, .type-3, .type-style.type-2, .type-style.type-3, .type-2-sub__input').addClass('d-none');
+			$('.type-1__input, .type-style.type-1, .form-type.type-1, .input-occupancy').removeClass('d-none');
 			}
-			else if (value == 2) {
-				$('.type-2').removeClass('d-none');
-				$('.type-1, .type-3').addClass('d-none');
+		else if (value == "Co-Working") {
+			$('.form-type').removeClass('type-1');
+			$('.form-type').removeClass('type-3');
+			$('.form-type').addClass('type-2');
+			$('.type-1__input, .type-3, .type-style.type-1, .type-style.type-3').addClass('d-none');
+			$('.type-2__input, .type-style.type-2, .form-type.type-2, .type-2-sub__input, .input-occupancy').removeClass('d-none');
 			}
-			else if (value == 3) {
+		else if (value == "RE-Professional") {
 				$('.type-3').removeClass('d-none');
-				$('.type-2, .type-1').addClass('d-none');
-			}
+			$('.form-type.type-1, .form-type.type-2, .type-style.type-1, .type-style.type-2').addClass('d-none');
+		}
+		
 		});
-	$('#level-type-2').on('change', function () {
+	$('#CoworkingType').on('change', function () {
 		var value = $(this).val();
 		//alert(value)
 		if (value == "Office") {
-			$('.type-2-sub').removeClass('d-none');
+			$('.type-2-sub__input, .input-occupancy').removeClass('d-none');
 		}
-		else {
-			$('.type-2-sub').addClass('d-none');
+		else if (value == "Cafe"){
+			$('.type-2-sub__input, .input-occupancy').addClass('d-none');
 		}
 	});
 	//checkbox conditon to show

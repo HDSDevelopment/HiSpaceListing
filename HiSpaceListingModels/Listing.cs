@@ -21,18 +21,33 @@ namespace HiSpaceListingModels
 		public string REprofessionalsType { set; get; }
 		public string REprofessionalsIntrest { set; get; }
 		public string Fax { set; get; }
-		public string AddressLine1 { set; get; }
-		public string AddressLine2 { set; get; }
-		public string City { set; get; }
-		public string State { set; get; }
-		public string Country { set; get; }
-		public string Postalcode { set; get; }
+		public string street_number { set; get; }
+		public string route { set; get; }
+		public string locality { set; get; }
+		public string administrative_area_level_1 { set; get; }
+		public string country { set; get; }
+		public string postal_code { set; get; }
 		public DateTime? BuildYear { set; get; }
 		public DateTime? RecentInnovation { set; get; }
-		public bool? CM_IntrestedCoworking { set; get; }
-		public bool? RentalHour { set; get; }
-		public bool? RentalDay { set; get; }
-		public bool? RentalMonth { set; get; }
+		public bool CM_IntrestedCoworking { set; get; }
+		public bool RentalHour { set; get; }
+		//public bool NoNullRentalHour
+		//{
+		//	get { return RentalHour ?? false; }
+		//	set { RentalHour = value; }
+		//}
+		public bool RentalDay { set; get; }
+		//public bool NoNullRentalDay
+		//{
+		//	get { return RentalDay ?? false; }
+		//	set { RentalDay = value; }
+		//}
+		public bool RentalMonth { set; get; }
+		//public bool NoNullRentalMonth
+		//{
+		//	get { return RentalMonth ?? false; }
+		//	set { RentalMonth = value; }
+		//}
 		public decimal? PriceMin { set; get; }
 		public decimal? PriceMax { set; get; }
 		public int? TotalSeats { set; get; }
@@ -45,15 +60,20 @@ namespace HiSpaceListingModels
 		public int? CW_CoworkingSeats { set; get; }
 		public int? CW_PrivateOffice { set; get; }
 		public int? CW_PrivateOfficeSeats { set; get; }
-		public bool? CW_VirtualOffice { set; get; }
-		public string latitude { set; get; }
-		public string longitude { set; get; }
+		public bool CW_VirtualOffice { set; get; }
+		public string latitude_view { set; get; }
+		public string longitude_view { set; get; }
 		public string Description { set; get; }
 		public string PrimaryConatctName { set; get; }
 		public string PrimaryConatctPhone { set; get; }
-		public bool? Status { set; get; }
+		public bool Status { set; get; }
 		public DateTime? CreatedDateTime { set; get; }
 		public int? ModifyBy { set; get; }
 		public DateTime? ModifyDateTime { set; get; }
+		public bool RE_Warehouse { set; get; }
+		public bool RE_Office { set; get; }
+		public bool RE_Retail { set; get; }
+		public bool RE_Coworking { set; get; }
+		public bool RE_PropertyManagement { set; get; }
 	}
 }

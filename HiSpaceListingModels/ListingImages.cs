@@ -12,7 +12,7 @@ namespace HiSpaceListingModels
 		public int ListingId { set; get; }
 		public string Name { set; get; }
 		public string ImageUrl { set; get; }
-		public bool? Status { set; get; }
+		public bool Status { set; get; }
 		public DateTime? CreatedDateTime { set; get; }
 		public int? ModifyBy { set; get; }
 		public DateTime? ModifyDateTime { set; get; }

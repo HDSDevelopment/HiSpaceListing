@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model HiSpaceListingWeb.ViewModel.UserMasterViewModel
-@*@model HiSpaceListingModels.User*@
+
 @{
 	ViewData["Title"] = "ListingTable";
 	Layout = "~/Views/Shared/_WebLayout.cshtml";
@@ -228,7 +228,7 @@
 					<div class="card hi-card">
 						<div class="card-body">
 							<div class="datatable-wrapper table-responsive">
-								<a href="@Url.Action( "ListingForm","Listing")">
+								<a href="@Url.Action( "Create","ListingForm")">
 									<div id="show_add_view" class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add listing">
 										<i class="fa fa-plus-circle"></i> List
 									</div>
@@ -262,7 +262,7 @@
 												ViewBag.ListStatus = @Html.Raw("<i class='fas fa-times text-danger'></i>");
 											}
 											//checking the type and addons
-											@if (item.ListingType == "commercial")
+											@if (item.ListingType == "Commercial")
 											{
 												ViewBag.TypeClass = "text-pry";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
@@ -278,7 +278,7 @@
 "</span>" +
 "</div>");
 											}
-											else if (item.ListingType == "coworking")
+											else if (item.ListingType == "Co-Working")
 											{
 												ViewBag.TypeClass = "text-sec";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
@@ -294,7 +294,7 @@
 														  "</span>" +
 													  "</div>");
 											}
-											else if (item.ListingType == "reprofessional")
+											else if (item.ListingType == "RE-Professional")
 											{
 												ViewBag.TypeClass = "text-info";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
@@ -316,7 +316,7 @@
 													@Html.DisplayFor(modelItem => item.Phone)
 												</td>
 												<td>
-													@Html.DisplayFor(modelItem => item.City)
+													@Html.DisplayFor(modelItem => item.locality)
 												</td>
 												<td>
 													@Html.DisplayFor(modelItem => item.CurrentOccupancy)

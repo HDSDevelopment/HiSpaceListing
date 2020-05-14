@@ -45,8 +45,8 @@ $(document).ready(function () {
 			document.getElementById('loc_lat').value = near_place.geometry.location.lat();
 			document.getElementById('loc_long').value = near_place.geometry.location.lng();
 
-			document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
-			document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+			document.getElementById('latitude_view').value = near_place.geometry.location.lat();
+			document.getElementById('longitude_view').value = near_place.geometry.location.lng();
 		});
 
 
@@ -169,6 +169,6 @@ $(document).on('change', '#pac-input', function () {
 	//document.getElementById('latitude_input').value = "";
 	//document.getElementById('longitude_input').value = "";
 
-	document.getElementById('latitude_view').innerHTML;
-	document.getElementById('longitude_view').innerHTML;
+	document.getElementById('latitude_view').value;
+	document.getElementById('longitude_view').value;
 });
