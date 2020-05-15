@@ -541,4 +541,34 @@ $(function () {
 
 		});
 	});
+
+	//model open for the login section
+	$('body').on('click', '.modal-link__login', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__login").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__login" class="modal login fade modal-try" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the signup section
+	$('body').on('click', '.modal-link__signup', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__signup").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__signup" class="modal signup fade modal-try" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
 });

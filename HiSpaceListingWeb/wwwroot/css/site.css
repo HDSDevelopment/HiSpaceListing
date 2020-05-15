@@ -1647,3 +1647,17 @@ form.md-form .checkbox.checbox-switch-small {
 		position: relative;
 		top: 5px;
 	}
+
+#modal-container__login.modal-try .modal-header {
+	background: var(--pry-color);
+}
+
+#modal-container__signup.modal-try .modal-header {
+	background: var(--sec-color);
+}
+
+#modal-container__login .modal-content {
+	border: none;
+	position: relative;
+	top: 15%;
+}

@@ -35,6 +35,50 @@ namespace HiSpaceListingWeb.Controllers
 				model.ModifyBy = GetSessionObject().UserId;
 				model.UserId = GetSessionObject().UserId;
 				model.Status = true;
+				if(model.ListingType == "Commercial")
+				{
+					model.CoworkingType = null;
+					model.CW_Coworking = null;
+					model.CW_CoworkingSeats = null;
+					model.CW_PrivateOffice = null;
+					model.CW_PrivateOfficeSeats = null;
+					model.CW_MeetingRoom = null;
+					model.CW_MeetingRoomSeats = null;
+					model.CW_VirtualOffice = false;
+					model.REprofessionalsType = null;
+					model.RE_Warehouse = false;
+					model.RE_Office = false;
+					model.RE_Retail = false;
+					model.RE_Coworking = false;
+					model.RE_PropertyManagement = false;
+				}
+				else if (model.ListingType == "Co-Working")
+				{
+					model.CommercialType = null;
+					model.CommercialInfraType = null;
+					model.CM_IntrestedCoworking = false;
+					model.REprofessionalsType = null;
+					model.RE_Warehouse = false;
+					model.RE_Office = false;
+					model.RE_Retail = false;
+					model.RE_Coworking = false;
+					model.RE_PropertyManagement = false;
+				}
+				else if (model.ListingType == "RE-Professional")
+				{
+					model.CommercialType = null;
+					model.CommercialInfraType = null;
+					model.CM_IntrestedCoworking = false;
+					model.CoworkingType = null;
+					model.CW_Coworking = null;
+					model.CW_CoworkingSeats = null;
+					model.CW_PrivateOffice = null;
+					model.CW_PrivateOfficeSeats = null;
+					model.CW_MeetingRoom = null;
+					model.CW_MeetingRoomSeats = null;
+					model.CW_VirtualOffice = false;
+				}
+
 				using (var client = new HttpClient())
 				{
 					client.BaseAddress = new Uri(Common.Instance.ApiListingControllerName);

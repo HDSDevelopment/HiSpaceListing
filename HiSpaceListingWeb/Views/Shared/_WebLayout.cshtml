@@ -42,9 +42,9 @@
 	@*<link rel="stylesheet" href="~/css/datatables/dataTables.semanticui.min" />*@
 
 
-	<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker.css">
-	<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker-standalone.css">
-	@*<link rel="stylesheet" href="~/css/datetimepicker/datetimepicker.min.css" />*@
+	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker.css">*@
+	@*<link rel="stylesheet" href="~/css/datetimepicker/bootstrap-datetimepicker-standalone.css">*@
+	<link rel="stylesheet" href="~/css/datetimepicker/datetimepicker.min.css" />
 	<!-- Template Style -->
 	<link rel="stylesheet" href="~/css/style.css" />
 	<link rel="stylesheet" href="~/css/custom.css" />
@@ -78,7 +78,7 @@
 								</ul>
 							</div>
 							<div class="login d-inline-block">
-								<a data-toggle="modal" data-target="#loginModal" href="#"> sign in<i class="fa fa-user pl-2"></i></a>
+								<a class="modal-link__login" data-targeturl="@Url.Action("LoginPartialView","User")" href="javascript:function() { return false; }"> sign in<i class="fa fa-user pl-2"></i></a>
 							</div>
 						</div>
 					</div>
@@ -134,133 +134,22 @@
 	 header -->
 	<!--=================================
 	 Modal login -->
-	<div class="modal login fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header border-0">
-					<h5 class="modal-title" id="loginModalLabel">HiSpace Login </h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-							@*<form class="form-row mt-4 align-items-center" action="account-profile.html">*@
-							@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
-							{
-								<div class="form-group col-sm-12">
-									<input class="form-control" id="Email" name="Email" placeholder="Email Id" type="text" value="">
-									@*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Id" })*@
-									<label for="input" class="control-label">Email*</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-12">
-									<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="">
-									@*@Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "password" })*@
-									<label for="input" class="control-label">Password*</label><i class="bar"></i>
-								</div>
-								<div class="col-sm-6">
-									<button type="submit" class="btn btn-primary btn-block">Login</button>
-								</div>
-								<div class="col-sm-6">
-									<ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
-										<li class="mr-1"><a data-toggle="modal" data-target="#signupModal" href="#" class="hover-signup" data-dismiss="modal"><b>New Lister? Click here to <span class="text-sec">Signup</span></b></a></li>
-									</ul>
-								</div>
-								@*</form>*@
-							}
-						</div>
-					</div>
-				</div>
-			</div>
+	<!-- The below code is for the modal dialog login section-->
+	<div id="modal-container__login" class="modal fade" tabindex="-1" role="dialog">
+		<a href="#close" title="Close" class="modal-close-btn">X</a>
+		<div class="modal-content">
+			<div class="modal-body"></div>
 		</div>
 	</div>
 	<!--=================================
 	  Modal login -->
 	<!--=================================
 	Modal signup -->
-	<div class="modal signup fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header border-0">
-					<h5 class="modal-title" id="signupModalLabel">HiSpace Signup </h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="tab-content" id="myTabContent">
-						<div class="tab-pane fade show active" id="signup" role="tabpanel" aria-labelledby="signup-tab">
-							@*<form class="form-row mt-4 align-items-center md-form" action="account-profile.html">*@
-							@using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
-							{
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="CompanyName" name="CompanyName" placeholder="Company Name" type="text" value="">
-									@*@Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "Company Name" })*@
-									<label for="input" class="control-label">Company Name*</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Phone" name="Phone" placeholder="Phone" type="text" value="">
-									@*@Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "text", placeholder = "Phone" })*@
-									<label for="input" class="control-label">Phone*</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Email" name="Email" placeholder="abc@gmail.com" type="email" value="">
-									@*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", placeholder = "abc@gmail.com" })*@
-									<label for="input" class="control-label">Email*</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="">
-									@*@Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "password" })*@
-									<label for="input" class="control-label">Password*</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Website" name="Website" placeholder="www.abc.com" type="text" value="">
-									@*@Html.TextBoxFor(m => m.Website, new { @class = "form-control", type = "text", placeholder = "www.abc.com" })*@
-									<label for="input" class="control-label">Web Address</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Address" name="Address" placeholder="No.00, Street" type="text" value="">
-									@*@Html.TextBoxFor(m => m.Address, new { @class = "form-control", type = "text", placeholder = "No.00, Street" })*@
-									<label for="input" class="control-label">Address Line</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="City" name="City" placeholder="city" type="text" value="">
-									@*@Html.TextBoxFor(m => m.City, new { @class = "form-control", type = "text", placeholder = "city" })*@
-									<label for="input" class="control-label">City</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="State" name="State" placeholder="state" type="text" value="">
-									@*@Html.TextBoxFor(m => m.State, new { @class = "form-control", type = "text", placeholder = "state" })*@
-									<label for="input" class="control-label">State</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Country" name="Country" placeholder="country" type="text" value="">
-									@*@Html.TextBoxFor(m => m.Country, new { @class = "form-control", type = "text", placeholder = "country" })*@
-									<label for="input" class="control-label">Country</label><i class="bar"></i>
-								</div>
-								<div class="form-group col-sm-6">
-									<input class="form-control" id="Postalcode" name="Postalcode" placeholder="Postal code" type="number" value="">
-									@*@Html.TextBoxFor(m => m.Postalcode, new { @class = "form-control", type = "number", placeholder = "Postal code" })*@
-									<label for="input" class="control-label">Postal Code</label><i class="bar"></i>
-								</div>
-
-								<div class="row width-full">
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-sec btn-block">Signup</button>
-									</div>
-									<div class="col-sm-6 align-self-center">
-										<ul class="list-unstyled d-flex mb-1 mt-sm-0 mt-3">
-											<li class="mr-1"><a data-toggle="modal" data-target="#loginModal" href="#" class="hover-signup" data-dismiss="modal"><b>Registered user? <span class="text-sec">Login</span></b></a></li>
-										</ul>
-									</div>
-								</div>
-								@*</form>*@
-							}
-						</div>
-					</div>
-				</div>
-			</div>
+	<!-- The below code is for the modal dialog signup section-->
+	<div id="modal-container__signup" class="modal fade" tabindex="-1" role="dialog">
+		<a href="#close" title="Close" class="modal-close-btn">X</a>
+		<div class="modal-content">
+			<div class="modal-body"></div>
 		</div>
 	</div>
 	<!--=================================

@@ -23,6 +23,17 @@ namespace HiSpaceListingWeb.Controllers
 			this.hostEnvironment = hostEnvironment;
 		}
 
+		public ActionResult LoginPartialView()
+		{
+			
+			return PartialView("_LoginPartialView");
+		}
+		public ActionResult SignupPartialView()
+		{
+
+			return PartialView("_SignupPartialView");
+		}
+
 		[HttpPost]
 		public ActionResult Login(User user)
 		{
