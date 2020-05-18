@@ -527,20 +527,6 @@ function deleteRowFacilities(that) {
 //facilities upload section end
 
 $(function () {
-	//model open for the list image section
-	$('body').on('click', '.modal-link__image', function (e) {
-		e.preventDefault();
-
-		$("#modal-container__image").remove();
-
-		$.get($(this).data("targeturl"), function (data) {
-
-			$('<div id="modal-container__image" class="modal image fade modal-try" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
-				'<div id="modalbody" class="modal-dialog modal-lg modal-content" role="document"' +
-				data + '</div></div>').modal();
-
-		});
-	});
 
 	//model open for the login section
 	$('body').on('click', '.modal-link__login', function (e) {
@@ -567,6 +553,81 @@ $(function () {
 
 			$('<div id="modal-container__signup" class="modal signup fade modal-try" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">' +
 				'<div id="modalbody" class="modal-dialog modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the list image section
+	$('body').on('click', '.modal-link__image', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__image").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__image" class="modal image fade modal-try" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-lg modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the list hours section
+	$('body').on('click', '.modal-link__hours', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__hours").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__hours" class="modal hours fade modal-try" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-lg modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the list project section
+	$('body').on('click', '.modal-link__project', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__project").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__project" class="modal project fade modal-info" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-xl modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the list amenities section
+	$('body').on('click', '.modal-link__amenities', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__amenities").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__amenities" class="modal amenities fade modal-try" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-xl modal-content" role="document"' +
+				data + '</div></div>').modal();
+
+		});
+	});
+
+	//model open for the list facilities section
+	$('body').on('click', '.modal-link__facilities', function (e) {
+		e.preventDefault();
+
+		$("#modal-container__facilities").remove();
+
+		$.get($(this).data("targeturl"), function (data) {
+
+			$('<div id="modal-container__facilities" class="modal facilities fade modal-sec" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">' +
+				'<div id="modalbody" class="modal-dialog modal-lg modal-content" role="document"' +
 				data + '</div></div>').modal();
 
 		});

@@ -30,6 +30,43 @@ namespace HiSpaceListingWeb.Controllers
 			};
 			return PartialView("_AddImagePartialView", model);
 		}
+
+		public ActionResult AddHours(int id)
+		{
+			WorkingHours model = new WorkingHours
+			{
+				ListingId = id
+			};
+			return PartialView("_AddHoursPartialView", model);
+		}
+
+		public ActionResult AddAmenities(int id)
+		{
+			Amenity model = new Amenity
+			{
+				ListingId = id
+			};
+			return PartialView("_AddAmenitiesPartialView", model);
+		}
+
+		public ActionResult AddFacilities(int id)
+		{
+			Facility model = new Facility
+			{
+				ListingId = id
+			};
+			return PartialView("_AddFacilitiesPartialView", model);
+		}
+
+		public ActionResult AddProject(int id)
+		{
+			REProfessionalMaster model = new REProfessionalMaster
+			{
+				ListingId = id
+			};
+			return PartialView("_AddProjectPartialView", model);
+		}
+
 		//public IActionResult ListingTable()
 		//{
 		//	SetSessionVariables();

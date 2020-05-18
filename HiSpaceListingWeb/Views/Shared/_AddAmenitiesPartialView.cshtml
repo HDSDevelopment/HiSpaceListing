@@ -1,0 +1,727 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model HiSpaceListingModels.Amenity
+@*Amenities section start*@
+@*<div class="modal amenities fade modal-pry" id="amenitiesModal" tabindex="-1" role="dialog" aria-labelledby="amenitiesModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">*@
+<div class="modal-content">
+	<div class="modal-header border-0">
+		<h5 class="modal-title" id="amenitiesModalLabel"><i class="fas fa-wifi"> </i> Amenities </h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<p>@Html.DisplayFor(m => m.ListingId)</p>
+		<div class="tab-content" id="">
+			<div class="tab-pane fade show active" id="amenities" role="tabpanel" aria-labelledby="amenities-tab">
+
+				<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+					@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+					@*{*@
+
+					<h6>Common Aminities</h6>
+					<div class="amenities-common">
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Hi-Speed Internet
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Air Condition
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Hand Sanitizer
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Standing Desk
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Printer
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Bike Parking
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Drinking Water
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Personal Locker
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Snacks
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Dual Monitor
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> BeanBag
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Projector
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Shower
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Tea
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Gym
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class=" am-price col-md-6 col-sm-6 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class=" am-partial col-md-3 col-sm-3 d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="btn btn-primary add-btn" onclick="addAmenities()"> <i class="fa fa-plus-circle"></i>Custom Amenities</div>
+					<div class="amenities-upload">
+						<div class="row amenities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Name">
+									<label for="input" class="control-label">Amenity</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">
+								<div class="form-group">
+									<select class="form-control am-option" id="">
+										<option value="1">Free</option>
+										<option value="2">Paid</option>
+										<option value="3">Partially Paid</option>
+									</select>
+									<label for="" class="control-label">Cost</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							@*paid*@
+							<div class="am-price col-md-4 col-sm-6  d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+							@*partial*@
+							<div class="am-partial col-md-2 col-sm-3  d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Free Count</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class="am-partial col-md-2 col-sm-3  d-none">
+								<div class="form-group">
+									<input type="number" class="form-control" placeholder="00">
+									<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>
+								</div>
+							</div>
+
+							<div class="col-md-1 col-sm-6 m-b--15 align-self-center">
+								<div class="checkbox m-0">
+									<label>
+										<input type="checkbox" /><i class="helper"></i> Active
+									</label>
+								</div>
+							</div>
+							<div class="col-md-1 col-sm-6">
+								<span class="delete-btn" onclick="deleteRowAmenities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row width-full justify-content-center">
+						<div class="col-sm-4">
+							<button type="submit" class="btn btn-primary btn-block">Submit Amenities</button>
+						</div>
+					</div>
+				</form>
+				@*}*@
+			</div>
+		</div>
+	</div>
+</div>
+@*</div>
+	</div>*@
+@*Amenities section end*@

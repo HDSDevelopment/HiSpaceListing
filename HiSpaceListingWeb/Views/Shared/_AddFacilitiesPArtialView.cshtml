@@ -1,0 +1,270 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model HiSpaceListingModels.Facility
+@*facilities section start*@
+@*<div class="modal facilities fade modal-sec" id="facilitiesModal" tabindex="-1" role="dialog" aria-labelledby="facilitiesModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">*@
+<div class="modal-content">
+	<div class="modal-header border-0">
+		<h5 class="modal-title" id="facilitiesModalLabel"><i class="fas fa-bus"> </i> Facilities </h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<p>@Html.DisplayFor(m => m.ListingId)</p>
+		<div class="tab-content" id="">
+			<div class="tab-pane fade show active" id="facilities" role="tabpanel" aria-labelledby="facilities-tab">
+
+				<form class=" mt-4 align-items-center md-form" action="account-profile.html">
+					@*@using (Html.BeginForm("signup", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))*@
+					@*{*@
+
+					<h6>Common Facilities</h6>
+					<div class="facilities-common">
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Bus Terminal
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Railway Station
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div><div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Airport
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Harbour
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Internet Cafe
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div>
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<div class="checkbox m-0">
+										<label>
+											<input type="checkbox" /><i class="helper"></i> Hotels
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="btn btn-sec add-btn" onclick="addFacilities()"> <i class="fa fa-plus-circle"></i>Custom Facilities</div>
+					<div class="facilities-upload">
+						<div class="row facilities-upload__row">
+							<div class=" col-md-3 col-sm-4 ">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Name">
+									<label for="input" class="control-label">Facility</label><i class="bar"></i>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">
+								<div class="form-group">
+									<select class="form-control fc-option" id="">
+										<option value="1">0 to .5KM</option>
+										<option value="2">.5KM to 1KM</option>
+										<option value="3">1KM to 2KM</option>
+										<option value="4">2KM to 3KM</option>
+										<option value="5">3KM to 4KM</option>
+										<option value="6">4KM to 5KM</option>
+										<option value="7">5KM to 6KM</option>
+										<option value="8">6KM to 7KM</option>
+										<option value="9">7KM to 8KM</option>
+										<option value="10">8KM to 9KM</option>
+										<option value="11">9KM to 10KM</option>
+										<option value="12">Above 10KM</option>
+									</select>
+									<label for="" class="control-label">Distance</label>
+									<i class="bar"></i>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-6 m-b--15 align-self-center">
+								<div class="checkbox m-0">
+									<label>
+										<input type="checkbox" /><i class="helper"></i> Active
+									</label>
+								</div>
+							</div>
+							<div class="col-md-1 col-sm-6">
+								<span class="delete-btn" onclick="deleteRowFacilities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row width-full justify-content-center">
+						<div class="col-sm-4">
+							<button type="submit" class="btn btn-sec btn-block">Submit Facilities</button>
+						</div>
+					</div>
+				</form>
+				@*}*@
+			</div>
+		</div>
+	</div>
+</div>
+@*</div>
+	</div>*@
+@*facilities section end*@

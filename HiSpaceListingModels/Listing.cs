@@ -19,7 +19,6 @@ namespace HiSpaceListingModels
 		public string CommercialType { set; get; }
 		public string CoworkingType { set; get; }
 		public string REprofessionalsType { set; get; }
-		public string REprofessionalsIntrest { set; get; }
 		public string Fax { set; get; }
 		public string street_number { set; get; }
 		public string route { set; get; }
