@@ -24,21 +24,48 @@ namespace HiSpaceListingWeb.Controllers
 
 		public ActionResult AddImage(int id)
 		{
-			ListingImages model = new ListingImages
-			{
-				ListingId = id
-			};
-			return PartialView("_AddImagePartialView", model);
+			SetSessionVariables();
+			//ListingImages model = new ListingImages
+			//{
+			//	ListingId = id
+			//};
+			//ListListingImageViewModel vModel = new ListListingImageViewModel();
+			//using (var client = new HttpClient())
+			//{
+			//	client.BaseAddress = new Uri(Common.Instance.ApiAddonsControllerName);
+			//	//HTTP GET
+			//	var responseTask = client.GetAsync(Common.Instance.ApiAddonsGetImagesByListingId + id);
+			//	responseTask.Wait();
+
+			//	var result = responseTask.Result;
+			//	if (result.IsSuccessStatusCode)
+			//	{
+			//		var readTask = result.Content.ReadAsAsync<IList<ListingImageViewModel>>();
+			//		readTask.Wait();
+
+			//		vModel.ListingImageViewModel = readTask.Result.ToList();
+			//	}
+			//	else //web api sent error response 
+			//	{
+			//		//log response status here..
+
+			//		//vModel = Enumerable.Empty<ListingImageViewModel>();
+
+			//		ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+			//	}
+			//}
+			//return View(clLocations);
+			return PartialView("_AddImagePartialView");
 		}
 
-		public ActionResult AddHours(int id)
-		{
-			WorkingHours model = new WorkingHours
-			{
-				ListingId = id
-			};
-			return PartialView("_AddHoursPartialView", model);
-		}
+		//public ActionResult CreateImage(List<ListListingImageViewModel> model, IFormCollection formCollection)
+		//{
+		//	SetSessionVariables();
+		//	ListListingImageViewModel vModel = new ListListingImageViewModel();
+		//	return PartialView("_AddImagePartialView", vModel);
+		//}
+
+		
 
 		public ActionResult AddAmenities(int id)
 		{

@@ -295,7 +295,9 @@ $(function () {
 });
 //***********************user section end****************************//
 
-$('input[name="ClientSpaceFloorPlan.Is24"]').click(function () {
+//$('input[name="workingHours.Is24"]').click(function () {
+$('body').on('click','input[name="WorkingHours.Is24"]', function () {
+	//alert('a');
 	//$('input[name="AllTimeCheck"], input[name="MonToFriCheck"], input[name="MonToSatCheck"], input[name="CustomCheck"]').click(function () {
 	//console.log($('#AllTimeCheck option:selected').text());
 	$('#AllTimeCheck').val("false");
@@ -337,7 +339,7 @@ $('input[name="ClientSpaceFloorPlan.Is24"]').click(function () {
 	}
 });
 
-$(".sch-status").click(function () {
+$('body').on('click','.sch-status', function () {
 	if ($(this).prop("checked") == true) {
 		$(this).parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
 		$(this).siblings('strong').html('Open');
@@ -354,20 +356,20 @@ function addImage() {
 		'<div class="row image-upload__row">'+
 		'<div class=" col-md-4 col-sm-6 ">' +
 		'<div class="form-group">'+
-				'<input type="text" class="form-control" placeholder="Image Name">'+
+				'<input type="text" class="form-control imageName" placeholder="Image Name">'+
 			'<label for="input" class="control-label">Image Name</label><i class="bar"></i>'+
 '</div>	'+
 							'</div>'+
 		'<div class=" col-md-4 col-sm-6">' +
 		'<div class="form-group">'+
-			'<input type="file" class="form-control" accept="image/*">'+
+			'<input type="file" class="form-control imageFilePath" accept="image/*">'+
 				'<label for="input" class="control-label">Upload Image</label><i class="bar"></i>'+
 							'</div>'+
 			'</div>'+
 			'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">'+
 				'<div class="checkbox m-0">'+
 					'<label>'+
-						'<input type="checkbox" /><i class="helper"></i> Active'+
+						'<input type="checkbox" class="imageCheck" /><i class="helper"></i> Active'+
 									'</label>'+
 				'</div>'+
 			'</div>'+
@@ -632,4 +634,22 @@ $(function () {
 
 		});
 	});
+
+
+	//ajax call section for image upload
+	$('body').on('click', '#SubmitImage', function (e) {
+		//alert('a');
+		var test = new Array();
+		$('.image-upload__row').each(function () {
+			var name = $(this).find('.imageName').val();
+			var path = $(this).find('.imageFilePath').val();
+			//var status = $(this).find('.imageCheck').val();
+			if ($(this).find('.imageCheck').is(':checked')) {
+				var status = true
+			} else {
+				var status = false
+			};
+			//alert(name + ' ,' + path +' , ' + status);
+		})
+	})
 });

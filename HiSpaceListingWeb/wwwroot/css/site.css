@@ -1661,3 +1661,7 @@ form.md-form .checkbox.checbox-switch-small {
 	position: relative;
 	top: 15%;
 }
+
+.hidden {
+	visibility: hidden;
+}

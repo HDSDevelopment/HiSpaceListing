@@ -39,4 +39,11 @@ namespace HiSpaceListingWeb.Models
 		public string ProfessionalCategoryName { set; get; }
 		public string ProfessionalCategoryDisplay { set; get; }
 	}
+
+	public class ScheduleTime
+	{
+		public int ScheduleTimeID { set; get; }
+		public string ScheduleTimeView { set; get; }
+		public TimeSpan? ScheduleTimeSpan { set; get; }
+	}
 }

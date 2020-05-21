@@ -25,7 +25,7 @@ namespace HiSpaceListingService.Controllers
 		/// Gets the list of all Listings by userId.
 		/// </summary>
 		/// <returns>The list of Listings.</returns>
-		// GET: api/Listing/Listings/1
+		// GET: api/Listing/GetListingsByUserId/1
 		[HttpGet]
 		[Route("GetListingsByUserId/{UserId}")]
 		public async Task<ActionResult<IEnumerable<Listing>>> GetListingsByUserId(int UserId)
@@ -37,7 +37,7 @@ namespace HiSpaceListingService.Controllers
 		/// Gets the list of all Listings.
 		/// </summary>
 		/// <returns>The list of Listings.</returns>
-		// GET: api/Listing/Listings
+		// GET: api/Listing/GetListings
 		[HttpGet]
 		[Route("GetListings")]
 		public async Task<ActionResult<IEnumerable<Listing>>> GetListings()
@@ -149,6 +149,32 @@ namespace HiSpaceListingService.Controllers
 			return CreatedAtAction("GetUsers", listing);
 		}
 
+		// GET: api/Addons/GetWoringHoursByWoringHoursID/1
+		[HttpGet("GetWoringHoursByWoringHoursID/{WoringHoursID}")]
+		public async Task<ActionResult<WorkingHours>> GetWoringHoursByWoringHoursID(int WoringHoursID)
+		{
+			var workingHours = await _context.WorkingHourss.FindAsync(WoringHoursID);
 
+			if (workingHours == null)
+			{
+				return NotFound();
+			}
+
+			return workingHours;
+		}
+
+		/// <summary>
+		/// Post the WorkingHours.
+		/// </summary>
+		/// <returns>The list of WorkingHours.</returns>
+		// POST: api/Addons/AddCreateHours
+		[HttpPost("AddCreateHours")]
+		public async Task<ActionResult<WorkingHours>> AddCreateHours([FromBody] WorkingHours workingHours)
+		{
+			_context.WorkingHourss.Add(workingHours);
+			await _context.SaveChangesAsync();
+
+			return CreatedAtAction("GetWoringHoursByWoringHoursID", new { WoringHoursID = workingHours.WorkingHoursId }, workingHours);
+		}
 	}
 }

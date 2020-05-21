@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -8,6 +9,7 @@ namespace HiSpaceListingModels
 	[Table("Amenity")]
 	public class Amenity
 	{
+		[Key]
 		public int AmenityId { set; get; }
 		public int ListingId { set; get; }
 		public int? AmenityMasterId { set; get; }

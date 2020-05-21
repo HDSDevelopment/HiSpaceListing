@@ -266,12 +266,12 @@
 											{
 												ViewBag.TypeClass = "text-pry";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
-										"<span span class='modal-link__amenities' data-targeturl=\'"+@Url.Action("AddAmenities","Listing",new { id = item.ListingId })+"\' data-dismiss='modal'>" +
+										"<span span class='modal-link__amenities' data-targeturl=\'"+@Url.Action("AddAmenities","Listing",new { ListingId = item.ListingId })+"\' data-dismiss='modal'>" +
 											"<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the aminities'>" +
 												"<i class='fas fa-wifi btn-icon text-primary'></i>" +
 											"</a>" +
 										"</span>" +
-"<span span class='modal-link__facilities' data-targeturl=\'"+@Url.Action("AddFacilities","Listing",new { id = item.ListingId })+"\' data-dismiss='modal'>" +
+"<span span class='modal-link__facilities' data-targeturl=\'"+@Url.Action("AddFacilities","Listing",new { ListingId = item.ListingId })+"\' data-dismiss='modal'>" +
 								"<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the facilities'>" +
 									"<i class='fas fa-bus btn-icon text-sec'></i>" +
 								"</a>" +
@@ -282,12 +282,12 @@
 											{
 												ViewBag.TypeClass = "text-sec";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
-																	  "<span class='modal-link__amenities' data-targeturl=\'"+@Url.Action("AddAmenities","Listing",new { id = item.ListingId })+"\' data-dismiss='modal'>" +
+																	  "<span class='modal-link__amenities' data-targeturl=\'"+@Url.Action("AddAmenities","Listing",new { ListingId = item.ListingId })+"\' data-dismiss='modal'>" +
 																		  "<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the aminities'>" +
 																			  "<i class='fas fa-wifi btn-icon text-primary'></i>" +
 																		  "</a>" +
 																	  "</span>" +
-														  "<span class='modal-link__facilities' data-targeturl=\'"+@Url.Action("AddFacilities","Listing",new { id = item.ListingId })+"\' data-dismiss='modal'>" +
+														  "<span class='modal-link__facilities' data-targeturl=\'"+@Url.Action("AddFacilities","Listing",new { ListingId = item.ListingId })+"\' data-dismiss='modal'>" +
 															  "<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the facilities'>" +
 																  "<i class='fas fa-bus btn-icon text-sec'></i>" +
 															  "</a>" +
@@ -298,7 +298,7 @@
 											{
 												ViewBag.TypeClass = "text-info";
 												ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
-																	  "<span class='modal-link__project' data-targeturl=\'"+@Url.Action("AddProject","Listing",new { id = item.ListingId })+"\' data-dismiss='modal'>" +
+																	  "<span class='modal-link__project' data-targeturl=\'"+@Url.Action("AddProject","Listing",new { ListingId = item.ListingId })+"\' data-dismiss='modal'>" +
 																		  "<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the RE project'>" +
 																			  "<i class='fas fa-city btn-icon text-info'></i>" +
 																		  "</a>" +
@@ -323,7 +323,7 @@
 												</td>
 												<td class="p-0">
 													<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-														<span  class="modal-link__hours" data-targeturl="@Url.Action("AddHours","Listing",new { id = item.ListingId })" data-dismiss="modal">
+														<span  class="modal-link__hours" data-targeturl="@Url.Action("AddHours","Addons",new { id = item.ListingId })" data-dismiss="modal">
 															<a href="javascript:function() { return false; }" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the working hours">
 																<i class="fas fa-business-time btn-icon text-pry"></i>
 															</a>

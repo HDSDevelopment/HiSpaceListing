@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using HiSpaceListingWeb.Utilities;
 using Microsoft.AspNetCore.Builder;
@@ -45,10 +47,29 @@ namespace HiSpaceListingWeb
 			//	options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time
 			//});
 			services.AddMvc().AddSessionStateTempDataProvider();
+			//services.AddMvc().AddNewtonsoftJson();
 			services.AddMemoryCache();
 			services.AddSession();
-			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			//services.AddNewtonsoftJson();
+			//services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			//services.AddControllers().AddJsonOptions(options =>
+			//options.JsonSerializerOptions.Converters.Add(new TimeSpanToStringConverter()));
 		}
+
+		//public class TimeSpanToStringConverter : JsonConverter<TimeSpan>
+		//{
+		//	public override TimeSpan Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		//	{
+		//		var value = reader.GetString();
+		//		return TimeSpan.Parse(value);
+		//	}
+
+		//	public override void Write(Utf8JsonWriter writer, TimeSpan value, JsonSerializerOptions options)
+		//	{
+		//		writer.WriteStringValue(value.ToString());
+		//	}
+		//}
+
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
