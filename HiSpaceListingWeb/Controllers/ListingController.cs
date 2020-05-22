@@ -108,11 +108,11 @@ namespace HiSpaceListingWeb.Controllers
 
 		//}
 
-		public ActionResult ListingTable(int UserID)
+		public ActionResult ListingTable(int UserID, int UserType)
 		{
 			SetSessionVariables();
 			UserMasterViewModel vModel = new UserMasterViewModel();
-			if (UserID != 0)
+			if (UserType != 0)
 			{
 				using (var client = new HttpClient())
 				{

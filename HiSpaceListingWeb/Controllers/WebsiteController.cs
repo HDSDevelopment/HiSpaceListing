@@ -14,6 +14,11 @@ namespace HiSpaceListingWeb.Controllers
 		{
 			return View();
 		}
+
+		public ActionResult Landing()
+		{
+			return View();
+		}
 		public ActionResult About()
 		{
 			return View();

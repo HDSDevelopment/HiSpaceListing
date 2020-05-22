@@ -403,6 +403,10 @@ POTENZA.streetviewtabs = function () {
     POTENZA.mediaPopups(),
     POTENZA.rangesliders(),
     POTENZA.streetviewtabs(),
-    POTENZA.carousel();
+		POTENZA.carousel();
+
+	  $('.carousel').carousel({
+		  interval: 2000
+	  })
   });
 })(jQuery);

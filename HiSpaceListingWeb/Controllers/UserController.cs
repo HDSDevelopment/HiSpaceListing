@@ -56,7 +56,7 @@ namespace HiSpaceListingWeb.Controllers
 			{
 				AssignSessionVariables(_user);
 				SetSessionVariables();
-				return RedirectToAction("ListingTable", "Listing", new { UserID = _user.UserId });
+				return RedirectToAction("ListingTable", "Listing", new { UserID = _user.UserId, UserType = _user.UserType });
 				//			return RedirectToAction("ListingTable", new RouteValueDictionary(
 				//new { controller = "Listing", action = "ListingTable", UserID = _user.UserId }));
 			}

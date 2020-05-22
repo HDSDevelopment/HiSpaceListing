@@ -22,7 +22,15 @@ $('#BuildYear, #RecentInnovation, #BuildYearDiv, #RecentInnovationDiv').datetime
 	//debug: true,
 });
 $(document).ready(function () {
-	
+
+	$("#cartBtn-1, #cartBtn-2, #cartBtn-3").click(function () {
+		var sec = $(this).attr('cart-section');
+		console.log(sec);
+		$('html, body').animate({
+			scrollTop: $("#card-"+sec).offset().top-50
+		}, 1000);
+	});
+
 	//$('#datetimepicker-01, #datetimepicker-02, #RecentInnovation,#datetimepicker-recent-cw, #BuildYear,#datetimepicker-builtyear-cw').datetimepicker({
 	//	format: 'L'
 	//});

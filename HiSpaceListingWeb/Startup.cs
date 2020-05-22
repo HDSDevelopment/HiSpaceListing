@@ -51,7 +51,7 @@ namespace HiSpaceListingWeb
 			services.AddMemoryCache();
 			services.AddSession();
 			//services.AddNewtonsoftJson();
-			//services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			//services.AddControllers().AddJsonOptions(options =>
 			//options.JsonSerializerOptions.Converters.Add(new TimeSpanToStringConverter()));
 		}
@@ -120,7 +120,8 @@ namespace HiSpaceListingWeb
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Website}/{action=Index}/{id?}");
+					//pattern: "{controller=Website}/{action=Index}/{id?}");
+					pattern: "{controller=Website}/{action=Landing}/{id?}");
 			});
 		}
 	}
