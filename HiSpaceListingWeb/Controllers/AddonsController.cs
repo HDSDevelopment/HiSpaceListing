@@ -27,12 +27,13 @@ namespace HiSpaceListingWeb.Controllers
 			ViewBag.ListOfScheduleTime = Common.GetScheduleTime();
 
 			WorkingHoursViewModel vModel = new WorkingHoursViewModel();
-			vModel.WorkingHours.WorkingHoursId = id;
+			//vModel.WorkingHours.WorkingHoursId = id;
+			vModel.WorkingHours.ListingId = id;
 
 			using (var client = new HttpClient())
 			{
 				client.BaseAddress = new Uri(Common.Instance.ApiAddonsControllerName);
-				var responseTask = client.GetAsync(Common.Instance.ApiAddonsGetWoringHoursByWoringHoursID + vModel.WorkingHours.WorkingHoursId.ToString());
+				var responseTask = client.GetAsync(Common.Instance.ApiAddonsGetWoringHoursByListingID + vModel.WorkingHours.ListingId.ToString());
 				responseTask.Wait();
 
 				var result = responseTask.Result;
@@ -106,22 +107,22 @@ namespace HiSpaceListingWeb.Controllers
 					model.WorkingHours.SunAvail = true;
 
 					//open
-					model.WorkingHours.MonOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.TueOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.WedOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.ThuOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.FriOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.SatOpen = TimeSpan.Parse("00:00:00");
-					model.WorkingHours.SunOpen = TimeSpan.Parse("00:00:00");
+					model.WorkingHours.MonOpen = "00:00:00";
+					model.WorkingHours.TueOpen = "00:00:00";
+					model.WorkingHours.WedOpen = "00:00:00";
+					model.WorkingHours.ThuOpen = "00:00:00";
+					model.WorkingHours.FriOpen = "00:00:00";
+					model.WorkingHours.SatOpen = "00:00:00";
+					model.WorkingHours.SunOpen = "00:00:00";
 
 					//close
-					model.WorkingHours.MonClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.TueClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.WedClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.ThuClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.FriClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.SatClose = TimeSpan.Parse("23:59:59");
-					model.WorkingHours.SunClose = TimeSpan.Parse("23:59:59");
+					model.WorkingHours.MonClose = "23:59:59";
+					model.WorkingHours.TueClose = "23:59:59";
+					model.WorkingHours.WedClose = "23:59:59";
+					model.WorkingHours.ThuClose = "23:59:59";
+					model.WorkingHours.FriClose = "23:59:59";
+					model.WorkingHours.SatClose = "23:59:59";
+					model.WorkingHours.SunClose = "23:59:59";
 				}
 				else if (model.MonToFriCheck == true)
 				{
@@ -204,7 +205,7 @@ namespace HiSpaceListingWeb.Controllers
 					}
 					else if(model.WorkingHours.WorkingHoursId > 0)
 					{
-						var postTask = client.PostAsJsonAsync(Common.Instance.ApiAddonsAddCreateHours + model.WorkingHours.WorkingHoursId, model.WorkingHours);
+						var postTask = client.PutAsJsonAsync(Common.Instance.ApiAddonsUpdateHours + model.WorkingHours.ListingId, model.WorkingHours);
 						postTask.Wait();
 						var result = postTask.Result;
 						if (result.IsSuccessStatusCode)
@@ -219,7 +220,7 @@ namespace HiSpaceListingWeb.Controllers
 				}
 				ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 			}
-			return RedirectToAction("ListingTable", "Listing", new { UserID = GetSessionObject().UserId });
+			return RedirectToAction("ListingTable", "Listing", new { UserID = GetSessionObject().UserId, UserType = GetSessionObject().UserType });
 		}
 
 		public void SetSessionVariables()

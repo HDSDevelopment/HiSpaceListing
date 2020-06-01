@@ -14,26 +14,26 @@ namespace HiSpaceListingModels
 		public int ListingId { set; get; }
 		public bool? Is24 { set; get; }
 		public bool? SunAvail { set; get; }
-		public TimeSpan? SunOpen { set; get; }
-		public TimeSpan? SunClose { set; get; }
+		public string SunOpen { set; get; }
+		public string SunClose { set; get; }
 		public bool? MonAvail { set; get; }
-		public TimeSpan? MonOpen { set; get; }
-		public TimeSpan? MonClose { set; get; }
+		public string MonOpen { set; get; }
+		public string MonClose { set; get; }
 		public bool? TueAvail { set; get; }
-		public TimeSpan? TueOpen { set; get; }
-		public TimeSpan? TueClose { set; get; }
+		public string TueOpen { set; get; }
+		public string TueClose { set; get; }
 		public bool? WedAvail { set; get; }
-		public TimeSpan? WedOpen { set; get; }
-		public TimeSpan? WedClose { set; get; }
+		public string WedOpen { set; get; }
+		public string WedClose { set; get; }
 		public bool? ThuAvail { set; get; }
-		public TimeSpan? ThuOpen { set; get; }
-		public TimeSpan? ThuClose { set; get; }
+		public string ThuOpen { set; get; }
+		public string ThuClose { set; get; }
 		public bool? FriAvail { set; get; }
-		public TimeSpan? FriOpen { set; get; }
-		public TimeSpan? FriClose { set; get; }
+		public string FriOpen { set; get; }
+		public string FriClose { set; get; }
 		public bool? SatAvail { set; get; }
-		public TimeSpan? SatOpen { set; get; }
-		public TimeSpan? SatClose { set; get; }
+		public string SatOpen { set; get; }
+		public string SatClose { set; get; }
 		public string Description { set; get; }
 		public bool Status { set; get; }
 		public DateTime? CreatedDateTime { set; get; }

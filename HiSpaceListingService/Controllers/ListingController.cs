@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HiSpaceListingModels;
 using HiSpaceListingService.Models;
+using HiSpaceListingService.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -175,6 +176,31 @@ namespace HiSpaceListingService.Controllers
 			await _context.SaveChangesAsync();
 
 			return CreatedAtAction("GetWoringHoursByWoringHoursID", new { WoringHoursID = workingHours.WorkingHoursId }, workingHours);
+		}
+
+		/// <summary>
+		/// Get property list
+		/// </summary>
+		/// <returns>The list of Properties.</returns>
+		// GET: api/Listing/GetPropertyList
+		[HttpGet("GetPropertyList")]
+		public async Task<ActionResult<IEnumerable<PropertyDetailResponse>>> GetPropertyList()
+		{
+			List<PropertyDetailResponse> vModel = new List<PropertyDetailResponse>();
+			var properties = await _context.Listings.Where(m => m.Status == true).OrderByDescending(d => d.CreatedDateTime).ToListAsync();
+
+			foreach(var item in properties)
+			{
+				PropertyDetailResponse property = new PropertyDetailResponse();
+				property.SpaceListing = item;
+				property.SpaceUser = _context.Users.SingleOrDefault(d => d.UserId == item.UserId);
+				property.AvailableAmenities = (from PA in _context.Amenitys where PA.ListingId == item.ListingId && PA.Status == true select new Amenity() { AmenityId = PA.AmenityId, Name = PA.Name}).ToList().Count();
+				property.AvailableFacilities = (from PF in _context.Facilitys where PF.ListingId == item.ListingId && PF.Status == true select new Facility() {  FacilityId = PF.FacilityId, Name = PF.Name }).ToList().Count();
+
+				vModel.Add(property);
+			}
+
+			return vModel;
 		}
 	}
 }

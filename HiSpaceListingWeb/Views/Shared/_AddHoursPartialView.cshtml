@@ -25,18 +25,27 @@
 				@using (Html.BeginForm("UpdateHours", "Addons", FormMethod.Post, new { id = "", @class = "form-row mt-4 align-items-center md-form", enctype = "multipart/form-data" }))
 				{
 					@Html.AntiForgeryToken()
+					@Html.HiddenFor(m => m.WorkingHours.ListingId)
+					@Html.HiddenFor(m => m.WorkingHours.WorkingHoursId)
 					<div class="form-radio m-0 width-full hi-sch">
 						<!--radio 1-->
 						<div class="sch-1">
 							<div class="radio">
 								<label class="radio-active">
-									<input type="radio" id="AllTimeCheck_radio" name="WorkingHours.Is24" value="true" checked="checked" radio-attr="24/7" /><i class="helper"></i>24 / 7 Available
-									@*@Html.EditorFor(m => m.AllTimeCheck, new { htmlAttributes = new { @class = "hidden" } })*@
-									<select class="hidden list-box tri-state" id="AllTimeCheck" name="AllTimeCheck">
-										<option  value="">Not Set</option>
-										<option selected="selected" value="true">True</option>
-										<option value="false">False</option>
-									</select>
+									<input type="radio" id="AllTimeCheck_radio" name="WorkingHours.Is24" value="true" radio-attr="24/7" /><i class="helper"></i>24 / 7 Available
+									@if (Model.WorkingHours.WorkingHoursId == 0)
+									{
+										<select class="hidden list-box tri-state" id="AllTimeCheck" name="AllTimeCheck">
+											<option value="">Not Set</option>
+											<option selected="selected" value="true">True</option>
+											<option value="false">False</option>
+										</select>
+									}
+									else
+									{
+										@Html.EditorFor(m => m.AllTimeCheck, new { htmlAttributes = new { @class = "hidden" } })
+									}
+
 									@*<input type="checkbox" checked="checked" id="AllTimeCheck" name="AllTimeCheck" value="true" class="hidden" />*@
 								</label>
 							</div>
@@ -74,12 +83,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFri_Open" name="MonToFriOpen" asp-for="MonToFriOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFri_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="MonToFri_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -87,12 +96,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFri_Close" name="MonToFriClose" asp-for="MonToFriClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFri_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@<label for="MonToFri_Close" class="control-label">To</label>
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@<label for="MonToFri_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
 												</div>
@@ -135,12 +144,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFriNotSat_Open" name="MonToFriNotSatOpen" asp-for="MonToFriNotSatOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFriNotSat_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="MonToFriNotSat_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -148,12 +157,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFriNotSat_Close" name="MonToFriNotSatClose" asp-for="MonToFriNotSatClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFriNotSat_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="MonToFriNotSat_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -183,12 +192,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFri_Sat_Open" name="MonToFriWithSatOpen" asp-for="MonToFriWithSatOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFri_Sat_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="MonToFri_Sat_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -196,12 +205,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="MonToFri_Sat_Close" name="MonToFriWithSatClose" asp-for="MonToFriWithSatClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="MonToFri_Sat_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="MonToFri_Sat_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -248,12 +257,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomMon_Open" name="WorkingHours.MonOpen" asp-for="WorkingHours.MonOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomMon_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomMon_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -261,12 +270,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomMon_Close" name="WorkingHours.MonClose" asp-for="WorkingHours.MonClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomMon_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomMon_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -296,12 +305,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomTue_Open" name="WorkingHours.TueOpen" asp-for="WorkingHours.TueOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomTue_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomTue_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -309,12 +318,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomTue_Close" name="WorkingHours.TueClose" asp-for="WorkingHours.TueClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomTue_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomTue_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -344,12 +353,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomWed_Open" name="WorkingHours.WedOpen" asp-for="WorkingHours.WedOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomWed_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomWed_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -357,12 +366,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomWed_Close" name="WorkingHours.WedClose" asp-for="WorkingHours.WedClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomWed_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomWed_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -392,12 +401,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomThu_Open" name="WorkingHours.ThuOpen" asp-for="WorkingHours.ThuOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomThu_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomThu_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -405,12 +414,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomThu_Close" name="WorkingHours.ThuClose" asp-for="WorkingHours.ThuClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomThu_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomThu_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -440,12 +449,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomFri_Open" name="WorkingHours.FriOpen" asp-for="WorkingHours.FriOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomFri_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomFri_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -453,12 +462,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomFri_Close" name="WorkingHours.FriClose" asp-for="WorkingHours.FriClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomFri_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomFri_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -488,12 +497,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomSat_Open" name="WorkingHours.SatOpen" asp-for="WorkingHours.SatOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomSat_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomSat_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -501,12 +510,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomSat_Close" name="WorkingHours.SatClose" asp-for="WorkingHours.SatClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomSat_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomSat_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -536,12 +545,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomSun_Open" name="WorkingHours.SunOpen" asp-for="WorkingHours.SunOpen"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomSun_Open">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomSun_Open" class="control-label">From</label>
 														<i class="bar"></i>
 													</div>
@@ -549,12 +558,12 @@
 												<div class="col-lg-6 col-md-6 col-sm-6 col-6">
 													<div class="form-group">
 														<select id="CustomSun_Close" name="WorkingHours.SunClose" asp-for="WorkingHours.SunClose"
-												asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select>
 														@*<select class="form-control basic-select" id="CustomSun_Close">
-															<option value="1">08:00 AM</option>
-															<option value="2">09:00 AM</option>
-															<option value="3">10:00 AM</option>
-														</select>*@
+													<option value="1">08:00 AM</option>
+													<option value="2">09:00 AM</option>
+													<option value="3">10:00 AM</option>
+												</select>*@
 														<label for="CustomSun_Close" class="control-label">To</label>
 														<i class="bar"></i>
 													</div>
@@ -568,13 +577,13 @@
 					</div>
 					<div class="row width-full justify-content-center">
 						<div class="col-sm-6">
-							@Html.HiddenFor(m => m.WorkingHours.ListingId)
+
 							<button type="submit" class="btn btn-primary btn-block">Submit Hours</button>
 						</div>
 					</div>
 					@*</form>*@
-					}
-				</div>
+				}
+			</div>
 		</div>
 	</div>
 </div>

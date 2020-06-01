@@ -17,12 +17,12 @@ namespace HiSpaceListingWeb.ViewModel
 		public bool? MonToFriCheck { set; get; }
 		public bool? MonToSatCheck { set; get; }
 		public bool? CustomCheck { set; get; }
-		public TimeSpan? AllTimeOpen { set; get; }
-		public TimeSpan? MonToFriOpen { set; get; }
-		public TimeSpan? MonToFriClose { set; get; }
-		public TimeSpan? MonToFriNotSatOpen { set; get; }
-		public TimeSpan? MonToFriNotSatClose { set; get; }
-		public TimeSpan? MonToFriWithSatOpen { set; get; }
-		public TimeSpan? MonToFriWithSatClose { set; get; }
+		public string AllTimeOpen { set; get; }
+		public string MonToFriOpen { set; get; }
+		public string MonToFriClose { set; get; }
+		public string MonToFriNotSatOpen { set; get; }
+		public string MonToFriNotSatClose { set; get; }
+		public string MonToFriWithSatOpen { set; get; }
+		public string MonToFriWithSatClose { set; get; }
 	}
 }

@@ -32,11 +32,11 @@ namespace HiSpaceListingService.Controllers
 			return await _context.ListingImagess.Where(d => d.ListingId == ListingID).ToListAsync();
 		}
 
-		// GET: api/Addons/GetWoringHoursByWoringHoursID/1
-		[HttpGet("GetWoringHoursByWoringHoursID/{WoringHoursID}")]
-		public async Task<ActionResult<WorkingHours>> GetWoringHoursByWoringHoursID(int WoringHoursID)
+		// GET: api/Addons/GetWoringHoursByListingID/1
+		[HttpGet("GetWoringHoursByListingID/{ListingId}")]
+		public async Task<ActionResult<WorkingHours>> GetWoringHoursByListingID(int ListingId)
 		{
-			var workingHours = await _context.WorkingHourss.FindAsync(WoringHoursID);
+			var workingHours = await _context.WorkingHourss.FindAsync(ListingId);
 
 			if (workingHours == null)
 			{
@@ -57,14 +57,14 @@ namespace HiSpaceListingService.Controllers
 			_context.WorkingHourss.Add(workingHours);
 			await _context.SaveChangesAsync();
 
-			return CreatedAtAction("GetWoringHoursByWoringHoursID", new { WoringHoursID = workingHours.WorkingHoursId }, workingHours);
+			return CreatedAtAction("GetWoringHoursByListingID", new { ListingId = workingHours.ListingId }, workingHours);
 		}
 
 		// PUT: api/Addons/UpdateHours/1
-		[HttpPut("UpdateHours/{WoringHoursID}")]
-		public async Task<IActionResult> UpdateHours(int WoringHoursID, [FromBody] WorkingHours workingHours)
+		[HttpPut("UpdateHours/{ListingId}")]
+		public async Task<IActionResult> UpdateHours(int ListingId, [FromBody] WorkingHours workingHours)
 		{
-			if (WoringHoursID != workingHours.WorkingHoursId || workingHours == null)
+			if (ListingId != workingHours.ListingId || workingHours == null)
 			{
 				return BadRequest();
 			}
@@ -77,7 +77,7 @@ namespace HiSpaceListingService.Controllers
 			}
 			catch (DbUpdateConcurrencyException)
 			{
-				if (!WorkingHoursExists(WoringHoursID))
+				if (!WorkingHoursExists(ListingId))
 				{
 					return NotFound();
 				}
@@ -90,9 +90,9 @@ namespace HiSpaceListingService.Controllers
 			return NoContent();
 		}
 
-		private bool WorkingHoursExists(int WoringHoursID)
+		private bool WorkingHoursExists(int ListingId)
 		{
-			return _context.WorkingHourss.Any(e => e.WorkingHoursId == WoringHoursID);
+			return _context.WorkingHourss.Any(e => e.ListingId == ListingId);
 		}
 
 	}

@@ -241,66 +241,6 @@ $('.hi-tab .nav-link').on('click', function () {
 	}
 });
 
-//schedular section start
-$(function () {
-	
-	//checkbox check function for scheduling
-
-	//console.log($('#AllTimeCheck').val());
-	//console.log($('#MonToFriCheck').val());
-	//console.log($('#MonToSatCheck').val());
-	//console.log($('#CustomCheck').val());
-
-	if ($('#AllTimeCheck option:selected').text() == "True") {
-		$('#AllTimeCheck').parents('label').find('[type=radio]').prop("checked", true);
-		$('#AllTimeCheck').parents('label').addClass('radio-active');
-	}
-	else if ($('#MonToFriCheck option:selected').text() == "True") {
-		$('#MonToFriCheck').parents('label').find('[type=radio]').prop("checked", true);
-		$('#MonToFriCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-		$('#MonToFriCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-		$('#MonToFriCheck').parents('.radio').siblings().find('input').prop("checked", true);
-		$('#MonToFriCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-		$('#MonToFriCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-		$('#MonToFriCheck').parents('label').addClass('radio-active');
-	}
-	else if ($('#MonToSatCheck option:selected').text() == "True") {
-		$('#MonToSatCheck').parents('label').find('[type=radio]').prop("checked", true);
-		$('#MonToSatCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-		$('#MonToSatCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-		$('#MonToSatCheck').parents('.radio').siblings().find('input').prop("checked", true);
-		$('#MonToSatCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-		$('#MonToSatCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-		$('#MonToSatCheck').parents('label').addClass('radio-active');
-	}
-	else if ($('#CustomCheck option:selected').text() == "True") {
-		$('#CustomCheck').parents('label').find('[type=radio]').prop("checked", true);
-		$('#CustomCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-		$('#CustomCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-		$('#CustomCheck').parents('.radio').siblings().find('input').prop("checked", true);
-		$('#CustomCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-		$('#CustomCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-		$('#CustomCheck').parents('label').addClass('radio-active');
-	}
-
-	//display view in the scheduler section
-	if ($('#Display_view #AllTimeCheck option:selected').text() == "True") {
-		$('.sch-2, .sch-3, .sch-4').css('display', 'none');
-		$('.sch-1').css('display', 'block');
-	}
-	else if ($('#Display_view #MonToFriCheck option:selected').text() == "True") {
-		$('.sch-1, .sch-3, .sch-4').css('display', 'none');
-		$('.sch-2').css('display', 'block');
-	}
-	else if ($('#Display_view #MonToSatCheck option:selected').text() == "True") {
-		$('.sch-1, .sch-2, .sch-4').css('display', 'none');
-		$('.sch-3').css('display', 'block');
-	}
-	else if ($('#Display_view #CustomCheck option:selected').text() == "True") {
-		$('.sch-1, .sch-2, .sch-3').css('display', 'none');
-		$('.sch-4').css('display', 'block');
-	}
-});
 //***********************user section end****************************//
 
 //$('input[name="workingHours.Is24"]').click(function () {
@@ -551,6 +491,7 @@ $(function () {
 				data + '</div></div>').modal();
 
 		});
+
 	});
 
 	//model open for the signup section
@@ -596,6 +537,61 @@ $(function () {
 				data + '</div></div>').modal();
 
 		});
+		setTimeout(function () {
+			//console.log($('#AllTimeCheck').html())
+			//console.log($('#MonToFriCheck option:selected').val())
+			//console.log($('#MonToSatCheck option:selected').val())
+			//console.log($('#CustomCheck option:selected').val())
+		if ($('#AllTimeCheck option:selected').text() == "True") {
+			$('#AllTimeCheck').parents('label').find('[type=radio]').prop("checked", true);
+			$('#AllTimeCheck').parents('label').addClass('radio-active');
+		}
+		else if ($('#MonToFriCheck option:selected').text() == "True") {
+			$('#MonToFriCheck').parents('label').find('[type=radio]').prop("checked", true);
+			$('#MonToFriCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+			$('#MonToFriCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+			$('#MonToFriCheck').parents('.radio').siblings().find('input').prop("checked", true);
+			$('#MonToFriCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+			$('#MonToFriCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+			$('#MonToFriCheck').parents('label').addClass('radio-active');
+		}
+		else if ($('#MonToSatCheck option:selected').text() == "True") {
+			$('#MonToSatCheck').parents('label').find('[type=radio]').prop("checked", true);
+			$('#MonToSatCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+			$('#MonToSatCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+			$('#MonToSatCheck').parents('.radio').siblings().find('input').prop("checked", true);
+			$('#MonToSatCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+			$('#MonToSatCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+			$('#MonToSatCheck').parents('label').addClass('radio-active');
+		}
+		else if ($('#CustomCheck option:selected').text() == "True") {
+			$('#CustomCheck').parents('label').find('[type=radio]').prop("checked", true);
+			$('#CustomCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+			$('#CustomCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+			$('#CustomCheck').parents('.radio').siblings().find('input').prop("checked", true);
+			$('#CustomCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+			$('#CustomCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+			$('#CustomCheck').parents('label').addClass('radio-active');
+		}
+
+		//display view in the scheduler section
+		if ($('#Display_view #AllTimeCheck option:selected').text() == "True") {
+			$('.sch-2, .sch-3, .sch-4').css('display', 'none');
+			$('.sch-1').css('display', 'block');
+		}
+		else if ($('#Display_view #MonToFriCheck option:selected').text() == "True") {
+			$('.sch-1, .sch-3, .sch-4').css('display', 'none');
+			$('.sch-2').css('display', 'block');
+		}
+		else if ($('#Display_view #MonToSatCheck option:selected').text() == "True") {
+			$('.sch-1, .sch-2, .sch-4').css('display', 'none');
+			$('.sch-3').css('display', 'block');
+		}
+		else if ($('#Display_view #CustomCheck option:selected').text() == "True") {
+			$('.sch-1, .sch-2, .sch-3').css('display', 'none');
+			$('.sch-4').css('display', 'block');
+			}
+		}, 1000);
 	});
 
 	//model open for the list project section

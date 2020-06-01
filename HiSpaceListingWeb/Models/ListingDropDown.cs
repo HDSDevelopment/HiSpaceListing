@@ -44,6 +44,6 @@ namespace HiSpaceListingWeb.Models
 	{
 		public int ScheduleTimeID { set; get; }
 		public string ScheduleTimeView { set; get; }
-		public TimeSpan? ScheduleTimeSpan { set; get; }
+		public string ScheduleTimeSpan { set; get; }
 	}
 }

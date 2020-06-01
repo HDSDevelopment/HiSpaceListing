@@ -1,323 +1,452 @@
 ﻿@{
-    ViewData["Title"] = "PropertyList";
-    Layout = "~/Views/Shared/_WebLayout.cshtml";
-    @using Microsoft.AspNetCore.Http
+	ViewData["Title"] = "PropertyList";
+	Layout = "~/Views/Shared/_WebLayout.cshtml";
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 }
+@model HiSpaceListingWeb.ViewModel.PropertyListViewModel
 
-	<div class="property-list nav-padding">
-		<div class="bg-light">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<ol class="breadcrumb mb-0">
-							<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
-							<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property List </span></li>
-						</ol>
-					</div>
+<div class="property-list nav-padding">
+	<div class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
+						<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property List </span></li>
+					</ol>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<section class="space-ptb">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 mb-5 mb-lg-0">
-						<div class="sidebar">
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>property Type</h6>
-									<a class="ml-auto" data-toggle="collapse" href="#property-type" role="button" aria-expanded="false" aria-controls="property-type"> <i class="fas fa-chevron-down"></i> </a>
-								</div>
-								<div class="collapse show" id="property-type">
-									<ul class="list-unstyled mb-0 pt-3">
-										<li><a href="#">Commercial<span class="ml-auto">(50)</span></a></li>
-										<li><a href="#">Co-working<span class="ml-auto">(35)</span></a></li>
-										<li><a href="#">Re-Professional<span class="ml-auto">(20)</span></a></li>
-									</ul>
-								</div>
+	<section class="space-ptb">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 mb-5 mb-lg-0">
+					<div class="sidebar">
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								
+								<a class="ml-auto" data-toggle="collapse" href="#property-location" role="button" aria-expanded="false" aria-controls="property-location"> <h6>property Location</h6> <i class="fas fa-chevron-down"></i> </a>
 							</div>
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>property Level</h6>
-									<a class="ml-auto" data-toggle="collapse" href="#property-level" role="button" aria-expanded="false" aria-controls="property-level"> <i class="fas fa-chevron-down"></i> </a>
-								</div>
-								<div class="collapse show" id="property-level">
-									<ul class="list-unstyled mb-0 pt-3">
-										<li><a href="#">Office<span class="ml-auto">(12)</span></a></li>
-										<li><a href="#">Rental<span class="ml-auto">(45)</span></a></li>
-										<li><a href="#">Industrial<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Warehouse<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Cafe<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Team<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Property Developer<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Leasing<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Interior Designer<span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Co-Working Architecture <span class="ml-auto">(23)</span></a></li>
-										<li><a href="#">Investor<span class="ml-auto">(23)</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>property Lister</h6>
-									<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"> <i class="fas fa-chevron-down"></i> </a>
-								</div>
-								<div class="collapse show" id="property-lister">
-									<ul class="list-unstyled mb-0 pt-3">
-										<li><a href="#">Lister 1<span class="ml-auto">(50)</span></a></li>
-										<li><a href="#">Lister 2<span class="ml-auto">(35)</span></a></li>
-										<li><a href="#">Lister 3<span class="ml-auto">(20)</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="widget">
-								<div class="widget-title widget-collapse">
-									<h6>Advanced filter</h6>
-									<a class="ml-auto" data-toggle="collapse" href="#filter-property" role="button" aria-expanded="false" aria-controls="filter-property"> <i class="fas fa-chevron-down"></i> </a>
-								</div>
-								<div class="collapse show" id="filter-property">
-									<form class="mt-3 md-form">
-										<div class="form-group width-80 m-b--0">
-											<select class="form-control basic-select">
-												<option>Commercial</option>
-												<option>Co-working</option>
-												<option>RE-Professionals</option>
-											</select>
-											<label for="select" class="control-label">Category</label><i class="bar"></i>
-										</div>
-										<div class="form-group m--0 filter-checkbox">
-											<div class="checkbox m--0">
-												<label>
-													<input type="checkbox" checked="checked" /><i class="helper"></i>Office
-												</label>
-											</div>
-											<div class="checkbox m--0">
-												<label>
-													<input type="checkbox" /><i class="helper"></i>Team
-												</label>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="property-price-slider ">
-												<label>Price Range</label>
-												<input type="text" id="property-price-slider" name="example_name" value="" />
-											</div>
-										</div>
-										<div class="input-group mb-2">
-											<button class="btn btn-primary btn-block align-items-center" type="submit"><i class="fas fa-filter mr-1"></i><span>Filter</span></button>
-										</div>
-									</form>
-								</div>
-							</div>
-
-
-						</div>
-					</div>
-					<div class="col-lg-9">
-						<div class="property-item property-col-list mt-4">
-							<div class="row no-gutters">
-								<div class="col-lg-4 col-md-5 prop-image">
-									<div class="property-image bg-overlay-gradient-04">
-										<img class="img-fluid" src="~/images/property/list/01.jpg" alt="">
-										<div class="property-lable">
-											<span class="badge badge-md badge-primary">Office</span>
-										</div>
-										<div class="property-agent">
-											<div class="property-agent-image">
-												<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
-											</div>
-											<div class="property-agent-info">
-												<a class="property-agent-name" href="#">Sara lisbon</a>
-												<span class="d-block">Company Agent</span>
-
-											</div>
-										</div>
-										<div class="property-agent-popup">
-											<a href="#"><i class="fas fa-camera"></i> 03</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-8 col-md-7 prop-details">
-									<div class="property-details">
-										<div class="property-details__head">
-											<div class="property-details__header">Coworking name</div>
-											<div class="property-details__amenities">
-												<span class="property-details__am">Amenities (10)</span>
-												<span class="property-details__fa">Facilities (5)</span>
-											</div>
-										</div>
-										<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
-										<div class="property-details__section">
-											<div>
-												<span class="property-span__head">Type: </span>
-												<span class="property-span__type">Office </span>
-											</div>
-											<div>
-												<span class="property-span__head">Rent: </span>
-												<span class="property-span__rent">Day | Month</span>
-											</div>
-										</div>
-										<div class="property-details__footer">
-											<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
-											<div class="property-details__total">
-
-												<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
-												<span class="property-span__head"> | </span>
-												<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
-											</div>
-										</div>
-
-									</div>
-									<div class="property-btn">
-										<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="property-item property-col-list mt-4">
-							<div class="row no-gutters">
-								<div class="col-lg-4 col-md-5 prop-image">
-									<div class="property-image bg-overlay-gradient-04">
-										<img class="img-fluid" src="~/images/property/list/02.jpg" alt="">
-										<div class="property-lable">
-											<span class="badge badge-md badge-primary">Office</span>
-										</div>
-										<div class="property-agent">
-											<div class="property-agent-image">
-												<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
-											</div>
-											<div class="property-agent-info">
-												<a class="property-agent-name" href="#">Sara lisbon</a>
-												<span class="d-block">Company Agent</span>
-
-											</div>
-										</div>
-										<div class="property-agent-popup">
-											<a href="#"><i class="fas fa-camera"></i> 03</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-8 col-md-7 prop-details">
-									<div class="property-details">
-										<div class="property-details__head">
-											<div class="property-details__header">Coworking name</div>
-											<div class="property-details__amenities">
-												<span class="property-details__am">Amenities (10)</span>
-												<span class="property-details__fa">Facilities (5)</span>
-											</div>
-										</div>
-										<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
-										<div class="property-details__section">
-											<div>
-												<span class="property-span__head">Type: </span>
-												<span class="property-span__type">Office </span>
-											</div>
-											<div>
-												<span class="property-span__head">Rent: </span>
-												<span class="property-span__rent">Hour | Day | Month</span>
-											</div>
-										</div>
-										<div class="property-details__footer">
-											<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
-											<div class="property-details__total">
-
-												<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
-												<span class="property-span__head"> | </span>
-												<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
-											</div>
-										</div>
-
-									</div>
-									<div class="property-btn">
-										<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="property-item property-col-list mt-4">
-							<div class="row no-gutters">
-								<div class="col-lg-4 col-md-5 prop-image">
-									<div class="property-image bg-overlay-gradient-04">
-										<img class="img-fluid" src="~/images/property/list/03.jpg" alt="">
-										<div class="property-lable">
-											<span class="badge badge-md badge-primary">Private Office</span>
-										</div>
-										<div class="property-agent">
-											<div class="property-agent-image">
-												<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
-											</div>
-											<div class="property-agent-info">
-												<a class="property-agent-name" href="#">Sara lisbon</a>
-												<span class="d-block">Company Agent</span>
-
-											</div>
-										</div>
-										<div class="property-agent-popup">
-											<a href="#"><i class="fas fa-camera"></i> 03</a>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-8 col-md-7 prop-details">
-									<div class="property-details">
-										<div class="property-details__head">
-											<div class="property-details__header">Coworking name</div>
-											<div class="property-details__amenities">
-												<span class="property-details__am">Amenities (10)</span>
-												<span class="property-details__fa">Facilities (5)</span>
-											</div>
-										</div>
-										<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
-										<div class="property-details__section">
-											<div>
-												<span class="property-span__head">Type: </span>
-												<span class="property-span__type">Private Office </span>
-											</div>
-											<div>
-												<span class="property-span__head">Rent: </span>
-												<span class="property-span__rent">Month</span>
-											</div>
-										</div>
-										<div class="property-details__footer">
-											<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
-											<div class="property-details__total">
-
-												<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
-												<span class="property-span__head"> | </span>
-												<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
-											</div>
-										</div>
-
-									</div>
-									<div class="property-btn">
-										<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<ul class="pagination mt-3">
-									<li class="page-item disabled mr-auto">
-										<span class="page-link b-radius-none">Prev</span>
-									</li>
-									<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item ml-auto">
-										<a class="page-link b-radius-none" href="#">Next</a>
-									</li>
+							<div class="collapse show" id="property-location">
+								<ul class="list-unstyled mb-0 pt-3">
+									@foreach (var item in Model.PropertyLocationSearchList)
+									{
+										<li><a href="#">@item.locality<span class="ml-auto">(@item.localityInUseCount)</span></a></li>
+									}
+									@*<li><a href="#">Commercial<span class="ml-auto">(50)</span></a></li>
+									<li><a href="#">Co-working<span class="ml-auto">(35)</span></a></li>
+									<li><a href="#">Re-Professional<span class="ml-auto">(20)</span></a></li>*@
 								</ul>
 							</div>
 						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								
+								<a class="ml-auto" data-toggle="collapse" href="#property-type" role="button" aria-expanded="false" aria-controls="property-type"><h6>property Type</h6> <i class="fas fa-chevron-down"></i> </a>
+							</div>
+							<div class="collapse show" id="property-type">
+								<ul class="list-unstyled mb-0 pt-3">
+									@foreach (var item in Model.PropertyTypeSearchList)
+									{
+										<li><a href="#">@item.PropertyType<span class="ml-auto">(@item.PropertyTypeInUseCount)</span></a></li>
+									}
+								</ul>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								
+								<a class="ml-auto" data-toggle="collapse" href="#property-level" role="button" aria-expanded="false" aria-controls="property-level"><h6>property Level</h6> <i class="fas fa-chevron-down"></i> </a>
+							</div>
+							<div class="collapse show" id="property-level">
+								<ul class="list-unstyled mb-0 pt-3">
+									@foreach (var item in Model.PropertyLevelSearchList)
+									{
+										<li><a href="#">@item.PropertyLevel<span class="ml-auto">(@item.PropertyLevelInUseCount)</span></a></li>
+									}
+								</ul>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								
+								<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>property Lister</h6> <i class="fas fa-chevron-down"></i> </a>
+							</div>
+							<div class="collapse show" id="property-lister">
+								<ul class="list-unstyled mb-0 pt-3">
+									@foreach (var item in Model.PropertyListerSearchList)
+									{
+										if(item.PropertyListerInUseCount > 0)
+										{
+										<li><a href="#">@item.CompanyName<span class="ml-auto">(@item.PropertyListerInUseCount)</span></a></li>
+										}
+									}
+								</ul>
+							</div>
+						</div>
+						<div class="widget">
+							<div class="widget-title widget-collapse">
+								
+								<a class="ml-auto" data-toggle="collapse" href="#filter-property" role="button" aria-expanded="false" aria-controls="filter-property"> <h6>Advanced filter</h6> <i class="fas fa-chevron-down"></i> </a>
+							</div>
+							<div class="collapse show" id="filter-property">
+								<form class="mt-3 md-form">
+									<div class="form-group width-80 m-b--0">
+										<select class="form-control basic-select">
+											<option>Commercial</option>
+											<option>Co-working</option>
+											<option>RE-Professionals</option>
+										</select>
+										<label for="select" class="control-label">Category</label><i class="bar"></i>
+									</div>
+									<div class="form-group m--0 filter-checkbox">
+										<div class="checkbox m--0">
+											<label>
+												<input type="checkbox" checked="checked" /><i class="helper"></i>Office
+											</label>
+										</div>
+										<div class="checkbox m--0">
+											<label>
+												<input type="checkbox" /><i class="helper"></i>Team
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="property-price-slider ">
+											<label>Price Range</label>
+											<input type="text" id="property-price-slider" name="example_name" value="" />
+										</div>
+									</div>
+									<div class="input-group mb-2">
+										<button class="btn btn-primary btn-block align-items-center" type="submit"><i class="fas fa-filter mr-1"></i><span>Filter</span></button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				<div class="col-lg-9">
+					@foreach (var item in Model.PropertyDetailSearchList)
+					{
+					<div class="property-item property-col-list mt-4">
+						<div class="row no-gutters">
+							<div class="col-lg-4 col-md-5 prop-image">
+								<div class="property-image bg-overlay-gradient-04">
+									<img class="img-fluid" src="~/images/property/list/01.jpg" alt="">
+									<div class="property-lable">
+										@if (item.SpaceListing.ListingType == "Commercial")
+										{
+											<span class="badge badge-md badge-pry">@item.SpaceListing.ListingType</span>
+										}
+										else if (item.SpaceListing.ListingType == "Co-Working")
+										{
+											<span class="badge badge-md badge-sec">@item.SpaceListing.ListingType</span>
+
+										}
+										else if (item.SpaceListing.ListingType == "RE-Professional")
+										{
+											<span class="badge badge-md badge-info">@item.SpaceListing.ListingType</span>
+
+										}
+									</div>
+									<div class="property-agent">
+										<div class="property-agent-image">
+											<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+										</div>
+										<div class="property-agent-info">
+											<a class="property-agent-name" href="#">@item.SpaceUser.CompanyName</a>
+											<span class="d-block">Lister Name</span>
+
+										</div>
+									</div>
+									@*<div class="property-agent-popup">
+										<a href="#"><i class="fas fa-camera"></i> 03</a>
+									</div>*@
+								</div>
+							</div>
+							<div class="col-lg-8 col-md-7 prop-details">
+								<div class="property-details">
+									<div class="property-details__head">
+										<div class="property-details__header">@item.SpaceListing.Name</div>
+										<div class="property-details__amenities">
+											@if (item.SpaceListing.ListingType == "Commercial" || item.SpaceListing.ListingType == "Co-Working")
+											{
+												<span class="property-details__am">Amenities (@item.AvailableAmenities)</span>
+												<span class="property-details__fa">Facilities (@item.AvailableFacilities)</span>
+											}
+											else
+											{
+												<span class="property-details__am">Projects (10)</span>
+											}
+										</div>
+									</div>
+									<div class="property-details__desc">
+										@if (item.SpaceListing.Description == null)
+										{
+											@Html.Raw("I truly believe Augustine’s words are true and if you look at history you know it is true.There are many people in.");
+										}
+										else
+										{
+
+											@item.SpaceListing.Description
+										}
+										</div>
+
+
+																<div class="property-details__section">
+																	<div>
+																		<span class="property-span__head">Type: </span>
+																		@if (item.SpaceListing.ListingType == "Commercial")
+																		{
+																			<span class="property-span__type badge-pry">@item.SpaceListing.ListingType</span>
+																		}
+																		else if (item.SpaceListing.ListingType == "Co-Working")
+																		{
+																			<span class="property-span__type badge-sec">@item.SpaceListing.ListingType</span>
+
+																		}
+																		else if (item.SpaceListing.ListingType == "RE-Professional")
+																		{
+																			<span class="property-span__type badge-info">@item.SpaceListing.ListingType</span>
+
+																		}
+																	</div>
+																	<div>
+																		@if (item.SpaceListing.ListingType == "Commercial" || item.SpaceListing.ListingType == "Co-Working")
+																		{
+																			<span class="property-span__head">Rent: </span>
+																			<span class="property-span__rent">
+																				@if ((item.SpaceListing.RentalHour == true) && (item.SpaceListing.RentalDay == true) && (item.SpaceListing.RentalMonth == true))
+																				{
+																					@Html.Raw("Hour | Day | Month");
+																				}
+																				else if ((item.SpaceListing.RentalHour == true) && (item.SpaceListing.RentalDay == true))
+																				{
+																					@Html.Raw("Hour | Day");
+																				}
+																				else if ((item.SpaceListing.RentalHour == true) && (item.SpaceListing.RentalMonth == true))
+																				{
+																					@Html.Raw("Hour | Month");
+																				}
+																				else if ((item.SpaceListing.RentalMonth == true) && (item.SpaceListing.RentalDay == true))
+																				{
+																					@Html.Raw("Day | Month");
+																				}
+																				else if ((item.SpaceListing.RentalMonth == true))
+																				{
+																					@Html.Raw("Month");
+																				}
+																				else if ((item.SpaceListing.RentalDay == true))
+																				{
+																					@Html.Raw("Day");
+																				}
+																				else if ((item.SpaceListing.RentalHour == true))
+																				{
+																					@Html.Raw("Hour");
+																				}
+																				else
+																				{
+																					@Html.Raw("Not Specified");
+																				}
+																			</span>
+
+																		}
+
+																	</div>
+
+
+											</div>
+
+
+											<div class="property-details__footer">
+											<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>
+												@if(item.SpaceListing.street_number != null)
+												{
+												@Html.Raw(@item.SpaceListing.street_number + ",");
+												}
+												@if(item.SpaceListing.route != null)
+												{
+													@Html.Raw(@item.SpaceListing.route + ",");
+												}
+												<span class="property-span__head">@item.SpaceListing.locality</span>, @item.SpaceListing.administrative_area_level_1. <span class="property-span__head">@item.SpaceListing.postal_code</span></div>
+											<div class="property-details__total">
+
+												@if (item.SpaceListing.ListingType == "Commercial" || item.SpaceListing.ListingType == "Co-Working")
+												{
+													<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: @if(item.SpaceListing.TotalSeats != null)@item.SpaceListing.TotalSeats
+												else
+												@Html.Raw("Not Available")
+												</span>
+													<span class="property-span__head"> | </span>
+													<span class="property-span__occ">
+														<i class="fas fa-chart-pie fa-xs"></i>Occupied: @if (item.SpaceListing.CurrentOccupancy != null)@item.SpaceListing.CurrentOccupancy
+														else
+															@Html.Raw("Not Available")
+														</span>
+												}
+												else
+												{
+
+												}
+											</div>
+										</div>
+
+									</div>
+									<div class="property-btn">
+										<a class="property-link btn btn-primary btn-block" href="@Url.Action("PropertyDetail", "Website")">See Details</a>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						}
+									@*<div class="property-item property-col-list mt-4">
+		<div class="row no-gutters">
+			<div class="col-lg-4 col-md-5 prop-image">
+				<div class="property-image bg-overlay-gradient-04">
+					<img class="img-fluid" src="~/images/property/list/02.jpg" alt="">
+					<div class="property-lable">
+						<span class="badge badge-md badge-primary">Office</span>
+					</div>
+					<div class="property-agent">
+						<div class="property-agent-image">
+							<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+						</div>
+						<div class="property-agent-info">
+							<a class="property-agent-name" href="#">Sara lisbon</a>
+							<span class="d-block">Company Agent</span>
+
+						</div>
+					</div>
+					<div class="property-agent-popup">
+						<a href="#"><i class="fas fa-camera"></i> 03</a>
 					</div>
 				</div>
 			</div>
-		</section>
+			<div class="col-lg-8 col-md-7 prop-details">
+				<div class="property-details">
+					<div class="property-details__head">
+						<div class="property-details__header">Coworking name</div>
+						<div class="property-details__amenities">
+							<span class="property-details__am">Amenities (10)</span>
+							<span class="property-details__fa">Facilities (5)</span>
+						</div>
+					</div>
+					<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
+					<div class="property-details__section">
+						<div>
+							<span class="property-span__head">Type: </span>
+							<span class="property-span__type">Office </span>
+						</div>
+						<div>
+							<span class="property-span__head">Rent: </span>
+							<span class="property-span__rent">Hour | Day | Month</span>
+						</div>
+					</div>
+					<div class="property-details__footer">
+						<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
+						<div class="property-details__total">
 
+							<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
+							<span class="property-span__head"> | </span>
+							<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
+						</div>
+					</div>
 
+				</div>
+				<div class="property-btn">
+					<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
+				</div>
+			</div>
+
+		</div>
 	</div>
+
+	<div class="property-item property-col-list mt-4">
+		<div class="row no-gutters">
+			<div class="col-lg-4 col-md-5 prop-image">
+				<div class="property-image bg-overlay-gradient-04">
+					<img class="img-fluid" src="~/images/property/list/03.jpg" alt="">
+					<div class="property-lable">
+						<span class="badge badge-md badge-primary">Private Office</span>
+					</div>
+					<div class="property-agent">
+						<div class="property-agent-image">
+							<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
+						</div>
+						<div class="property-agent-info">
+							<a class="property-agent-name" href="#">Sara lisbon</a>
+							<span class="d-block">Company Agent</span>
+
+						</div>
+					</div>
+					<div class="property-agent-popup">
+						<a href="#"><i class="fas fa-camera"></i> 03</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8 col-md-7 prop-details">
+				<div class="property-details">
+					<div class="property-details__head">
+						<div class="property-details__header">Coworking name</div>
+						<div class="property-details__amenities">
+							<span class="property-details__am">Amenities (10)</span>
+							<span class="property-details__fa">Facilities (5)</span>
+						</div>
+					</div>
+					<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
+					<div class="property-details__section">
+						<div>
+							<span class="property-span__head">Type: </span>
+							<span class="property-span__type">Private Office </span>
+						</div>
+						<div>
+							<span class="property-span__head">Rent: </span>
+							<span class="property-span__rent">Month</span>
+						</div>
+					</div>
+					<div class="property-details__footer">
+						<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
+						<div class="property-details__total">
+
+							<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
+							<span class="property-span__head"> | </span>
+							<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
+						</div>
+					</div>
+
+				</div>
+				<div class="property-btn">
+					<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<ul class="pagination mt-3">
+				<li class="page-item disabled mr-auto">
+					<span class="page-link b-radius-none">Prev</span>
+				</li>
+				<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item ml-auto">
+					<a class="page-link b-radius-none" href="#">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>*@
+										</div>
+			</div>
+		</div>
+	</section>
+
+
+</div>

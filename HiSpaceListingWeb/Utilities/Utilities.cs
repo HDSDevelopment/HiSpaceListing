@@ -106,8 +106,7 @@ namespace HiSpaceListingWeb.Utilities
 		public string ApiListingAddListing = "AddListing/";
 		public string ApiListingUpdateListing = "UpdateListing/";
 		public string ApiListingDeleteListing = "DeleteListing/";
-		public string ApiListingAddCreateHours = "AddCreateHours/";
-		public string ApiListingGetWoringHoursByWoringHoursID = "GetWoringHoursByWoringHoursID/";
+		public string ApiListingGetPropertyList = "GetPropertyList/";
 
 		#endregion Listing Controller
 
@@ -122,10 +121,25 @@ namespace HiSpaceListingWeb.Utilities
 
 		public string ApiAddonsGetImagesByListingId = "GetImagesByListingId/";
 		public string ApiAddonsAddCreateHours = "AddCreateHours/";
-		public string ApiAddonsGetWoringHoursByWoringHoursID = "GetWoringHoursByWoringHoursID/";
+		public string ApiAddonsGetWoringHoursByListingID = "GetWoringHoursByListingID/";
 		public string ApiAddonsUpdateHours = "UpdateHours/";
 
 		#endregion Addons Controller
+
+		#region Common Controller
+		public string ApiCommonControllerName
+		{
+			get
+			{
+				return ApiAddress + "Common/";
+			}
+		}
+
+		public string ApiCommonGetAllPropertyLocationSearch = "GetAllPropertyLocationSearch";
+		public string ApiCommonGetAllPropertyTypeSearch = "GetAllPropertyTypeSearch";
+		public string ApiCommonGetAllPropertyLevelSearch = "GetAllPropertyLevelSearch";
+		public string ApiCommonGetAllPropertyListerSearch = "GetAllPropertyListerSearch";
+		#endregion Common Controller
 
 		#endregion API Methods
 
@@ -180,79 +194,79 @@ namespace HiSpaceListingWeb.Utilities
 			List<ScheduleTime> time = new List<ScheduleTime>();
 			time.Add(new ScheduleTime() { ScheduleTimeID = 0, ScheduleTimeView = "-select-" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 1, ScheduleTimeSpan = TimeSpan.Parse("00:00:00"), ScheduleTimeView = "12:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 2, ScheduleTimeSpan = TimeSpan.Parse("00:30:00"), ScheduleTimeView = "12:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 1, ScheduleTimeSpan = "00:00:00", ScheduleTimeView = "12:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 2, ScheduleTimeSpan = "00:30:00", ScheduleTimeView = "12:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 3, ScheduleTimeSpan = TimeSpan.Parse("01:00:00"), ScheduleTimeView = "01:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 4, ScheduleTimeSpan = TimeSpan.Parse("01:30:00"), ScheduleTimeView = "01:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 3, ScheduleTimeSpan = "01:00:00", ScheduleTimeView = "01:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 4, ScheduleTimeSpan = "01:30:00", ScheduleTimeView = "01:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 5, ScheduleTimeSpan = TimeSpan.Parse("02:00:00"), ScheduleTimeView = "02:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 6, ScheduleTimeSpan = TimeSpan.Parse("02:30:00"), ScheduleTimeView = "02:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 5, ScheduleTimeSpan = "02:00:00", ScheduleTimeView = "02:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 6, ScheduleTimeSpan = "02:30:00", ScheduleTimeView = "02:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 7, ScheduleTimeSpan = TimeSpan.Parse("03:00:00"), ScheduleTimeView = "03:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 8, ScheduleTimeSpan = TimeSpan.Parse("03:30:00"), ScheduleTimeView = "03:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 7, ScheduleTimeSpan = "03:00:00", ScheduleTimeView = "03:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 8, ScheduleTimeSpan = "03:30:00", ScheduleTimeView = "03:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 9, ScheduleTimeSpan = TimeSpan.Parse("04:00:00"), ScheduleTimeView = "04:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 10, ScheduleTimeSpan = TimeSpan.Parse("04:30:00"), ScheduleTimeView = "04:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 9, ScheduleTimeSpan = "04:00:00", ScheduleTimeView = "04:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 10, ScheduleTimeSpan = "04:30:00", ScheduleTimeView = "04:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 11, ScheduleTimeSpan = TimeSpan.Parse("05:00:00"), ScheduleTimeView = "05:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 12, ScheduleTimeSpan = TimeSpan.Parse("05:30:00"), ScheduleTimeView = "05:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 11, ScheduleTimeSpan = "05:00:00", ScheduleTimeView = "05:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 12, ScheduleTimeSpan = "05:30:00", ScheduleTimeView = "05:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 13, ScheduleTimeSpan = TimeSpan.Parse("06:00:00"), ScheduleTimeView = "06:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 14, ScheduleTimeSpan = TimeSpan.Parse("06:30:00"), ScheduleTimeView = "06:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 13, ScheduleTimeSpan = "06:00:00", ScheduleTimeView = "06:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 14, ScheduleTimeSpan = "06:30:00", ScheduleTimeView = "06:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 15, ScheduleTimeSpan = TimeSpan.Parse("07:00:00"), ScheduleTimeView = "07:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 16, ScheduleTimeSpan = TimeSpan.Parse("07:30:00"), ScheduleTimeView = "07:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 15, ScheduleTimeSpan = "07:00:00", ScheduleTimeView = "07:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 16, ScheduleTimeSpan = "07:30:00", ScheduleTimeView = "07:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 17, ScheduleTimeSpan = TimeSpan.Parse("08:00:00"), ScheduleTimeView = "08:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 18, ScheduleTimeSpan = TimeSpan.Parse("08:30:00"), ScheduleTimeView = "08:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 17, ScheduleTimeSpan = "08:00:00", ScheduleTimeView = "08:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 18, ScheduleTimeSpan = "08:30:00", ScheduleTimeView = "08:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 19, ScheduleTimeSpan = TimeSpan.Parse("09:00:00"), ScheduleTimeView = "09:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 20, ScheduleTimeSpan = TimeSpan.Parse("09:30:00"), ScheduleTimeView = "09:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 19, ScheduleTimeSpan = "09:00:00", ScheduleTimeView = "09:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 20, ScheduleTimeSpan = "09:30:00", ScheduleTimeView = "09:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 21, ScheduleTimeSpan = TimeSpan.Parse("10:00:00"), ScheduleTimeView = "10:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 22, ScheduleTimeSpan = TimeSpan.Parse("10:30:00"), ScheduleTimeView = "10:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 21, ScheduleTimeSpan = "10:00:00", ScheduleTimeView = "10:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 22, ScheduleTimeSpan = "10:30:00", ScheduleTimeView = "10:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 23, ScheduleTimeSpan = TimeSpan.Parse("11:00:00"), ScheduleTimeView = "11:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 24, ScheduleTimeSpan = TimeSpan.Parse("11:30:00"), ScheduleTimeView = "11:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 23, ScheduleTimeSpan = "11:00:00", ScheduleTimeView = "11:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 24, ScheduleTimeSpan = "11:30:00", ScheduleTimeView = "11:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 25, ScheduleTimeSpan = TimeSpan.Parse("12:00:00"), ScheduleTimeView = "12:00 am" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 26, ScheduleTimeSpan = TimeSpan.Parse("12:30:00"), ScheduleTimeView = "12:30 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 25, ScheduleTimeSpan = "12:00:00", ScheduleTimeView = "12:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 26, ScheduleTimeSpan = "12:30:00", ScheduleTimeView = "12:30 am" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 27, ScheduleTimeSpan = TimeSpan.Parse("13:00:00"), ScheduleTimeView = "01:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 28, ScheduleTimeSpan = TimeSpan.Parse("13:30:00"), ScheduleTimeView = "01:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 27, ScheduleTimeSpan = "13:00:00", ScheduleTimeView = "01:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 28, ScheduleTimeSpan = "13:30:00", ScheduleTimeView = "01:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 29, ScheduleTimeSpan = TimeSpan.Parse("14:00:00"), ScheduleTimeView = "02:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 30, ScheduleTimeSpan = TimeSpan.Parse("14:30:00"), ScheduleTimeView = "02:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 29, ScheduleTimeSpan = "14:00:00", ScheduleTimeView = "02:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 30, ScheduleTimeSpan = "14:30:00", ScheduleTimeView = "02:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 31, ScheduleTimeSpan = TimeSpan.Parse("15:00:00"), ScheduleTimeView = "03:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 32, ScheduleTimeSpan = TimeSpan.Parse("15:30:00"), ScheduleTimeView = "03:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 31, ScheduleTimeSpan = "15:00:00", ScheduleTimeView = "03:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 32, ScheduleTimeSpan = "15:30:00", ScheduleTimeView = "03:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 33, ScheduleTimeSpan = TimeSpan.Parse("16:00:00"), ScheduleTimeView = "04:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 34, ScheduleTimeSpan = TimeSpan.Parse("16:30:00"), ScheduleTimeView = "04:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 33, ScheduleTimeSpan = "16:00:00", ScheduleTimeView = "04:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 34, ScheduleTimeSpan = "16:30:00", ScheduleTimeView = "04:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 35, ScheduleTimeSpan = TimeSpan.Parse("17:00:00"), ScheduleTimeView = "05:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 36, ScheduleTimeSpan = TimeSpan.Parse("17:30:00"), ScheduleTimeView = "05:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 35, ScheduleTimeSpan = "17:00:00", ScheduleTimeView = "05:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 36, ScheduleTimeSpan = "17:30:00", ScheduleTimeView = "05:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 37, ScheduleTimeSpan = TimeSpan.Parse("18:00:00"), ScheduleTimeView = "06:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 38, ScheduleTimeSpan = TimeSpan.Parse("18:30:00"), ScheduleTimeView = "06:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 37, ScheduleTimeSpan = "18:00:00", ScheduleTimeView = "06:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 38, ScheduleTimeSpan = "18:30:00", ScheduleTimeView = "06:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 39, ScheduleTimeSpan = TimeSpan.Parse("19:00:00"), ScheduleTimeView = "07:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 40, ScheduleTimeSpan = TimeSpan.Parse("19:30:00"), ScheduleTimeView = "07:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 39, ScheduleTimeSpan = "19:00:00", ScheduleTimeView = "07:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 40, ScheduleTimeSpan = "19:30:00", ScheduleTimeView = "07:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 41, ScheduleTimeSpan = TimeSpan.Parse("20:00:00"), ScheduleTimeView = "08:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 42, ScheduleTimeSpan = TimeSpan.Parse("20:30:00"), ScheduleTimeView = "08:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 41, ScheduleTimeSpan = "20:00:00", ScheduleTimeView = "08:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 42, ScheduleTimeSpan = "20:30:00", ScheduleTimeView = "08:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 43, ScheduleTimeSpan = TimeSpan.Parse("21:00:00"), ScheduleTimeView = "09:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 44, ScheduleTimeSpan = TimeSpan.Parse("21:30:00"), ScheduleTimeView = "09:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 43, ScheduleTimeSpan = "21:00:00", ScheduleTimeView = "09:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 44, ScheduleTimeSpan = "21:30:00", ScheduleTimeView = "09:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 45, ScheduleTimeSpan = TimeSpan.Parse("22:00:00"), ScheduleTimeView = "10:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 46, ScheduleTimeSpan = TimeSpan.Parse("22:30:00"), ScheduleTimeView = "10:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 45, ScheduleTimeSpan = "22:00:00", ScheduleTimeView = "10:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 46, ScheduleTimeSpan = "22:30:00", ScheduleTimeView = "10:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 47, ScheduleTimeSpan = TimeSpan.Parse("23:00:00"), ScheduleTimeView = "11:00 pm" });
-			time.Add(new ScheduleTime() { ScheduleTimeID = 48, ScheduleTimeSpan = TimeSpan.Parse("23:30:00"), ScheduleTimeView = "11:30 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 47, ScheduleTimeSpan = "23:00:00", ScheduleTimeView = "11:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 48, ScheduleTimeSpan = "23:30:00", ScheduleTimeView = "11:30 pm" });
 
-			time.Add(new ScheduleTime() { ScheduleTimeID = 49, ScheduleTimeSpan = TimeSpan.Parse("23:59:59"), ScheduleTimeView = "11:59 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 49, ScheduleTimeSpan = "23:59:59", ScheduleTimeView = "11:59 pm" });
 
 			return time;
 		}
