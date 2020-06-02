@@ -164,5 +164,15 @@ namespace HiSpaceListingService.Controllers
 			}
 			return response;
 		}
+
+		// GET: api/Common/GetAmenityMasterList/
+		[HttpGet]
+		[Route("GetAmenityMasterList")]
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<AmenityMaster>>> GetAmenityMasterList()
+		{
+
+			return await _context.AmenityMasters.OrderBy(d => d.Name).ToListAsync();
+		}
 	}
 }

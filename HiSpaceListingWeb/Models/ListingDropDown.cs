@@ -46,4 +46,11 @@ namespace HiSpaceListingWeb.Models
 		public string ScheduleTimeView { set; get; }
 		public string ScheduleTimeSpan { set; get; }
 	}
+
+	public class AmenitiesPaymentTypeList
+	{
+		public int AmenitiesPaymentTypeListID { set; get; }
+		public string AmenitiesPaymentTypeListName { set; get; }
+		public string AmenitiesPaymentTypeListDisplay { set; get; }
+	}
 }

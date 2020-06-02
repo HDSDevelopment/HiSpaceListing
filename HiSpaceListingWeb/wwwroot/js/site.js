@@ -118,7 +118,7 @@ $(document).ready(function () {
 			//$('.am-partial').removeClass('d-none');
 			//$('.am-price, .am-price').addClass('d-none');
 			$(this).closest('.amenities-upload__row').children('.am-partial').removeClass('d-none');
-			$(this).closest('.amenities-upload__row').children('.am-price').addClass('d-none');
+			$(this).closest('.amenities-upload__row').children('.am-price').removeClass('d-none');
 		}
 	});
 
@@ -392,24 +392,19 @@ function addAmenities() {
 						'<i class="bar"></i>'+
 					'</div>'+
 				'</div>'+
-				'<div class=" am-price col-md-4 col-sm-6  d-none">' +
-				'<div class="form-group">'+
-					'<input type="number" class="form-control" placeholder="00">'+
-						'<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>'+
-									'</div>'+
-					'</div>'+
+		'<div class=" am-price col-md-2 col-sm-3  d-none">' +
+		'<div class="form-group">' +
+		'<input type="number" class="form-control" placeholder="00">' +
+		'<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
 									'<div class=" am-partial col-md-2 col-sm-3  d-none">' +
 									'<div class="form-group">'+
 						'<input type="number" class="form-control" placeholder="00">'+
 							'<label for="input" class="control-label">Free Count</label><i class="bar"></i>'+
 									'</div>'+
 '</div>	'+
-						'<div class=" am-partial col-md-2 col-sm-3  d-none">' +
-						'<div class="form-group">'+
-							'<input type="number" class="form-control" placeholder="00">'+
-								'<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>'+
-									'</div>'+
-							'</div>'+
+						
 
 							'<div class="col-md-1 col-sm-6 m-b--15 align-self-center">'+
 								'<div class="checkbox m-0">'+

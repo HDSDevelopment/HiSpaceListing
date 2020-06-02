@@ -1,404 +1,1016 @@
-﻿@{
-    ViewData["Title"] = "PropertyDetail";
-    Layout = "~/Views/Shared/_WebLayout.cshtml";
-    @using Microsoft.AspNetCore.Http
+﻿@model HiSpaceListingService.ViewModel.PropertyDetailViewModelResponse
+@{
+	ViewData["Title"] = "PropertyDetail";
+	Layout = "~/Views/Shared/_WebLayout.cshtml";
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 }
 
+<div class="propertydetail nav-padding">
+	<div class="bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<ol class="breadcrumb mb-0">
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
 
-	<div class="propertydetail nav-padding">
-		<div class="bg-light">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<ol class="breadcrumb mb-0">
-							<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-home"></i> </a></li>
-
-							<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-chevron-right"></i> <span> Property List</span></a></li>
-							<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property Details</span></li>
-						</ol>
-					</div>
+						<li class="breadcrumb-item"><a href="index.html"> <i class="fas fa-chevron-right"></i> <span> Property List</span></a></li>
+						<li class="breadcrumb-item active"> <i class="fas fa-chevron-right"></i> <span> Property Details</span></li>
+					</ol>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="wrapper">
-			<!--=================================
+	<div class="wrapper">
+		<!--=================================
 		Property details -->
-			<section class="space-pt--50 ">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
-							<div class="sticky-top">
-								<div class="widget accordion-sec">
-									<div class="widget-title widget-collapse">
-										<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Lister Detail</h6> <i class="fas fa-chevron-down"></i> </a>
-									</div>
-									<div class="collapse show" id="property-lister">
-										<div class="accordion-sec__detail">
-											<div class="lister-head">
-												<div class="lister-head__name">Highbrow service</div>
-												<img class="lister-head__image img-fluid" src="~/images/listing/logo.png" alt="" />
-											</div>
-											<div class="lister-detail">
-												<div><i class="fas fa-globe"></i><b>Website: </b> <span>www.hdsre.com</span></div>
-												<div><i class="fas fa-mobile-alt"></i><b>Phone: </b><span>9898989898</span></div>
-												<div><i class="fas fa-city"></i><b>Total List </b><span>(5)</span></div>
-											</div>
-											<div class="lister-btn">
-												<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website")">See Details</a>
-											</div>
+		<section class="space-pt--50 ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
+						<div class="sticky-top">
+							<div class="widget accordion-sec">
+								<div class="widget-title widget-collapse">
+									<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Lister Detail</h6> <i class="fas fa-chevron-down"></i> </a>
+								</div>
+								<div class="collapse show" id="property-lister">
+									<div class="accordion-sec__detail">
+										<div class="lister-head">
+											<div class="lister-head__name">@Model.User.CompanyName</div>
+											<img class="lister-head__image img-fluid" src="~/images/listing/logo.png" alt="" />
+										</div>
+										<div class="lister-detail">
+											<div><i class="fas fa-globe"></i><b>Website: </b> <span>@Model.User.Website</span></div>
+											<div><i class="fas fa-mobile-alt"></i><b>Phone: </b><span>@Model.User.Phone</span></div>
+											<div><i class="fas fa-city"></i><b>Total List </b><span>(@Model.ListerPropertyCount)</span></div>
+										</div>
+										<div class="lister-btn">
+											<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website")">See Details</a>
 										</div>
 									</div>
 								</div>
-								
-								<div class="enquiry-form">
-									<div class="">
-										<h3 class="text-center">Enquiry</h3>
-									</div>
-									<form class="md-form form-row ">
+							</div>
 
-										<div class="col-md-6">
-											<div class="form-group">
-												<input type="text" placeholder="Name" />
-												<label for="input" class="control-label">Name</label><i class="bar"></i>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-												<input type="text" placeholder="9999999999" />
-												<label for="input" class="control-label">Phone</label><i class="bar"></i>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="text" placeholder="abc@gmail.com" />
-												<label for="input" class="control-label">Email</label><i class="bar"></i>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<textarea type="text" rows="2" placeholder="Enter your message here..."></textarea>
-												<label for="input" class="control-label">Message</label><i class="bar"></i>
-											</div>
-										</div>
-										<div class="col-md-12 d-flex justify-content-center mb-3">
-											<a href="#" class="btn btn-primary btn-sm">Enquiry Now</a>
-										</div>
-
-									</form>
+							<div class="enquiry-form">
+								<div class="">
+									<h3 class="text-center">Enquiry</h3>
 								</div>
+								<form class="md-form form-row ">
+
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" placeholder="Name" />
+											<label for="input" class="control-label">Name</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" placeholder="9999999999" />
+											<label for="input" class="control-label">Phone</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="abc@gmail.com" />
+											<label for="input" class="control-label">Email</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea type="text" rows="2" placeholder="Enter your message here..."></textarea>
+											<label for="input" class="control-label">Message</label><i class="bar"></i>
+										</div>
+									</div>
+									<div class="col-md-12 d-flex justify-content-center mb-3">
+										<a href="#" class="btn btn-primary btn-sm">Enquiry Now</a>
+									</div>
+
+								</form>
 							</div>
 						</div>
-						<div class="col-lg-8 order-lg-1">
-							<div class="property-detail-img popup-gallery">
-								<div class="owl-carousel owl-loaded owl-drag" data-animateout="fadeOut" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="0">
+					</div>
+					<div class="col-lg-8 order-lg-1">
+						<div class="property-detail-img popup-gallery">
+							<div class="owl-carousel owl-loaded owl-drag" data-animateout="fadeOut" data-nav-arrow="true" data-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-xx-items="1" data-space="0">
 
 
-									<div class="owl-stage-outer">
-										<div class="owl-stage" style="transform: translate3d(-1220px, 0px, 0px); transition: all 1s ease 0s; width: 3660px;">
-											<div class="owl-item cloned" style="width: 610px;">
-												<div class="item">
-													<a class="portfolio-img" href="~/images/property/big-img-01.jpg"><img class="img-fluid" src="~/images/property/big-img-01.jpg" alt=""></a>
-												</div>
+								<div class="owl-stage-outer">
+									<div class="owl-stage" style="transform: translate3d(-1220px, 0px, 0px); transition: all 1s ease 0s; width: 3660px;">
+										<div class="owl-item cloned" style="width: 610px;">
+											<div class="item">
+												<a class="portfolio-img" href="~/images/property/big-img-01.jpg"><img class="img-fluid" src="~/images/property/big-img-01.jpg" alt=""></a>
 											</div>
-											<div class="owl-item cloned" style="width: 610px;">
-												<div class="item">
-													<a class="portfolio-img" href="~/images/property/big-img-02.jpg"><img class="img-fluid" src="~/images/property/big-img-02.jpg" alt=""></a>
-												</div>
+										</div>
+										<div class="owl-item cloned" style="width: 610px;">
+											<div class="item">
+												<a class="portfolio-img" href="~/images/property/big-img-02.jpg"><img class="img-fluid" src="~/images/property/big-img-02.jpg" alt=""></a>
 											</div>
 										</div>
 									</div>
-									<div class="owl-nav">
-										<button type="button" role="presentation" class="owl-prev"><i class="fas fa-chevron-left"></i></button>
-										<button type="button" role="presentation" class="owl-next"><i class="fas fa-chevron-right"></i></button>
-									</div>
-									<div class="owl-dots disabled"></div>
 								</div>
+								<div class="owl-nav">
+									<button type="button" role="presentation" class="owl-prev"><i class="fas fa-chevron-left"></i></button>
+									<button type="button" role="presentation" class="owl-next"><i class="fas fa-chevron-right"></i></button>
+								</div>
+								<div class="owl-dots disabled"></div>
 							</div>
-							<div class="property-info mt-5">
-								<div class="row">
-									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Property details</h5>
-									</div>
-									<div class="col-sm-9">
+						</div>
+						<div class="property-info mt-5">
+							<div class="row">
+								<div class="col-sm-3 mb-3 mb-sm-0">
+									<h5>Property details</h5>
+								</div>
+								<div class="col-sm-9">
+									@if (Model.Listing.ListingType == "Commercial")
+									{
 										<div class="mb-3">
 											<ul class="property-list list-unstyled row mb-3">
-												<li class="col-sm-6"><b>Type:</b> Commercial</li>
-												<li class="col-sm-6"><b>Level:</b> Office</li>
-												<li class="col-sm-6"><b>Size:</b> 1000 - 1500 Sq Ft</li>
-												<li class="col-sm-6"><b>Year Built:</b> 2019-01-09</li>
-												<li class="col-sm-6"><b>Recent Innovation:</b> 2019-01-09</li>
-												<li class="col-sm-6"><b>Infra Type:</b> Shell</li>
+												<li class="col-sm-6"><b>Name:</b> <span class="">@Model.Listing.Name</span></li>
+												<li class="col-sm-6"><b>Type:</b> <span class="text-pry font-weight-bold">@Model.Listing.ListingType</span></li>
+												<li class="col-sm-6"><b>Level:</b> @Model.Listing.CommercialType</li>
+												@if (@Model.Listing.SpaceSize != null)
+												{
+													<li class="col-sm-6"><b>Size:</b> @Model.Listing.SpaceSize Sq.Ft.</li>
+												}
+												@if (@Model.Listing.BuildYear != null)
+												{
+													<li class="col-sm-6"><b>Year Built:</b> @Model.Listing.BuildYear.Value.ToString("dd/MMM/yyyy")</li>
+												}
+												@if (@Model.Listing.RecentInnovation != null)
+												{
+													<li class="col-sm-6"><b>Recent Innovation:</b> @Model.Listing.RecentInnovation.Value.ToString("dd/MMM/yyyy")</li>
+												}
+												<li class="col-sm-6"><b>Infra Type:</b> @Model.Listing.CommercialInfraType</li>
 											</ul>
 										</div>
-										<h6 class="text-primary mb-2 mb-sm-2">Additional details</h6>
-										<div class="mb-3">
-											<ul class="property-list list-unstyled row mb-3">
-												<li class="col-sm-6"><b>Meeting Room:</b> 2</li>
-												<li class="col-sm-6"><b>Private Office:</b> 1</li>
-												<li class="col-sm-6"><b>Virtual Office:</b> Available</li>
-												<li class="col-sm-6"><b>Co-Working:</b> 80 seats</li>
-												<li class="col-sm-6"><b>Cafe:</b> 20 seats</li>
-											</ul>
-										</div>
+
 										<h6 class="text-primary mb-2 mb-sm-2">Price / Occupancy</h6>
 										<div class="mb-3">
 											<ul class="property-list list-unstyled row mb-3">
-												<li class="col-sm-6"><b>Price Range:</b> 400 - 10000</li>
-												<li class="col-sm-6"><b>Availablity:</b> Hour | Day | Month</li>
-												<li class="col-sm-6"><b>Current Occupancy:</b> 40%</li>
+												@if (Model.Listing.PriceMin != null && Model.Listing.PriceMax != null)
+												{
+												<li class="col-sm-6"><b>Price Range:</b> &#8377;@Model.Listing.PriceMin - &#8377;@Model.Listing.PriceMax</li>
+												}
+
+												<li class="col-sm-6">
+													<b>Rent Duration:</b>
+													@if ((Model.Listing.RentalDay == true) && (Model.Listing.RentalDay == true) && (Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Hour | Day | Month");
+													}
+													else if ((Model.Listing.RentalHour == true) && (Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Hour | Day");
+													}
+													else if ((Model.Listing.RentalHour == true) && (Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Hour | Month");
+													}
+													else if ((Model.Listing.RentalMonth == true) && (Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Day | Month");
+													}
+													else if ((Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Month");
+													}
+													else if ((Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Day");
+													}
+													else if ((Model.Listing.RentalHour == true))
+													{
+														@Html.Raw("Hour");
+													}
+													else
+													{
+														@Html.Raw("Not Specified");
+													}
+												</li>
+												<li class="col-sm-6"><b>Current Occupancy:</b> @Model.Listing.CurrentOccupancy</li>
 											</ul>
 										</div>
-									</div>
-								</div>
-							</div>
-							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
-							<div class="property-description">
-								<div class="row">
-									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Description</h5>
-									</div>
-									<div class="col-sm-9">
-										<p>The home features private entry copper-clad door leading to salon with marble floors. Stunning great room has soaring 45 foot ceilings with glass windows, polished concrete floors, exposed brick &amp; sculptural steel beams. The chef's kitchen has honed granite counters, high-end S/S appliances, French cabinets &amp; gas range.</p>
-										<p>Floor-to-ceiling windows accentuate the panoramic vistas that sweep across the Golden Gate Bridge, the downtown skyline, the artfully lit Bay Bridge and beyond. The floor plan features two bedroom suites, kitchen, living/dining room, two view terraces and ample storage space. </p>
-									</div>
-								</div>
-							</div>
-							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
-							<div class="property-amenities">
-								<div class="row">
-									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Amenities</h5>
-									</div>
-									<div class="col-sm-9">
-										<div class="row">
+										<h6 class="text-primary mb-2 mb-sm-2">Contact</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Phone:</b> @Model.Listing.Phone</li>
+												<li class="col-sm-6"><b>Email:</b> @Model.Listing.Email</li>
+											</ul>
+										</div>
+									}
+									else if (Model.Listing.ListingType == "Co-Working")
+									{
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Name:</b> <span class="">@Model.Listing.Name</span></li>
+												<li class="col-sm-6"><b>Type:</b> <span class="text-sec font-weight-bold">@Model.Listing.ListingType</span></li>
+												<li class="col-sm-6"><b>Level:</b> @Model.Listing.CoworkingType</li>
+												@if (@Model.Listing.SpaceSize != null)
+												{
+													<li class="col-sm-6"><b>Size:</b> @Model.Listing.SpaceSize Sq.Ft.</li>
+												}
+												@if (@Model.Listing.BuildYear != null)
+												{
+													<li class="col-sm-6"><b>Year Built:</b> @Model.Listing.BuildYear.Value.ToString("dd/MMM/yyyy")</li>
+												}
+												@if (@Model.Listing.RecentInnovation != null)
+												{
+													<li class="col-sm-6"><b>Recent Innovation:</b> @Model.Listing.RecentInnovation.Value.ToString("dd/MMM/yyyy")</li>
+												}
+											</ul>
+										</div>
+										@if (Model.Listing.CoworkingType == "Office")
+										{
+											<h6 class="text-primary mb-2 mb-sm-2">Additional details</h6>
 											<div class="mb-3">
-												<ul class="amenities-list list-unstyled row mb-3">
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-sec"></i>
-														Bike Parking
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Car Parking
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Free<span class="text-sufix">(10)</span></span>
-														<span class="spliter">|</span>
-														<span>&#8377;50/Usage</span>
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-sec"></i>
-														High Speed Internet
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Toga station
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Paid</span>
-														<span class="spliter">|</span>
-														<span>&#8377;50/Usage</span>
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-sec"></i>
-														AC
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Snacks
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Paid</span>
-														<span class="spliter">|</span>
-														<span>&#8377;50/Usage</span>
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Child Care
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Paid</span>
-														<span class="spliter">|</span>
-														<span>&#8377;1000/Usage</span>
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Personal Locker
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Paid</span>
-														<span class="spliter">|</span>
-														<span>&#8377;50/Usage</span>
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-sec"></i>
-														Kitchen
-													</li>
-													<li class="col-sm-6">
-														<i class="fas fa-check-circle text-pry"></i>
-														Standing Desk
-														<span class="spliter">|</span>
-														<span class="font-weight-bold">Free<span class="text-sufix">(10)</span></span>
-														<span class="spliter">|</span>
-														<span>&#8377;500/Usage</span>
-													</li>
+												<ul class="property-list list-unstyled row mb-3">
+													@if (Model.Listing.CW_MeetingRoom != null)
+													{
+														<li class="col-sm-6"><b>No.of Meeting Rooms:</b> @Model.Listing.CW_MeetingRoom</li>
+														<li class="col-sm-6"><b>No.of seats:</b> @Model.Listing.CW_MeetingRoomSeats</li>
+													}
+													@if (Model.Listing.CW_Coworking != null)
+													{
+														<li class="col-sm-6"><b>No.of Shared Workspace:</b> @Model.Listing.CW_Coworking</li>
+														<li class="col-sm-6"><b>No.of seats:</b> @Model.Listing.CW_CoworkingSeats</li>
+													}
+													@if (Model.Listing.CW_PrivateOffice != null)
+													{
+														<li class="col-sm-6"><b>No.of Private Office:</b> @Model.Listing.CW_PrivateOffice</li>
+														<li class="col-sm-6"><b>No.of seats:</b> @Model.Listing.CW_PrivateOfficeSeats</li>
+													}
+													@if (Model.Listing.CW_VirtualOffice)
+													{
+														<li class="col-sm-6"><b>Virtual Office:</b> Available</li>
+													}
+													else
+													{
+														<li class="col-sm-6"><b>Virtual Office:</b> Not Available</li>
+													}
 												</ul>
 											</div>
-											<div class="note">
-												<div>
-													<i class="fas fa-check-circle text-sec"></i>
-													<span class="font-weight-bold">Free Aminities</span>
+										}
+										else if (Model.Listing.CoworkingType == "Cafe")
+										{
+											<h6 class="text-primary mb-2 mb-sm-2">Additional details</h6>
+											<div class="mb-3">
+												<ul class="property-list list-unstyled row mb-3">
+													@if (Model.Listing.CW_CafeSeats != null)
+													{
+														<li class="col-sm-6"><b>No.of seats:</b> @Model.Listing.CW_CafeSeats</li>
+													}
+													else
+													{
+														<li class="col-sm-6"><b>No.of seats:</b> Not Specified</li>
+													}
+												</ul>
+											</div>
+										}
+										<h6 class="text-primary mb-2 mb-sm-2">Price / Occupancy</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												@if (Model.Listing.PriceMin != null && Model.Listing.PriceMax != null)
+												{
+												<li class="col-sm-6"><b>Price Range:</b> &#8377;@Model.Listing.PriceMin - &#8377;@Model.Listing.PriceMax</li>
+												}
+
+												<li class="col-sm-6">
+													<b>Rent Duration:</b>
+													@if ((Model.Listing.RentalDay == true) && (Model.Listing.RentalDay == true) && (Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Hour | Day | Month");
+													}
+													else if ((Model.Listing.RentalHour == true) && (Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Hour | Day");
+													}
+													else if ((Model.Listing.RentalHour == true) && (Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Hour | Month");
+													}
+													else if ((Model.Listing.RentalMonth == true) && (Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Day | Month");
+													}
+													else if ((Model.Listing.RentalMonth == true))
+													{
+														@Html.Raw("Month");
+													}
+													else if ((Model.Listing.RentalDay == true))
+													{
+														@Html.Raw("Day");
+													}
+													else if ((Model.Listing.RentalHour == true))
+													{
+														@Html.Raw("Hour");
+													}
+													else
+													{
+														@Html.Raw("Not Specified");
+													}
+												</li>
+												<li class="col-sm-6"><b>Current Occupancy:</b> @Model.Listing.CurrentOccupancy</li>
+											</ul>
+										</div>
+										<h6 class="text-primary mb-2 mb-sm-2">Contact</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Phone:</b> @Model.Listing.Phone</li>
+												<li class="col-sm-6"><b>Email:</b> @Model.Listing.Email</li>
+											</ul>
+										</div>
+									}
+									else if (Model.Listing.ListingType == "RE-Professional")
+									{
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Name:</b> <span class="">@Model.Listing.Name</span></li>
+												<li class="col-sm-6"><b>Type:</b> <span class="text-info font-weight-bold">@Model.Listing.ListingType</span></li>
+												<li class="col-sm-6"><b>Level:</b> @Model.Listing.REprofessionalsType</li>
+												<li class="col-sm-12">
+													<b>Intrested In:</b>
+													@if (@Model.Listing.RE_Coworking)
+													{
+														@Html.Raw(" Co-Working |")
+													}
+													@if (@Model.Listing.RE_Office)
+													{
+														@Html.Raw(" Office |")
+													}
+													@if (@Model.Listing.RE_PropertyManagement)
+													{
+														@Html.Raw(" Property-Management |")
+													}
+													@if (@Model.Listing.RE_Retail)
+													{
+														@Html.Raw(" Retail |")
+													}
+												</li>
+											</ul>
+										</div>
+										<h6 class="text-primary mb-2 mb-sm-2">Contact</h6>
+										<div class="mb-3">
+											<ul class="property-list list-unstyled row mb-3">
+												<li class="col-sm-6"><b>Phone:</b> @Model.Listing.Phone</li>
+												<li class="col-sm-6"><b>Email:</b> @Model.Listing.Email</li>
+											</ul>
+										</div>
+									}
+
+								</div>
+							</div>
+						</div>
+						<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+						<div class="property-description">
+							<div class="row">
+								<div class="col-sm-3 mb-3 mb-sm-0">
+									<h5>Description</h5>
+								</div>
+								<div class="col-sm-9">
+									@if (Model.Listing.Description != null)
+									{
+										<p>@Model.Listing.Description</p>
+									}
+									else
+									{
+										<p>The home features private entry copper-clad door leading to salon with marble floors. Stunning great room has soaring 45 foot ceilings with glass windows, polished concrete floors, exposed brick &amp; sculptural steel beams. The chef's kitchen has honed granite counters, high-end S/S appliances, French cabinets &amp; gas range.</p>
+										<p>Floor-to-ceiling windows accentuate the panoramic vistas that sweep across the Golden Gate Bridge, the downtown skyline, the artfully lit Bay Bridge and beyond. The floor plan features two bedroom suites, kitchen, living/dining room, two view terraces and ample storage space. </p>
+									}
+								</div>
+							</div>
+						</div>
+						@if (Model.Listing.ListingType == "Commercial" || Model.Listing.ListingType == "Co-Working")
+						{
+							@if (Model.Amenities != null)
+							{
+								<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+								<div class="property-amenities">
+									<div class="row">
+										<div class="col-sm-3 mb-3 mb-sm-0">
+											<h5>Amenities</h5>
+										</div>
+										<div class="col-sm-9">
+											<div class="row">
+												<div class="mb-3">
+													<ul class="amenities-list list-unstyled row mb-3">
+														@foreach (var item in Model.Amenities)
+														{
+															@if (item.AmenitiesPayment == "Free")
+															{
+																<li class="col-sm-6">
+																	<i class="fas fa-check-circle text-sec"></i>
+																	@item.Name
+																</li>
+															}
+															else if (item.AmenitiesPayment == "Paid")
+															{
+																<li class="col-sm-12">
+																	<i class="fas fa-check-circle text-pry"></i>
+																	@item.Name
+																	<span class="spliter">|</span>
+																	<span class="font-weight-bold">Paid</span>
+																	<span class="spliter">|</span>
+																	<span>&#8377;@item.Price/Usage</span>
+																</li>
+															}
+															else if (item.AmenitiesPayment == "Partialy Paid")
+															{
+																<li class="col-sm-12">
+																	<i class="fas fa-check-circle text-pry"></i>
+																	@item.Name
+																	<span class="spliter">|</span>
+																	<span class="font-weight-bold">Free<span class="text-sufix">(@item.PartialCount)</span></span>
+																	<span class="spliter">|</span>
+																	<span>&#8377;@item.Price/Usage</span>
+																</li>
+															}
+														}
+													</ul>
 												</div>
-												<div>
-													<i class="fas fa-check-circle text-pry"></i>
-													<span class="font-weight-bold">Paid (or) Partialy Paid Aminities</span>
+												<div class="note">
+													<div>
+														<i class="fas fa-check-circle text-sec"></i>
+														<span class="font-weight-bold">Free Aminities</span>
+													</div>
+													<div>
+														<i class="fas fa-check-circle text-pry"></i>
+														<span class="font-weight-bold">Paid (or) Partialy Paid Aminities</span>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							}
+							@if (Model.Facilities != null)
+							{
+								<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+								<div class="property-facilities">
+									<div class="row">
+										<div class="col-sm-3 mb-3 mb-sm-0">
+											<h5>Facilities</h5>
+										</div>
+										<div class="col-sm-9">
+											<div class="mb-3">
+												<ul class="property-list facilities-list list-unstyled row mb-3">
+													@foreach (var item in Model.Facilities)
+													{
+														<li class="col-sm-6">
+															<i class="fab fa-gratipay text-info"></i>@item.Name
+															<span>@item.FacilityDistance</span>
+														</li>
+													}
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+
+						}
+						else if (Model.Listing.ListingType == "RE-Professional")
+						{
 							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
 							<div class="property-facilities">
 								<div class="row">
 									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Facilities</h5>
+										<h5>RE Projects</h5>
 									</div>
 									<div class="col-sm-9">
 										<div class="mb-3">
 											<ul class="property-list facilities-list list-unstyled row mb-3">
-												<li class="col-sm-6">
-													<i class="fab fa-gratipay text-info"></i>Bus Terminal
-													<span>0 to .5KM</span>
-												</li>
-												<li class="col-sm-6">
-													<i class="fab fa-gratipay text-info"></i>Railway Station
-													<span>.5 to 1KM</span>
-												</li>
-												<li class="col-sm-6">
-													<i class="fab fa-gratipay text-info"></i>Airport
-													<span>5 to 10KM</span>
-												</li>
-												<li class="col-sm-6">
-													<i class="fab fa-gratipay text-info"></i>Hotels
-													<span>.5 to 1KM</span>
-												</li>
-												<li class="col-sm-6">
-													<i class="fab fa-gratipay text-info"></i>Park
-													<span>1 to 2KM</span>
-												</li>
+												@foreach (var item in Model.REProfessionalMasters)
+												{
+													<li class="col-sm-6">
+														<i class="fab fa-gratipay text-info"></i>@item.ProjectName
+														<p>@item.Description</p>
+													</li>
+												}
 											</ul>
 										</div>
 									</div>
 								</div>
 							</div>
-							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
-							<div class="property-available">
-								<div class="row">
-									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Available Time</h5>
-									</div>
-									<div class="col-sm-9">
-										<div class="mb-3">
-											<ul class="property-list available-list list-unstyled row mb-3">
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>24/7</b>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Monday: </b>
-													<span>10:00AM</span> - <span>06:00PM</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Tuesday: </b>
-													<span>10:00AM</span> - <span>06:00PM</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Wednesday: </b>
-													<span>10:00AM</span> - <span>06:00PM</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Thursday: </b>
-													<span>10:00AM</span> - <span>06:00PM</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Friday: </b>
-													<span>10:00AM</span> - <span>06:00PM</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Saturday: </b>
-													<span>Closed</span>
-												</li>
-												<li class="col-sm-12">
-													<i class="fas fa-business-time"></i><b>Sunday: </b>
-													<span>Closed</span>
-												</li>
-											</ul>
-										</div>
+						}
+						<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+						<div class="property-available">
+							<div class="row">
+								<div class="col-sm-3 mb-3 mb-sm-0">
+									<h5>Available Time</h5>
+								</div>
+								<div class="col-sm-9">
+									<div class="mb-3">
+										<ul class="property-list available-list list-unstyled row mb-3">
+											@*<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>24/7</b>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Monday: </b>
+			<span>10:00AM</span> - <span>06:00PM</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Tuesday: </b>
+			<span>10:00AM</span> - <span>06:00PM</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Wednesday: </b>
+			<span>10:00AM</span> - <span>06:00PM</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Thursday: </b>
+			<span>10:00AM</span> - <span>06:00PM</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Friday: </b>
+			<span>10:00AM</span> - <span>06:00PM</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Saturday: </b>
+			<span>Closed</span>
+		</li>
+		<li class="col-sm-12">
+			<i class="fas fa-business-time"></i><b>Sunday: </b>
+			<span>Closed</span>
+		</li>*@
+											@if (Model.WorkingHours != null)
+											{
+												//Mon
+												TimeSpan? monOpen;
+												string monOpen_s;
+												DateTime? monOpen_dt = new DateTime();
+												if (Model.WorkingHours.MonOpen != null)
+												{
+													monOpen = TimeSpan.Parse(Model.WorkingHours.MonOpen);
+													monOpen_s = monOpen.ToString();
+													monOpen_dt = Convert.ToDateTime(monOpen_s);
+												}
+												else
+												{
+													monOpen = null;
+													monOpen_dt.Value.ToString();
+												}
+												TimeSpan? monClose;
+												string monClose_s;
+												DateTime? monClose_dt = new DateTime();
+												if (Model.WorkingHours.MonClose != null)
+												{
+													monClose = TimeSpan.Parse(Model.WorkingHours.MonClose);
+													monClose_s = monClose.ToString();
+													monClose_dt = Convert.ToDateTime(monClose_s);
+												}
+												else
+												{
+													monClose = null;
+													monClose_dt.Value.ToString();
+												}
+
+												//Tue
+												TimeSpan? tueOpen;
+												string tueOpen_s;
+												DateTime? tueOpen_dt = new DateTime();
+												if (Model.WorkingHours.TueOpen != null)
+												{
+													tueOpen = TimeSpan.Parse(Model.WorkingHours.TueOpen);
+													tueOpen_s = tueOpen.ToString();
+													tueOpen_dt = Convert.ToDateTime(tueOpen_s);
+												}
+												else
+												{
+													tueOpen = null;
+													tueOpen_dt.Value.ToString();
+												}
+												TimeSpan? tueClose;
+												string tueClose_s;
+												DateTime? tueClose_dt = new DateTime();
+												if (Model.WorkingHours.TueClose != null)
+												{
+													tueClose = TimeSpan.Parse(Model.WorkingHours.TueClose);
+													tueClose_s = tueClose.ToString();
+													tueClose_dt = Convert.ToDateTime(tueClose_s);
+												}
+												else
+												{
+													tueClose = null;
+													tueClose_dt.Value.ToString();
+												}
+
+												//wed
+												TimeSpan? wedOpen;
+												string wedOpen_s;
+												DateTime? wedOpen_dt = new DateTime();
+												if (Model.WorkingHours.WedOpen != null)
+												{
+													wedOpen = TimeSpan.Parse(Model.WorkingHours.WedOpen);
+													wedOpen_s = wedOpen.ToString();
+													wedOpen_dt = Convert.ToDateTime(wedOpen_s);
+												}
+												else
+												{
+													wedOpen = null;
+													wedOpen_dt.Value.ToString();
+												}
+												TimeSpan? wedClose;
+												string wedClose_s;
+												DateTime? wedClose_dt = new DateTime();
+												if (Model.WorkingHours.WedClose != null)
+												{
+													wedClose = TimeSpan.Parse(Model.WorkingHours.WedClose);
+													wedClose_s = wedClose.ToString();
+													wedClose_dt = Convert.ToDateTime(wedClose_s);
+												}
+												else
+												{
+													wedClose = null;
+													wedClose_dt.Value.ToString();
+												}
+
+												//Thu
+												TimeSpan? thuOpen;
+												string thuOpen_s;
+												DateTime? thuOpen_dt = new DateTime();
+												if (Model.WorkingHours.ThuOpen != null)
+												{
+													thuOpen = TimeSpan.Parse(Model.WorkingHours.ThuOpen);
+													thuOpen_s = thuOpen.ToString();
+													thuOpen_dt = Convert.ToDateTime(thuOpen_s);
+												}
+												else
+												{
+													thuOpen = null;
+													thuOpen_dt.Value.ToString();
+												}
+												TimeSpan? thuClose;
+												string thuClose_s;
+												DateTime? thuClose_dt = new DateTime();
+												if (Model.WorkingHours.ThuClose != null)
+												{
+													thuClose = TimeSpan.Parse(Model.WorkingHours.ThuClose);
+													thuClose_s = thuClose.ToString();
+													thuClose_dt = Convert.ToDateTime(thuClose_s);
+												}
+												else
+												{
+													thuClose = null;
+													thuClose_dt.Value.ToString();
+												}
+
+												//Fri
+												TimeSpan? friOpen;
+												string friOpen_s;
+												DateTime? friOpen_dt = new DateTime();
+												if (Model.WorkingHours.FriOpen != null)
+												{
+													friOpen = TimeSpan.Parse(Model.WorkingHours.FriOpen);
+													friOpen_s = friOpen.ToString();
+													friOpen_dt = Convert.ToDateTime(friOpen_s);
+												}
+												else
+												{
+													friOpen = null;
+													friOpen_dt.Value.ToString();
+												}
+												TimeSpan? friClose;
+												string friClose_s;
+												DateTime? friClose_dt = new DateTime();
+												if (Model.WorkingHours.FriClose != null)
+												{
+													friClose = TimeSpan.Parse(Model.WorkingHours.FriClose);
+													friClose_s = friClose.ToString();
+													friClose_dt = Convert.ToDateTime(friClose_s);
+												}
+												else
+												{
+													friClose = null;
+													friClose_dt.Value.ToString();
+												}
+
+												//Sat
+												TimeSpan? satOpen;
+												string satOpen_s;
+												DateTime? satOpen_dt = new DateTime();
+												if (Model.WorkingHours.SatOpen != null)
+												{
+													satOpen = TimeSpan.Parse(Model.WorkingHours.SatOpen);
+													satOpen_s = satOpen.ToString();
+													satOpen_dt = Convert.ToDateTime(satOpen_s);
+												}
+												else
+												{
+													satOpen = null;
+													satOpen_dt.Value.ToString();
+												}
+												TimeSpan? satClose;
+												string satClose_s;
+												DateTime? satClose_dt = new DateTime();
+												if (Model.WorkingHours.SatClose != null)
+												{
+													satClose = TimeSpan.Parse(Model.WorkingHours.SatClose);
+													satClose_s = satClose.ToString();
+													satClose_dt = Convert.ToDateTime(satClose_s);
+												}
+												else
+												{
+													satClose = null;
+													satClose_dt.Value.ToString();
+												}
+
+												//Sun
+												TimeSpan? sunOpen;
+												string sunOpen_s;
+												DateTime? sunOpen_dt = new DateTime();
+												if (Model.WorkingHours.SunOpen != null)
+												{
+													sunOpen = TimeSpan.Parse(Model.WorkingHours.SunOpen);
+													sunOpen_s = sunOpen.ToString();
+													sunOpen_dt = Convert.ToDateTime(sunOpen_s);
+												}
+												else
+												{
+													sunOpen = null;
+													sunOpen_dt.Value.ToString();
+												}
+												TimeSpan? sunClose;
+												string sunClose_s;
+												DateTime? sunClose_dt = new DateTime();
+												if (Model.WorkingHours.SunClose != null)
+												{
+													sunClose = TimeSpan.Parse(Model.WorkingHours.SunClose);
+													sunClose_s = sunClose.ToString();
+													sunClose_dt = Convert.ToDateTime(sunClose_s);
+												}
+												else
+												{
+													sunClose = null;
+													sunClose_dt.Value.ToString();
+												}
+
+												//24/7 time
+												if (Model.WorkingHours.Is24 == true)
+												{
+													<li>
+														<i class="fas fa-business-time text-sec"></i>
+														<div>
+															24Hours/7Days
+															<span>(24/7)</span>
+														</div>
+													</li>
+												}
+												else if ((Model.WorkingHours.Is24 == false) && (Model.WorkingHours.MonAvail == true) && (Model.WorkingHours.TueAvail == true) && (Model.WorkingHours.WedAvail == true) && (Model.WorkingHours.ThuAvail == true) && (Model.WorkingHours.FriAvail == true) && (Model.WorkingHours.SatAvail == false) && (Model.WorkingHours.SunAvail == false) && (new[] { monOpen, tueOpen, wedOpen, thuOpen, friOpen }.Contains(monOpen)) && (new[] { monClose, tueClose, wedClose, thuClose, friClose }.Contains(monClose)))
+												{
+													<li>
+														<i class="fas fa-business-time text-sec"></i>
+														<div>
+															Monday - Friday
+															<span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+														</div>
+													</li>
+													<li>
+														<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+														<div>
+															Saturday <span> Closed</span>
+														</div>
+													</li>
+													<li>
+														<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+														<div>
+															Sunday <span> Closed</span>
+														</div>
+													</li>
+												}
+												else if ((Model.WorkingHours.Is24 == false) && (Model.WorkingHours.MonAvail == true) && (Model.WorkingHours.TueAvail == true) && (Model.WorkingHours.WedAvail == true) && (Model.WorkingHours.ThuAvail == true) && (Model.WorkingHours.FriAvail == true) && (Model.WorkingHours.SatAvail == true) && (Model.WorkingHours.SunAvail == false) && (new[] { monOpen, tueOpen, wedOpen, thuOpen, friOpen }.Contains(monOpen)) && (new[] { monClose, tueClose, wedClose, thuClose, friClose }.Contains(monClose)))
+												{
+													<li>
+														<i class="fas fa-business-time text-sec"></i>
+														<div>
+															Monday - Friday
+															<span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+														</div>
+													</li>
+													<li>
+														<i class="fas fa-business-time text-sec"></i>
+														<div>
+															Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
+														</div>
+													</li>
+													<li>
+														<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+														<div>
+															Sunday <span> Closed</span>
+														</div>
+													</li>
+
+												}
+												else
+												{
+													//mon
+													if (Model.WorkingHours.MonAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Monday <span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Monday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//tue
+													if (Model.WorkingHours.TueAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Tuesday <span>( @tueOpen_dt.Value.ToString("hh:mm tt") - @tueClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Tuesday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//wed
+													if (Model.WorkingHours.WedAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Wednesday <span>( @wedOpen_dt.Value.ToString("hh:mm tt") - @wedClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Wednesday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//thu
+													if (Model.WorkingHours.ThuAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Thursday <span>( @thuOpen_dt.Value.ToString("hh:mm tt") - @thuClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Thursday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//fri
+													if (Model.WorkingHours.FriAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Friday <span>( @friOpen_dt.Value.ToString("hh:mm tt") - @friClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Friday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//sat
+													if (Model.WorkingHours.SatAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Saturday <span> Closed</span>
+															</div>
+														</li>
+													}
+													//sun
+													if (Model.WorkingHours.SunAvail == true)
+													{
+														<li>
+															<i class="fas fa-business-time text-sec"></i>
+															<div>
+																Sunday <span>( @sunOpen_dt.Value.ToString("hh:mm tt") - @sunClose_dt.Value.ToString("hh:mm tt") )</span>
+															</div>
+														</li>
+													}
+													else
+													{
+														<li>
+															<i class="fa fa-times-circle text-pry" aria-hidden="true"></i>
+															<div>
+																Sunday <span> Closed</span>
+															</div>
+														</li>
+													}
+												}
+
+
+											}
+										</ul>
 									</div>
 								</div>
 							</div>
-							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
-							<div class="property-schedule">
-								<div class="row">
-									<div class="col-sm-3 mb-3 mb-sm-0">
-										<h5>Schedule a tour</h5>
-									</div>
-									<div class="col-sm-9">
-										<form class="form-row md-form">
-											<div class="form-group col-sm-6 datetimepickers">
-												<div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
-													<input type="text" class="datetimepicker-input" data-target="#datetimepicker-01" placeholder="MM/DD/YYY">
-													<label for="input" class="control-label">Date</label><i class="bar"></i>
-													<div class="input-group-append" data-target="#datetimepicker-01" data-toggle="datetimepicker">
-														<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
-													</div>
+						</div>
+						<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
+						@*<div class="property-schedule">
+			<div class="row">
+				<div class="col-sm-3 mb-3 mb-sm-0">
+					<h5>Schedule a tour</h5>
+				</div>
+				<div class="col-sm-9">
+					<form class="form-row md-form">
+						<div class="form-group col-sm-6 datetimepickers">
+							<div class="input-group date" id="datetimepicker-01" data-target-input="nearest">
+								<input type="text" class="datetimepicker-input" data-target="#datetimepicker-01" placeholder="MM/DD/YYY">
+								<label for="input" class="control-label">Date</label><i class="bar"></i>
+								<div class="input-group-append" data-target="#datetimepicker-01" data-toggle="datetimepicker">
+									<div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+								</div>
 
-												</div>
+							</div>
 
-											</div>
-											<div class="form-group col-sm-6 datetimepickers">
-												<div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
-													<input type="text" class="datetimepicker-input" placeholder="10:10AM" data-target="#datetimepicker-03">
-													<label for="input" class="control-label">Time</label><i class="bar"></i>
-													<div class="input-group-append" data-target="#datetimepicker-03" data-toggle="datetimepicker">
-														<div class="input-group-text"><i class="far fa-clock"></i></div>
-													</div>
-												</div>
-
-											</div>
-											<div class="form-group col-sm-6">
-												<input type="text" placeholder="Name">
-												<label for="input" class="control-label">Name</label><i class="bar"></i>
-											</div>
-											<div class="form-group col-sm-6">
-												<input type="Text" placeholder="9999999999">
-												<label for="input" class="control-label">Phone</label><i class="bar"></i>
-											</div>
-											<div class="form-group col-sm-12">
-												<input type="email" placeholder="abc@gmail.com">
-												<label for="input" class="control-label">Email</label><i class="bar"></i>
-											</div>
-
-											<div class="form-group col-sm-12">
-												<textarea class="" rows="2" placeholder="Enter your message here..."></textarea>
-												<label for="input" class="control-label">Message</label><i class="bar"></i>
-											</div>
-											<div class="form-group col-sm-12">
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</div>
-											<div class="col-sm-6"></div>
-										</form>
-									</div>
+						</div>
+						<div class="form-group col-sm-6 datetimepickers">
+							<div class="input-group date" id="datetimepicker-03" data-target-input="nearest">
+								<input type="text" class="datetimepicker-input" placeholder="10:10AM" data-target="#datetimepicker-03">
+								<label for="input" class="control-label">Time</label><i class="bar"></i>
+								<div class="input-group-append" data-target="#datetimepicker-03" data-toggle="datetimepicker">
+									<div class="input-group-text"><i class="far fa-clock"></i></div>
 								</div>
 							</div>
 
-							<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">
-							<div class="map-info row">
-								<div id="map"></div>
-							</div>
+						</div>
+						<div class="form-group col-sm-6">
+							<input type="text" placeholder="Name">
+							<label for="input" class="control-label">Name</label><i class="bar"></i>
+						</div>
+						<div class="form-group col-sm-6">
+							<input type="Text" placeholder="9999999999">
+							<label for="input" class="control-label">Phone</label><i class="bar"></i>
+						</div>
+						<div class="form-group col-sm-12">
+							<input type="email" placeholder="abc@gmail.com">
+							<label for="input" class="control-label">Email</label><i class="bar"></i>
+						</div>
+
+						<div class="form-group col-sm-12">
+							<textarea class="" rows="2" placeholder="Enter your message here..."></textarea>
+							<label for="input" class="control-label">Message</label><i class="bar"></i>
+						</div>
+						<div class="form-group col-sm-12">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+						<div class="col-sm-6"></div>
+					</form>
+				</div>
+			</div>
+		</div>*@
+
+						@*<hr class="mt-3 mb-3 mb-sm-3 mt-sm-3">*@
+						<div class="map-info row">
+							<div id="map"></div>
 						</div>
 					</div>
 				</div>
-			</section>
-			<!--=================================
+			</div>
+		</section>
+		<!--=================================
 		Property details -->
 
 
-		</div>
 	</div>
+</div>

@@ -1007,13 +1007,25 @@ html, body {
 .text-sec {
 	color: var(--sec-color);
 }
+.bg-pry{
+	color: #fff;
+	background: var(--pry-color);
+}
+.bg-sec {
+	color: #fff;
+	background: var(--sec-color);
+}
+.bg-info {
+	color: #fff;
+	background: var(--info-color);
+}
 .amenities-list i, .facilities-list i, .available-list i {
 	font-size: 18px;
 	margin-right: 7px;
 }
-.available-list i {
+/*.available-list i {
 	color: #E91E63;
-}
+}*/
 .spliter {
 	padding: 0 5px;
 	font-size: 18px;
@@ -1846,3 +1858,12 @@ form.md-form .checkbox.checbox-switch-small {
 	background: var(--info-color);
 	color: #fff;
 }
+.available-list li{
+	width: 100%;
+}
+.available-list li div{
+	display: inline-block;
+}
+	.available-list li div span{
+		font-weight: 600;
+	}

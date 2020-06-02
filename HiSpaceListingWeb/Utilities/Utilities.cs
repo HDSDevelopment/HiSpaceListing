@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using HiSpaceListingModels;
 using HiSpaceListingWeb.Models;
 
 namespace HiSpaceListingWeb.Utilities
@@ -107,6 +109,7 @@ namespace HiSpaceListingWeb.Utilities
 		public string ApiListingUpdateListing = "UpdateListing/";
 		public string ApiListingDeleteListing = "DeleteListing/";
 		public string ApiListingGetPropertyList = "GetPropertyList/";
+		public string ApiListingGetPropertyDetailByListingID = "GetPropertyDetailByListingID/";
 
 		#endregion Listing Controller
 
@@ -139,6 +142,7 @@ namespace HiSpaceListingWeb.Utilities
 		public string ApiCommonGetAllPropertyTypeSearch = "GetAllPropertyTypeSearch";
 		public string ApiCommonGetAllPropertyLevelSearch = "GetAllPropertyLevelSearch";
 		public string ApiCommonGetAllPropertyListerSearch = "GetAllPropertyListerSearch";
+		public string ApiCommonGetAmenityMasterList = "GetAmenityMasterList";
 		#endregion Common Controller
 
 		#endregion API Methods
@@ -186,6 +190,15 @@ namespace HiSpaceListingWeb.Utilities
 			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 3, ProfessionalCategoryName = "InteriorDesigner", ProfessionalCategoryDisplay = "Interior Designer" });
 			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 4, ProfessionalCategoryName = "CoworkingArchitecture", ProfessionalCategoryDisplay = "Co-working Architecture" });
 			types.Add(new ProfessionalCategory() { ProfessionalCategoryId = 5, ProfessionalCategoryName = "Investor", ProfessionalCategoryDisplay = "Investor" });
+			return types;
+		}
+
+		public static List<AmenitiesPaymentTypeList> GetAmenitiesPaymentTypeList()
+		{
+			List<AmenitiesPaymentTypeList> types = new List<AmenitiesPaymentTypeList>();
+			types.Add(new AmenitiesPaymentTypeList() { AmenitiesPaymentTypeListID = 1, AmenitiesPaymentTypeListName = "Free", AmenitiesPaymentTypeListDisplay = "Free" });
+			types.Add(new AmenitiesPaymentTypeList() { AmenitiesPaymentTypeListID = 2, AmenitiesPaymentTypeListName = "Paid", AmenitiesPaymentTypeListDisplay = "Paid" });
+			types.Add(new AmenitiesPaymentTypeList() { AmenitiesPaymentTypeListID = 3, AmenitiesPaymentTypeListName = "PartiallyPaid", AmenitiesPaymentTypeListDisplay = "Partially Paid" });
 			return types;
 		}
 
@@ -272,5 +285,46 @@ namespace HiSpaceListingWeb.Utilities
 		}
 
 		#endregion DropDown Methods
+
+		public static List<AmenityMasterVM> GetAmenityMasterList()
+		{
+			List<AmenityMasterVM> amenities = new List<AmenityMasterVM>();
+			using (var client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(Common.Instance.ApiCommonControllerName);
+				//HTTP GET
+				var responseTask = client.GetAsync(Common.Instance.ApiCommonGetAmenityMasterList);
+				responseTask.Wait();
+				var result = responseTask.Result;
+				if (result.IsSuccessStatusCode)
+				{
+					var readTask = result.Content.ReadAsAsync<IList<AmenityMaster>>();
+					readTask.Wait();
+					foreach (var item in readTask.Result.ToList())
+						amenities.Add(new AmenityMasterVM() { AmenityMasterId = item.AmenityMasterId, Name = item.Name, Status = item.Status });
+				}
+				else
+				{
+
+				}
+			}
+			return amenities;
+		}
+
+		public class AmenityMasterVM
+		{
+			public int AmenityId { set; get; }
+			public int ListingId { set; get; }
+			public int? AmenityMasterId { set; get; }
+			public string Name { set; get; }
+			public string AmenitiesPayment { set; get; }
+			public int? PartialCount { set; get; }
+			public decimal? Price { set; get; }
+			public string Description { set; get; }
+			public bool Status { set; get; }
+			public DateTime? CreatedDateTime { set; get; }
+			public int? ModifyBy { set; get; }
+			public DateTime? ModifyDateTime { set; get; }
+		}
 	}
 }

@@ -14,7 +14,7 @@ namespace HiSpaceListingModels
 		public int ListingId { set; get; }
 		public int? FacilityMasterId { set; get; }
 		public string Name { set; get; }
-		public decimal? FacilityDistance { set; get; }
+		public string FacilityDistance { set; get; }
 		public string Description { set; get; }
 		public bool Status { set; get; }
 		public DateTime? CreatedDateTime { set; get; }

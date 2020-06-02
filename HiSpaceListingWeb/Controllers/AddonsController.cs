@@ -223,6 +223,17 @@ namespace HiSpaceListingWeb.Controllers
 			return RedirectToAction("ListingTable", "Listing", new { UserID = GetSessionObject().UserId, UserType = GetSessionObject().UserType });
 		}
 
+		public ActionResult AddAmenities(int id)
+		{
+			SetSessionVariables();
+			ViewBag.AmenitiesPaymentTypeList = Common.GetAmenitiesPaymentTypeList();
+			AmenityViewModel vModel = new AmenityViewModel
+			{
+				AmenityMasterList = Common.GetAmenityMasterList()
+			}; 
+			return PartialView("_AddAmenitiesPartialView", vModel);
+		}
+
 		public void SetSessionVariables()
 		{
 			#region

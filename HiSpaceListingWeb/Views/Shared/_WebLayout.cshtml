@@ -139,12 +139,11 @@
 							Dashboard <i class="fas fa-chevron-down fa-xs"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId})">My Listing</a></li>
+							<li><a class="dropdown-item" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId, UserType = ViewBag.UserType})">My Listing</a></li>
 							<li><a class="dropdown-item" href="@Url.Action( "AdminLister","Admin")">Operators</a></li>
 						</ul>
 					</li>
 						}
-						
 					</ul>
 				</div>
 				@*<div class="add-listing d-none d-sm-block">

@@ -202,5 +202,32 @@ namespace HiSpaceListingService.Controllers
 
 			return vModel;
 		}
+
+		//GET: api/Listing/GetPropertyDetailByListingID/1
+		[HttpGet("GetPropertyDetailByListingID/{ListingID}")]
+		public async Task<ActionResult<PropertyDetailViewModelResponse>> GetPropertyDetailByListingID(int ListingID)
+		{
+			PropertyDetailViewModelResponse propertyDetails = new PropertyDetailViewModelResponse();
+			var property = await _context.Listings.SingleOrDefaultAsync(m => m.ListingId == ListingID);
+			if(property == null)
+			{
+				return NotFound();
+			}
+
+			propertyDetails.Listing = property;
+			propertyDetails.User = _context.Users.SingleOrDefault(d => d.UserId == property.UserId);
+			propertyDetails.WorkingHours = _context.WorkingHourss.SingleOrDefault(d => d.ListingId == property.ListingId);
+			propertyDetails.Amenities = _context.Amenitys.Where(d => d.Status == true && d.ListingId == property.ListingId).ToList();
+			propertyDetails.Facilities = _context.Facilitys.Where(d => d.Status == true && d.ListingId == property.ListingId).ToList();
+			propertyDetails.ListingImages = _context.ListingImagess.Where(d => d.Status == true && d.ListingId == property.ListingId).ToList();
+			propertyDetails.REProfessionalMasters = _context.REProfessionalMasters.Where(d => d.Status == true && d.ListingId == property.ListingId).ToList();
+			var propertyCount = _context.Listings.Where(d => d.UserId == property.UserId && d.Status == true).ToList();
+			propertyDetails.ListerPropertyCount = propertyCount.Count();
+			//foreach(var amenity in amenities)
+			//{
+
+			//}
+			return propertyDetails;
+		}
 	}
 }

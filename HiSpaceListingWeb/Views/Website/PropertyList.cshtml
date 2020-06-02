@@ -87,7 +87,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="widget">
+						@*<div class="widget">
 							<div class="widget-title widget-collapse">
 								
 								<a class="ml-auto" data-toggle="collapse" href="#filter-property" role="button" aria-expanded="false" aria-controls="filter-property"> <h6>Advanced filter</h6> <i class="fas fa-chevron-down"></i> </a>
@@ -125,7 +125,7 @@
 									</div>
 								</form>
 							</div>
-						</div>
+						</div>*@
 
 
 					</div>
@@ -298,151 +298,13 @@
 
 									</div>
 									<div class="property-btn">
-										<a class="property-link btn btn-primary btn-block" href="@Url.Action("PropertyDetail", "Website")">See Details</a>
+										<a class="property-link btn btn-primary btn-block" href="@Url.Action("PropertyDetail", "Website", new {ListingID = item.SpaceListing.ListingId })">See Details</a>
 									</div>
 								</div>
 
 							</div>
 						</div>
 						}
-									@*<div class="property-item property-col-list mt-4">
-		<div class="row no-gutters">
-			<div class="col-lg-4 col-md-5 prop-image">
-				<div class="property-image bg-overlay-gradient-04">
-					<img class="img-fluid" src="~/images/property/list/02.jpg" alt="">
-					<div class="property-lable">
-						<span class="badge badge-md badge-primary">Office</span>
-					</div>
-					<div class="property-agent">
-						<div class="property-agent-image">
-							<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
-						</div>
-						<div class="property-agent-info">
-							<a class="property-agent-name" href="#">Sara lisbon</a>
-							<span class="d-block">Company Agent</span>
-
-						</div>
-					</div>
-					<div class="property-agent-popup">
-						<a href="#"><i class="fas fa-camera"></i> 03</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-7 prop-details">
-				<div class="property-details">
-					<div class="property-details__head">
-						<div class="property-details__header">Coworking name</div>
-						<div class="property-details__amenities">
-							<span class="property-details__am">Amenities (10)</span>
-							<span class="property-details__fa">Facilities (5)</span>
-						</div>
-					</div>
-					<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
-					<div class="property-details__section">
-						<div>
-							<span class="property-span__head">Type: </span>
-							<span class="property-span__type">Office </span>
-						</div>
-						<div>
-							<span class="property-span__head">Rent: </span>
-							<span class="property-span__rent">Hour | Day | Month</span>
-						</div>
-					</div>
-					<div class="property-details__footer">
-						<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
-						<div class="property-details__total">
-
-							<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
-							<span class="property-span__head"> | </span>
-							<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
-						</div>
-					</div>
-
-				</div>
-				<div class="property-btn">
-					<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="property-item property-col-list mt-4">
-		<div class="row no-gutters">
-			<div class="col-lg-4 col-md-5 prop-image">
-				<div class="property-image bg-overlay-gradient-04">
-					<img class="img-fluid" src="~/images/property/list/03.jpg" alt="">
-					<div class="property-lable">
-						<span class="badge badge-md badge-primary">Private Office</span>
-					</div>
-					<div class="property-agent">
-						<div class="property-agent-image">
-							<img class="img-fluid" src="~/images/avatar/03.jpg" alt="">
-						</div>
-						<div class="property-agent-info">
-							<a class="property-agent-name" href="#">Sara lisbon</a>
-							<span class="d-block">Company Agent</span>
-
-						</div>
-					</div>
-					<div class="property-agent-popup">
-						<a href="#"><i class="fas fa-camera"></i> 03</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-8 col-md-7 prop-details">
-				<div class="property-details">
-					<div class="property-details__head">
-						<div class="property-details__header">Coworking name</div>
-						<div class="property-details__amenities">
-							<span class="property-details__am">Amenities (10)</span>
-							<span class="property-details__fa">Facilities (5)</span>
-						</div>
-					</div>
-					<div class="property-details__desc">I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.I truly believe Augustine’s words are true and if you look at history you know it is true. There are many people in.</div>
-					<div class="property-details__section">
-						<div>
-							<span class="property-span__head">Type: </span>
-							<span class="property-span__type">Private Office </span>
-						</div>
-						<div>
-							<span class="property-span__head">Rent: </span>
-							<span class="property-span__rent">Month</span>
-						</div>
-					</div>
-					<div class="property-details__footer">
-						<div class="property-details__address"><i class="fas fa-map-marker-alt fa-xs"></i>N0 25, Kovil street, <span class="property-span__head">Chennai</span>, Tamilnadu. <span class="property-span__head">600113</span></div>
-						<div class="property-details__total">
-
-							<span class="property-span__tot"> <i class="fas fa-circle fa-xs"></i>Total: 100</span>
-							<span class="property-span__head"> | </span>
-							<span class="property-span__occ"> <i class="fas fa-chart-pie fa-xs"></i>Occupied: 50</span>
-						</div>
-					</div>
-
-				</div>
-				<div class="property-btn">
-					<a class="property-link btn btn-primary btn-block" href="@Url.Action( "PropertyDetail","Website")">See Details</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<ul class="pagination mt-3">
-				<li class="page-item disabled mr-auto">
-					<span class="page-link b-radius-none">Prev</span>
-				</li>
-				<li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item ml-auto">
-					<a class="page-link b-radius-none" href="#">Next</a>
-				</li>
-			</ul>
-		</div>
-	</div>*@
 										</div>
 			</div>
 		</div>
