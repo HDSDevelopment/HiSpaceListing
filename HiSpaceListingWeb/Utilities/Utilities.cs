@@ -67,6 +67,7 @@ namespace HiSpaceListingWeb.Utilities
 		public const string SessionUserEmail = "_UserEmail";
 		public const string SessionUserType = "_UserType";
 		public const string SessionUserCompanyName = "_UserCompanyName";
+		public const string SessionUserStatus = "_UserStatus";
 
 		#endregion Session Variables
 
@@ -90,6 +91,16 @@ namespace HiSpaceListingWeb.Utilities
 		public string ApiUserDeleteUser = "DeleteUser/";
 
 		#endregion User Controller
+
+		//#region Admin Controller
+		//public string ApiAdminControllerName
+		//{
+		//	get
+		//	{
+		//		return ApiAddress + "Admin/";
+		//	}
+		//}
+		//#endregion Admin Controller
 
 		#region Listing Controller
 

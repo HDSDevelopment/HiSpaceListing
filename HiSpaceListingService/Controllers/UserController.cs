@@ -30,7 +30,7 @@ namespace HiSpaceListingService.Controllers
 		[Route("AuthenticateUser")]
 		public async Task<ActionResult<User>> AuthenticateUser([FromBody] User user)
 		{
-			var _user = await _context.Users.FirstOrDefaultAsync(d => d.Email == user.Email && d.Password == user.Password);
+			var _user = await _context.Users.FirstOrDefaultAsync(d => d.Email == user.Email && d.Password == user.Password && d.Status == true);
 
 			if (_user == null)
 			{
@@ -49,7 +49,8 @@ namespace HiSpaceListingService.Controllers
 				Email = _user.Email,
 				Password = _user.Password,
 				UserType = _user.UserType,
-				CompanyName = _user.CompanyName
+				CompanyName = _user.CompanyName,
+				UserStatus = _user.UserStatus
 			});
 		}
 
@@ -120,6 +121,8 @@ namespace HiSpaceListingService.Controllers
 			{
 				try
 				{
+					user.ModidyDateTime = DateTime.Now;
+					user.ModifyBy = user.UserId;
 					_context.Entry(user).State = EntityState.Modified;
 
 					try

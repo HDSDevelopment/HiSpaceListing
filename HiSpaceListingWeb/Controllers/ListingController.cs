@@ -154,7 +154,14 @@ namespace HiSpaceListingWeb.Controllers
 						ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
 					}
 				}
-				return View(vModel);
+				//if (GetSessionObject().UserId != 0)
+				//{
+					return View(vModel);
+				//}else if (GetSessionObject().UserId == 0)
+				//{
+				//	return RedirectToAction("ListerEdit", "Admin", vModel);
+				//}
+				//return View(vModel);
 			}
 			else
 			{

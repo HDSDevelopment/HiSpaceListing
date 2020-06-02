@@ -37,34 +37,40 @@ namespace HiSpaceListingWeb.Controllers
 		[HttpPost]
 		public ActionResult Login(User user)
 		{
-			User _user = null;
-			using (var client = new HttpClient())
-			{
-				client.BaseAddress = new Uri(Common.Instance.ApiUserControllerName);
-				var responseTask = client.PostAsJsonAsync(Common.Instance.ApiUserAuthenticateUser, user);
-				responseTask.Wait();
-
-				var result = responseTask.Result;
-				if (result.IsSuccessStatusCode)
+				User _user = null;
+				using (var client = new HttpClient())
 				{
-					var readTask = result.Content.ReadAsAsync<User>();
-					readTask.Wait();
-					_user = readTask.Result;
+					client.BaseAddress = new Uri(Common.Instance.ApiUserControllerName);
+					var responseTask = client.PostAsJsonAsync(Common.Instance.ApiUserAuthenticateUser, user);
+					responseTask.Wait();
+
+					var result = responseTask.Result;
+					if (result.IsSuccessStatusCode)
+					{
+						var readTask = result.Content.ReadAsAsync<User>();
+						readTask.Wait();
+						_user = readTask.Result;
+					}
 				}
-			}
-			if (_user != null && _user.Email == user.Email && _user.Password == user.Password)
-			{
-				AssignSessionVariables(_user);
-				SetSessionVariables();
-				return RedirectToAction("ListingTable", "Listing", new { UserID = _user.UserId, UserType = _user.UserType });
-				//			return RedirectToAction("ListingTable", new RouteValueDictionary(
-				//new { controller = "Listing", action = "ListingTable", UserID = _user.UserId }));
-			}
-			else
-			{
-				ViewData["loginError"] = "err = Incorrect username or password.";
-				return RedirectToAction("Index", "Website");
-			}
+				if (_user != null && _user.UserId > 0 && _user.Email == user.Email && _user.Password == user.Password)
+				{
+					AssignSessionVariables(_user);
+					SetSessionVariables();
+					return RedirectToAction("ListingTable", "Listing", new { UserID = _user.UserId, UserType = _user.UserType });
+					//			return RedirectToAction("ListingTable", new RouteValueDictionary(
+					//new { controller = "Listing", action = "ListingTable", UserID = _user.UserId }));
+				}
+				else if (_user != null && _user.UserId == 0 && _user.Email == user.Email && _user.Password == user.Password)
+				{
+					AssignSessionVariables(_user);
+					SetSessionVariables();
+					return RedirectToAction("AdminLister", "Admin");
+				}
+				else
+				{
+					TempData["Error"] = "Incorrect Email or Password";
+					return RedirectToAction("Index", "Website");
+				}
 		}
 
 		[HttpPost]
@@ -74,6 +80,11 @@ namespace HiSpaceListingWeb.Controllers
 			if(model != null)
 			{
 				model.UserType = 1;
+				model.Status = true;
+				model.UserStatus = "Incomplete";
+				model.CreatedDateTime = DateTime.Now;
+				model.LoginCount = 0;
+
 				User NewUser = new User();
 				using(var client = new HttpClient())
 				{
@@ -89,9 +100,17 @@ namespace HiSpaceListingWeb.Controllers
 						//return RedirectToAction("Index");
 						model = rs.Result;
 					}
-
+					TempData["Signup"] = "Signup Success";
 				}
 				ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+			}
+			if(GetSessionObject().UserId != 0)
+			{
+				return RedirectToAction("Index", "Website");
+			}
+			else if (GetSessionObject().UserId == 0)
+			{
+				return RedirectToAction("AdminLister", "Admin");
 			}
 			return RedirectToAction("Index", "Website");
 		}
@@ -150,6 +169,14 @@ namespace HiSpaceListingWeb.Controllers
 				model.User.Doc_CompanyLogo = "\\" + UploadRootPath_removeRoot + uploadsFolder + DuplicateName;
 			}
 
+			if(model.User.Email != null && model.User.Password != null && model.User.CompanyName != null && model.User.Website != null && model.User.Phone != null && model.User.Doc_CompanyLogo != null && model.User.GSTIN != null && model.User.PAN != null && model.User.UAN != null && model.User.Address != null && model.User.City != null && model.User.State != null && model.User.Country != null && model.User.Postalcode != null && model.User.Fax != null && model.User.Doc_RCCopy != null && model.User.Doc_PANCopy != null && model.User.Doc_CompanyLogo != null && model.User.PrimaryContactName != null && model.User.PrimaryContactPhone != null && model.User.Status == true && model.User.TermsAndConditions == true)
+			{
+				model.User.UserStatus = "BackgroundCheck";
+			}
+			else
+			{
+				model.User.UserStatus = "Incomplete";
+			}
 
 			using (var client = new HttpClient())
 			{
@@ -167,7 +194,7 @@ namespace HiSpaceListingWeb.Controllers
 					user = readTask.Result;
 				}
 			}
-			return RedirectToAction("ListingTable","Listing",new { UserID = model.User.UserId});
+			return RedirectToAction("ListingTable","Listing",new { UserID = model.User.UserId, UserType = model.User.UserType });
 		}
 
 		public void SetSessionVariables()
@@ -178,6 +205,7 @@ namespace HiSpaceListingWeb.Controllers
 			ViewBag.UserId = HttpContext.Session.GetInt32(Common.SessionUserId);
 			ViewBag.UserType = HttpContext.Session.GetInt32(Common.SessionUserType);
 			ViewBag.UserCompanyName = HttpContext.Session.GetString(Common.SessionUserCompanyName);
+			ViewBag.UserStatus = HttpContext.Session.GetString(Common.SessionUserStatus);
 			#endregion
 		}
 
@@ -190,6 +218,15 @@ namespace HiSpaceListingWeb.Controllers
 			HttpContext.Session.SetInt32(Common.SessionUserType, _UserType);
 			HttpContext.Session.SetInt32(Common.SessionUserId, _user.UserId);
 			HttpContext.Session.SetString(Common.SessionUserCompanyName, _user.CompanyName);
+			if(_user.UserStatus == null)
+			{
+				_user.UserStatus = "Admin";
+				HttpContext.Session.SetString(Common.SessionUserStatus, _user.UserStatus);
+			}
+			else
+			{
+				HttpContext.Session.SetString(Common.SessionUserStatus, _user.UserStatus);
+			}
 		}
 
 		public User GetSessionObject()

@@ -26,7 +26,7 @@ namespace HiSpaceListingService.Controllers
 		[HttpGet]
 		[Route("GetAllPropertyLocationSearch")]
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<PropertyLocationSearchResponse>>> GetAllPropertyLocationSearch()
+		public ActionResult<List<PropertyLocationSearchResponse>> GetAllPropertyLocationSearch()
 		{
 			List<PropertyLocationSearchResponse> response = new List<PropertyLocationSearchResponse>();
 			var locations = from r in _context.Listings

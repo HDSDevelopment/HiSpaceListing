@@ -1,7 +1,7 @@
 ﻿@*
 	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-
+@model HiSpaceListingModels.User
 <!--=================================
 	 Modal login -->
 @*<div class="modal login fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -17,17 +17,19 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
 				@*<form class="form-row mt-4 align-items-center" action="account-profile.html">*@
-				@using (Html.BeginForm("Login", "User", FormMethod.Post, new { @class = "form-row mt-4 align-items-center md-form" }))
+				@using (Html.BeginForm("Login", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-row mt-4 align-items-center md-form", onSubmit = "loginValidate(event)" }))
 				{
 					<div class="form-group col-sm-12">
-						<input class="form-control" id="Email" name="Email" placeholder="Email Id" type="text" value="">
+						<input class="form-control" id="Email" name="Email" placeholder="Email Id" type="text" value="" onblur="errShow(this.value,'error_Email');" onfocus="errHide(this.value,'error_Email');">
 						@*@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email Id" })*@
 						<label for="input" class="control-label">Email*</label><i class="bar"></i>
+						<div class="error" id="error_Email"></div>
 					</div>
 					<div class="form-group col-sm-12">
-						<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="">
+						<input class="form-control" id="Password" name="Password" placeholder="password" type="password" value="" onblur="errShow(this.value,'error_Password');" onfocus="errHide(this.value,'error_Password');">
 						@*@Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", placeholder = "password" })*@
 						<label for="input" class="control-label">Password*</label><i class="bar"></i>
+						<div class="error" id="error_Password"></div>
 					</div>
 					<div class="col-sm-6">
 						<button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -37,6 +39,10 @@
 							<li class="mr-1"><a class="modal-link__signup hover-signup" data-targeturl="@Url.Action("SignupPartialView","User")" href="javascript:function() { return false; }" data-dismiss="modal"><b>New Lister? Click here to <span class="text-sec">Signup</span></b></a></li>
 						</ul>
 					</div>
+
+					@*@section Scripts{ 
+					<partial name="_validationScriptsPartial" />
+					}*@
 					@*</form>*@
 				}
 			</div>

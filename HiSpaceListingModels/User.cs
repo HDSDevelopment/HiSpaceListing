@@ -11,9 +11,7 @@ namespace HiSpaceListingModels
 	{
 		[Key]
 		public int UserId { set; get; }
-
 		public string Email { set; get; }
-
 		public string Password { set; get; }
 
 		public string CompanyName { set; get; }
@@ -64,5 +62,6 @@ namespace HiSpaceListingModels
 
 		public DateTime? ModidyDateTime { get; set; }
 		public string UserStatus { get; set; }
+		public bool TermsAndConditions { get; set; }
 	}
 }

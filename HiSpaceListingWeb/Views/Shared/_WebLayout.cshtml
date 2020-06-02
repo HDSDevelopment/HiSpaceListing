@@ -113,7 +113,7 @@
 				<div class="navbar-collapse collapse justify-content-center">
 					<ul class="nav navbar-nav">
 						<li class="nav-item  active">
-							<a class="nav-link" href="@Url.Action( "Landing","Website")" id="navbarDropdown">Home</a>
+							<a class="nav-link" href="@Url.Action( "Index","Website")" id="navbarDropdown">Home</a>
 						</li>
 
 						<li class="nav-item dropdown">
@@ -132,23 +132,33 @@
 						<li class="nav-item  ">
 							<a class="nav-link" href="@Url.Action( "Contact","Website")" id="navbarDropdown">Contact</a>
 						</li>
-						@if (ViewBag.UserId != null)
+						@if (ViewBag.UserId != null && ViewBag.UserId == 0)
 						{
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Dashboard <i class="fas fa-chevron-down fa-xs"></i>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId, UserType = ViewBag.UserType})">My Listing</a></li>
-							<li><a class="dropdown-item" href="@Url.Action( "AdminLister","Admin")">Operators</a></li>
-						</ul>
-					</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Dashboard <i class="fas fa-chevron-down fa-xs"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="@Url.Action( "AdminLister","Admin")">Operators</a></li>
+								</ul>
+							</li>
+						}
+						else if (ViewBag.UserId != null && ViewBag.UserId > 0)
+						{
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Dashboard <i class="fas fa-chevron-down fa-xs"></i>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId, UserType = ViewBag.UserType})">My Listing</a></li>
+								</ul>
+							</li>
 						}
 					</ul>
 				</div>
 				@*<div class="add-listing d-none d-sm-block">
-					<a class="btn btn-primary btn-md" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId})"> <i class="fa fa-plus-circle"></i>Add listing </a>
-				</div>*@
+						<a class="btn btn-primary btn-md" href="@Url.Action( "ListingTable","Listing",new { UserID = ViewBag.UserId})"> <i class="fa fa-plus-circle"></i>Add listing </a>
+					</div>*@
 			</div>
 		</nav>
 	</header>
@@ -284,6 +294,8 @@
 	footer-->
 	<!-- JS Global Compulsory (Do not remove)-->
 	<script src="~/js/jquery-3.4.1.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 	<script src="~/js/datetimepicker/moment.min.js"></script>
 	<script src="~/js/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 	@*<script src="~/js/datetimepicker/datetimepicker.min.js"></script>*@
@@ -313,6 +325,8 @@
 	<!-- Template Scripts (Do not remove)-->
 	<script src="~/js/custom.js"></script>
 	<script src="~/js/customMap.js"></script>
+	<script src="~/js/Validation.js"></script>
 	<script src="~/js/site.js"></script>
+	@RenderSection("Scripts", required: false)
 </body>
 </html>
