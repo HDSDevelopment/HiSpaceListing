@@ -79,7 +79,7 @@
 								</ul>
 							</div>
 							<div class="login d-inline-block">
-								@if (ViewBag.UserId != null)
+								@if (ViewBag.UserId != null && ViewBag.UserId >= 0)
 								{
 									<div class="user-alert bg-sec"></div>
 									<ul class="nav navbar-nav">
@@ -88,7 +88,7 @@
 												@ViewBag.UserCompanyName <i class="fa fa-user pl-2"></i>
 											</a>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="#">Sign out</a></li>
+												<li><a class="dropdown-item" href="@Url.Action( "Logout","User")">Sign out</a></li>
 											</ul>
 										</li>
 									</ul>

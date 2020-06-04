@@ -121,7 +121,7 @@ namespace HiSpaceListingWeb
 				endpoints.MapControllerRoute(
 					name: "default",
 					//pattern: "{controller=Website}/{action=Index}/{id?}");
-					pattern: "{controller=Website}/{action=Landing}/{id?}");
+					pattern: "{controller=Website}/{action=Index}/{id?}");
 			});
 		}
 	}

@@ -25,13 +25,31 @@ namespace HiSpaceListingWeb.Controllers
 
 		public ActionResult LoginPartialView()
 		{
-			
+			SetSessionVariables();
 			return PartialView("_LoginPartialView");
 		}
 		public ActionResult SignupPartialView()
 		{
-
+			SetSessionVariables();
 			return PartialView("_SignupPartialView");
+		}
+
+		public ActionResult Logout()
+		{
+			User session = null;
+			HttpContext.Session.SetObjectAsJson("_user", session);
+			HttpContext.Session.SetObjectAsJson("_user", session);
+			HttpContext.Session.SetString(Common.SessionUserEmail, "");
+			HttpContext.Session.SetInt32(Common.SessionUserType, -1);
+			HttpContext.Session.SetInt32(Common.SessionUserId, -1);
+			HttpContext.Session.SetString(Common.SessionUserCompanyName, "");
+			HttpContext.Session.SetString(Common.SessionUserStatus, "");
+			ViewBag.UserEmail = null;
+			ViewBag.UserId = null;
+			ViewBag.UserType = null;
+			ViewBag.UserCompanyName = null;
+			ViewBag.UserStatus = null;
+			return RedirectToAction("Index", "Website");
 		}
 
 		[HttpPost]
@@ -114,6 +132,29 @@ namespace HiSpaceListingWeb.Controllers
 			}
 			return RedirectToAction("Index", "Website");
 		}
+
+		[HttpGet]
+		public ActionResult UserApprove(int UserId, string Status)
+		{
+			SetSessionVariables();
+			using (var client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(Common.Instance.ApiUserControllerName);
+				//HTTP GET
+				var responseTask = client.GetAsync(Common.Instance.ApiUserApproveByUserId + UserId + "/" + Status);
+				responseTask.Wait();
+
+				var result = responseTask.Result;
+				if (result.IsSuccessStatusCode)
+				{
+					var rs = result.Content.ReadAsAsync<bool>().Result;
+					var sr = rs;
+				}
+			}
+			return RedirectToAction("AdminLister", "Admin");
+		}
+
+
 		// POST: Edit
 		[HttpPost]
 		public ActionResult Edit(UserMasterViewModel model)

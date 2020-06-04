@@ -52,6 +52,13 @@
 									<p>Background check is inprogress. Once it complete listing will enable for you.</p>
 								</div>
 							}
+							else if (Model.User.UserStatus == "Completed")
+							{
+								<div class="status-message">
+									<i class="fas fa-user-check text-sec"></i>
+									<p>You are a verified user please add your listings below.</p>
+								</div>
+							}
 							<div class="widget-title widget-collapse">
 								<a class="ml-auto" data-toggle="collapse" href="#property-lister" role="button" aria-expanded="false" aria-controls="property-lister"><h6>Basic Information</h6> <i class="fas fa-chevron-down"></i> </a>
 							</div>
@@ -162,7 +169,7 @@
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="file" class="form-control" accept="image/*">*@
 										@*@Html.EditorFor(m => m.User.Doc_PANCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-										<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
+						<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
 										<p class="label-head mb-10">PAN Certificate</p>
 										@if (Model.User.Doc_PANCopy != null)
 										{
@@ -182,7 +189,7 @@
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="file" class="form-control" accept="image/*">*@
 										@*@Html.EditorFor(m => m.User.Doc_RCCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-										<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
+						<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
 										<p class="label-head mb-10">Registration Certificate</p>
 										@if (Model.User.Doc_RCCopy != null)
 										{
@@ -202,7 +209,7 @@
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="file" class="form-control" accept="image/*">*@
 										@*@Html.EditorFor(m => m.User.Doc_CompanyLogo, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-										<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
+						<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
 										<p class="label-head mb-10">Logo</p>
 										@if (Model.User.Doc_CompanyLogo != null)
 										{
@@ -344,7 +351,7 @@
 													{
 														ViewBag.TypeClass = "text-info";
 														ViewBag.TypeAddons = @Html.Raw("<div class='ml-auto d-flex align-items-center text-center md-crud-menu'>" +
-																			  "<span class='modal-link__project' data-targeturl=\'" + @Url.Action("AddProject", "Listing", new { ListingId = item.ListingId }) + "\' data-dismiss='modal'>" +
+																			  "<span class='modal-link__project' data-targeturl=\'" + @Url.Action("AddProject", "Addons", new { ListingId = item.ListingId }) + "\' data-dismiss='modal'>" +
 																				  "<a href='javascript:function() { return false; }' class='tooltip-wrapper' data-toggle='tooltip' data-placement='top' title='' data-original-title='Click to list the RE project'>" +
 																					  "<i class='fas fa-city btn-icon text-info'></i>" +
 																				  "</a>" +
@@ -378,7 +385,7 @@
 														</td>
 														<td class="p-0">
 															<div class="ml-auto d-flex align-items-center text-center md-crud-menu">
-																<span class="modal-link__image" data-targeturl="@Url.Action("AddImage", "Listing", new { id = item.ListingId })" data-dismiss="modal">
+																<span class="modal-link__image" data-targeturl="@Url.Action("AddImage", "Addons", new { id = item.ListingId })" data-dismiss="modal">
 																	<a href="javascript:function() { return false; }" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to list the Images">
 																		<i class="fas fa-image btn-icon text-try"></i>
 																	</a>
@@ -419,6 +426,10 @@
 								else if (Model.User.UserStatus == "BackgroundCheck")
 								{
 									<div class="table-disabled"> Background checking is inprogress</div>
+								}
+								else if (Model.User.UserStatus == "Completed")
+								{
+
 								}
 								@*<div class="table-disabled"> Fill the Information to enable listing</div>*@
 							</div>

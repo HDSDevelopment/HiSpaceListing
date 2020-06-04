@@ -69,18 +69,33 @@
 												{
 													<td class="text-info font-weight-bold">@Html.DisplayFor(modelItem => item.UserStatus)</td>
 												}
-												else if (item.UserStatus == "Complete")
+												else if (item.UserStatus == "Completed")
 												{
 													<td class="text-sec font-weight-bold">@Html.DisplayFor(modelItem => item.UserStatus)</td>
 												}
 												<td class="p-0">
 													<div class="ml-auto d-flex align-items-center text-center md-crud-menu ">
-														<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit or View">
-															<i class="fas fa-thumbs-up text-sec"></i>
-														</a>
-														<a href="/" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit or View">
-															<i class="fas fa-times-circle text-pry"></i>
-														</a>
+														@if (item.UserStatus == "Incomplete")
+														{
+
+															<a class="action-disabled tooltip-wrapper" href="javascript:void(0)" data-toggle="tooltip" data-placement="top" title="" data-original-title="User is in incomplete stage">
+																<i class="fas btn-icon fa-times-circle text-pry"></i>
+															</a>
+														}
+														else if (item.UserStatus == "BackgroundCheck")
+														{
+															<a onclick="return userCheck(0);" href="@Url.Action("UserApprove", "User", new { UserId = item.UserId, Status = "Completed" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to verified the user">
+																<i class="fas btn-icon fa-times-circle text-pry"></i>
+															</a>
+														}
+														else if (item.UserStatus == "Completed")
+														{
+															<a onclick="return userCheck(1);" href="@Url.Action("UserApprove", "User", new { UserId = item.UserId, Status = "BackgroundCheck" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to recheck the background">
+																<i class="fas btn-icon fa-thumbs-up text-sec"></i>
+															</a>
+														}
+
+
 													</div>
 												</td>
 												<td class="p-0">

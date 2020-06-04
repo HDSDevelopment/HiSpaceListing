@@ -21,15 +21,25 @@ $('#BuildYear, #RecentInnovation, #BuildYearDiv, #RecentInnovationDiv').datetime
 	format: 'YYYY/MM/DD',
 	//debug: true,
 });
+function userCheck(check) {
+	if (check == 0) {
+		return confirm("Are your sure want to approve the user as background details checked?");
+	}
+	else if (check == 1) {
+		return confirm("Are your sure want to recheck the user as background details?");
+	}
+}
 $(document).ready(function () {
 
 	$("#cartBtn-1, #cartBtn-2, #cartBtn-3").click(function () {
 		var sec = $(this).attr('cart-section');
 		console.log(sec);
 		$('html, body').animate({
-			scrollTop: $("#card-"+sec).offset().top-50
+			scrollTop: $("#card-" + sec).offset().top - 50
 		}, 1000);
 	});
+
+
 
 	//$('#datetimepicker-01, #datetimepicker-02, #RecentInnovation,#datetimepicker-recent-cw, #BuildYear,#datetimepicker-builtyear-cw').datetimepicker({
 	//	format: 'L'
@@ -40,10 +50,10 @@ $(document).ready(function () {
 
 	$('#example').DataTable();
 
-		//$('#example tbody').on('click', 'tr', function () {
-		//	var data = table.row(this).data();
-		//	alert('You clicked on ' + data[0] + '\'s row');
-		//});
+	//$('#example tbody').on('click', 'tr', function () {
+	//	var data = table.row(this).data();
+	//	alert('You clicked on ' + data[0] + '\'s row');
+	//});
 	//tab navigation section
 	if ($('.hi-tab .active.show').attr('data-id')) {
 		$('.tab-back-btn, .tab-submit').css('display', 'none');
@@ -53,7 +63,7 @@ $(document).ready(function () {
 	$('#ListingType').on('change', function () {
 		var value = $(this).val();
 		var coWorkingValue = $('#CoworkingType').val();
-			//alert(value)
+		//alert(value)
 		//if (coWorkingValue == "Cafe") {
 		//	$('.type-2-sub__input').addClass('d-none');
 		//}
@@ -66,27 +76,27 @@ $(document).ready(function () {
 			$('.form-type').addClass('type-1');
 			$('.type-2__input, .type-3, .type-style.type-2, .type-style.type-3, .type-2-sub__input').addClass('d-none');
 			$('.type-1__input, .type-style.type-1, .form-type.type-1, .input-occupancy').removeClass('d-none');
-			}
+		}
 		else if (value == "Co-Working") {
 			$('.form-type').removeClass('type-1');
 			$('.form-type').removeClass('type-3');
 			$('.form-type').addClass('type-2');
 			$('.type-1__input, .type-3, .type-style.type-1, .type-style.type-3').addClass('d-none');
 			$('.type-2__input, .type-style.type-2, .form-type.type-2, .type-2-sub__input, .input-occupancy').removeClass('d-none');
-			}
+		}
 		else if (value == "RE-Professional") {
-				$('.type-3').removeClass('d-none');
+			$('.type-3').removeClass('d-none');
 			$('.form-type.type-1, .form-type.type-2, .type-style.type-1, .type-style.type-2').addClass('d-none');
 		}
-		
-		});
+
+	});
 	$('#CoworkingType').on('change', function () {
 		var value = $(this).val();
 		//alert(value)
 		if (value == "Office") {
 			$('.type-2-sub__input, .input-occupancy').removeClass('d-none');
 		}
-		else if (value == "Cafe"){
+		else if (value == "Cafe") {
 			$('.type-2-sub__input, .input-occupancy').addClass('d-none');
 		}
 	});
@@ -102,7 +112,7 @@ $(document).ready(function () {
 		}
 	});
 	//amenities section price
-	$(document).on('change','.am-option', function () {
+	$(document).on('change', '.am-option', function () {
 		var value = $(this).val();
 		//alert(value)
 		if (value == 1) {
@@ -244,7 +254,7 @@ $('.hi-tab .nav-link').on('click', function () {
 //***********************user section end****************************//
 
 //$('input[name="workingHours.Is24"]').click(function () {
-$('body').on('click','input[name="WorkingHours.Is24"]', function () {
+$('body').on('click', 'input[name="WorkingHours.Is24"]', function () {
 	//alert('a');
 	//$('input[name="AllTimeCheck"], input[name="MonToFriCheck"], input[name="MonToSatCheck"], input[name="CustomCheck"]').click(function () {
 	//console.log($('#AllTimeCheck option:selected').text());
@@ -287,7 +297,7 @@ $('body').on('click','input[name="WorkingHours.Is24"]', function () {
 	}
 });
 
-$('body').on('click','.sch-status', function () {
+$('body').on('click', '.sch-status', function () {
 	if ($(this).prop("checked") == true) {
 		$(this).parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
 		$(this).siblings('strong').html('Open');
@@ -301,29 +311,29 @@ $('body').on('click','.sch-status', function () {
 //image upload section start
 function addImage() {
 	$('.image-upload').append(
-		'<div class="row image-upload__row">'+
+		'<div class="row image-upload__row">' +
 		'<div class=" col-md-4 col-sm-6 ">' +
-		'<div class="form-group">'+
-				'<input type="text" class="form-control imageName" placeholder="Image Name">'+
-			'<label for="input" class="control-label">Image Name</label><i class="bar"></i>'+
-'</div>	'+
-							'</div>'+
+		'<div class="form-group">' +
+		'<input type="text" class="form-control imageName" placeholder="Image Name">' +
+		'<label for="input" class="control-label">Image Name</label><i class="bar"></i>' +
+		'</div>	' +
+		'</div>' +
 		'<div class=" col-md-4 col-sm-6">' +
-		'<div class="form-group">'+
-			'<input type="file" class="form-control imageFilePath" accept="image/*">'+
-				'<label for="input" class="control-label">Upload Image</label><i class="bar"></i>'+
-							'</div>'+
-			'</div>'+
-			'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">'+
-				'<div class="checkbox m-0">'+
-					'<label>'+
-						'<input type="checkbox" class="imageCheck" /><i class="helper"></i> Active'+
-									'</label>'+
-				'</div>'+
-			'</div>'+
-			'<div class="col-md-2 col-sm-6">'+
-				'<span class="delete-btn" onclick="deleteRowImage(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>'+
-			'</div>'+
+		'<div class="form-group">' +
+		'<input type="file" class="form-control imageFilePath" accept="image/*">' +
+		'<label for="input" class="control-label">Upload Image</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">' +
+		'<div class="checkbox m-0">' +
+		'<label>' +
+		'<input type="checkbox" class="imageCheck" /><i class="helper"></i> Active' +
+		'</label>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-2 col-sm-6">' +
+		'<span class="delete-btn" onclick="deleteRowImage(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>' +
+		'</div>' +
 		'</div>'
 	);
 };
@@ -335,36 +345,36 @@ function deleteRowImage(that) {
 //project upload section start
 function addProject() {
 	$('.project-upload').append(
-		'<div class="row project-upload__row">'+
+		'<div class="row project-upload__row">' +
 		'<div class=" col-md-3 col-sm-6  align-self-center">' +
-		'<div class="form-group">'+
-				'<input type="text" class="form-control" placeholder="project Name">'+
-					'<label for="input" class="control-label">project Name</label><i class="bar"></i>'+
-									'</div>'+
-			'</div>'+
-				'<div class=" col-md-3 col-sm-6 align-self-center">' +
-				'<div class="form-group">'+
-					'<input type="file" class="form-control" accept="project/*">'+
-						'<label for="input" class="control-label">Upload project</label><i class="bar"></i>'+
-									'</div>'+
-					'</div>'+
-					'<div class=" col-md-3 col-sm-6 align-self-center">' +
-					'<div class="form-group">'+
+		'<div class="form-group">' +
+		'<input type="text" class="form-control" placeholder="project Name">' +
+		'<label for="input" class="control-label">project Name</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class=" col-md-3 col-sm-6 align-self-center">' +
+		'<div class="form-group">' +
+		'<input type="file" class="form-control" accept="project/*">' +
+		'<label for="input" class="control-label">Upload project</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class=" col-md-3 col-sm-6 align-self-center">' +
+		'<div class="form-group">' +
 		'<textarea type="text" class="form-control" rows="3" placeholder="Enter your text..."></textarea>' +
-						'<label for="input" class="control-label">Description</label><i class="bar"></i>'+
-					'</div>'+
-					'</div>'+
-					'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">'+
-						'<div class="checkbox m-0">'+
-							'<label>'+
-								'<input type="checkbox" /><i class="helper"></i> Active'+
-											'</label>'+
-						'</div>'+
-					'</div>'+
-					'<div class="col-md-1 col-sm-6">'+
+		'<label for="input" class="control-label">Description</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">' +
+		'<div class="checkbox m-0">' +
+		'<label>' +
+		'<input type="checkbox" /><i class="helper"></i> Active' +
+		'</label>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-1 col-sm-6">' +
 		'<span class="delete-btn" onclick="deleteRowProject(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>' +
-					'</div>'+
-				'</div>'
+		'</div>' +
+		'</div>'
 	);
 }
 function deleteRowProject(that) {
@@ -374,49 +384,49 @@ function deleteRowProject(that) {
 //amenities upload section start
 function addAmenities() {
 	$('.amenities-upload').append(
-		'<div class="row amenities-upload__row ">'+
+		'<div class="row amenities-upload__row ">' +
 		'<div class=" col-md-3 col-sm-4">' +
-		'<div class="form-group">'+
-				'<input type="text" class="form-control" placeholder="Name">'+
-					'<label for="input" class="control-label">Amenity</label><i class="bar"></i>'+
-									'</div>'+
-			'</div>'+
-				'<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">'+
-					'<div class="form-group">'+
-						'<select class="form-control basic-select am-option" id="">'+
-							'<option value="1">Free</option>'+
-							'<option value="2">Paid</option>'+
-							'<option value="3">Partially Paid</option>'+
-						'</select>'+
-						'<label for="" class="control-label">Cost</label>'+
-						'<i class="bar"></i>'+
-					'</div>'+
-				'</div>'+
+		'<div class="form-group">' +
+		'<input type="text" class="form-control" placeholder="Name">' +
+		'<label for="input" class="control-label">Amenity</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">' +
+		'<div class="form-group">' +
+		'<select class="form-control basic-select am-option" id="">' +
+		'<option value="1">Free</option>' +
+		'<option value="2">Paid</option>' +
+		'<option value="3">Partially Paid</option>' +
+		'</select>' +
+		'<label for="" class="control-label">Cost</label>' +
+		'<i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
 		'<div class=" am-price col-md-2 col-sm-3  d-none">' +
 		'<div class="form-group">' +
 		'<input type="number" class="form-control" placeholder="00">' +
 		'<label for="input" class="control-label">Price/Usage</label><i class="bar"></i>' +
 		'</div>' +
 		'</div>' +
-									'<div class=" am-partial col-md-2 col-sm-3  d-none">' +
-									'<div class="form-group">'+
-						'<input type="number" class="form-control" placeholder="00">'+
-							'<label for="input" class="control-label">Free Count</label><i class="bar"></i>'+
-									'</div>'+
-'</div>	'+
-						
+		'<div class=" am-partial col-md-2 col-sm-3  d-none">' +
+		'<div class="form-group">' +
+		'<input type="number" class="form-control" placeholder="00">' +
+		'<label for="input" class="control-label">Free Count</label><i class="bar"></i>' +
+		'</div>' +
+		'</div>	' +
 
-							'<div class="col-md-1 col-sm-6 m-b--15 align-self-center">'+
-								'<div class="checkbox m-0">'+
-									'<label>'+
-										'<input type="checkbox" /><i class="helper"></i> Active'+
-											'</label>'+
-								'</div>'+
-							'</div>'+
-							'<div class="col-md-1 col-sm-6">'+
-								'<span class="delete-btn" onclick="deleteRowAmenities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>'+
-							'</div>'+
-						'</div>'
+
+		'<div class="col-md-1 col-sm-6 m-b--15 align-self-center">' +
+		'<div class="checkbox m-0">' +
+		'<label>' +
+		'<input type="checkbox" /><i class="helper"></i> Active' +
+		'</label>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-1 col-sm-6">' +
+		'<span class="delete-btn" onclick="deleteRowAmenities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>' +
+		'</div>' +
+		'</div>'
 	);
 }
 function deleteRowAmenities(that) {
@@ -426,44 +436,44 @@ function deleteRowAmenities(that) {
 //facilities upload section start
 function addFacilities() {
 	$('.facilities-upload').append(
-		'<div class="row facilities-upload__row">'+
-			'<div class=" col-md-3 col-sm-4 ">'+
-				'<div class="form-group">'+
-					'<input type="text" class="form-control" placeholder="Name">'+
-						'<label for="input" class="control-label">Facility</label><i class="bar"></i>'+
-									'	</div>'+
-				'</div>'+
-				'<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">'+
-					'<div class="form-group">'+
-						'<select class="form-control am-option" id="">'+
-							'<option value="1">0 to .5KM</option>'+
-							'<option value="2">.5KM to 1KM</option>'+
-							'<option value="3">1KM to 2KM</option>'+
-							'<option value="4">2KM to 3KM</option>'+
-							'<option value="5">3KM to 4KM</option>'+
-							'<option value="6">4KM to 5KM</option>'+
-							'<option value="7">5KM to 6KM</option>'+
-							'<option value="8">6KM to 7KM</option>'+
-							'<option value="9">7KM to 8KM</option>'+
-							'<option value="10">8KM to 9KM</option>'+
-							'<option value="11">9KM to 10KM</option>'+
-							'<option value="12">Above 10KM</option>'+
-						'</select>'+
-						'<label for="" class="control-label">Distance</label>'+
-						'<i class="bar"></i>'+
-					'</div>'+
-				'</div>'+
-				'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">'+
-					'<div class="checkbox m-0">'+
-						'<label>'+
-							'<input type="checkbox" /><i class="helper"></i> Active'+
-											'</label>'+
-					'</div>'+
-				'</div>'+
-				'<div class="col-md-1 col-sm-6">'+
-					'<span class="delete-btn" onclick="deleteRowFacilities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>'+
-				'</div>'+
-			'</div>'
+		'<div class="row facilities-upload__row">' +
+		'<div class=" col-md-3 col-sm-4 ">' +
+		'<div class="form-group">' +
+		'<input type="text" class="form-control" placeholder="Name">' +
+		'<label for="input" class="control-label">Facility</label><i class="bar"></i>' +
+		'	</div>' +
+		'</div>' +
+		'<div class="col-lg-3 col-md-3 col-sm-4 col-6 ">' +
+		'<div class="form-group">' +
+		'<select class="form-control am-option" id="">' +
+		'<option value="1">0 to .5KM</option>' +
+		'<option value="2">.5KM to 1KM</option>' +
+		'<option value="3">1KM to 2KM</option>' +
+		'<option value="4">2KM to 3KM</option>' +
+		'<option value="5">3KM to 4KM</option>' +
+		'<option value="6">4KM to 5KM</option>' +
+		'<option value="7">5KM to 6KM</option>' +
+		'<option value="8">6KM to 7KM</option>' +
+		'<option value="9">7KM to 8KM</option>' +
+		'<option value="10">8KM to 9KM</option>' +
+		'<option value="11">9KM to 10KM</option>' +
+		'<option value="12">Above 10KM</option>' +
+		'</select>' +
+		'<label for="" class="control-label">Distance</label>' +
+		'<i class="bar"></i>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-2 col-sm-6 m-b--15 align-self-center">' +
+		'<div class="checkbox m-0">' +
+		'<label>' +
+		'<input type="checkbox" /><i class="helper"></i> Active' +
+		'</label>' +
+		'</div>' +
+		'</div>' +
+		'<div class="col-md-1 col-sm-6">' +
+		'<span class="delete-btn" onclick="deleteRowFacilities(this)"><i class="fas fa-trash-alt btn-icon text-danger"></i></span>' +
+		'</div>' +
+		'</div>'
 	);
 }
 function deleteRowFacilities(that) {
@@ -537,54 +547,54 @@ $(function () {
 			//console.log($('#MonToFriCheck option:selected').val())
 			//console.log($('#MonToSatCheck option:selected').val())
 			//console.log($('#CustomCheck option:selected').val())
-		if ($('#AllTimeCheck option:selected').text() == "True") {
-			$('#AllTimeCheck').parents('label').find('[type=radio]').prop("checked", true);
-			$('#AllTimeCheck').parents('label').addClass('radio-active');
-		}
-		else if ($('#MonToFriCheck option:selected').text() == "True") {
-			$('#MonToFriCheck').parents('label').find('[type=radio]').prop("checked", true);
-			$('#MonToFriCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-			$('#MonToFriCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-			$('#MonToFriCheck').parents('.radio').siblings().find('input').prop("checked", true);
-			$('#MonToFriCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-			$('#MonToFriCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-			$('#MonToFriCheck').parents('label').addClass('radio-active');
-		}
-		else if ($('#MonToSatCheck option:selected').text() == "True") {
-			$('#MonToSatCheck').parents('label').find('[type=radio]').prop("checked", true);
-			$('#MonToSatCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-			$('#MonToSatCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-			$('#MonToSatCheck').parents('.radio').siblings().find('input').prop("checked", true);
-			$('#MonToSatCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-			$('#MonToSatCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-			$('#MonToSatCheck').parents('label').addClass('radio-active');
-		}
-		else if ($('#CustomCheck option:selected').text() == "True") {
-			$('#CustomCheck').parents('label').find('[type=radio]').prop("checked", true);
-			$('#CustomCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
-			$('#CustomCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
-			$('#CustomCheck').parents('.radio').siblings().find('input').prop("checked", true);
-			$('#CustomCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
-			$('#CustomCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
-			$('#CustomCheck').parents('label').addClass('radio-active');
-		}
+			if ($('#AllTimeCheck option:selected').text() == "True") {
+				$('#AllTimeCheck').parents('label').find('[type=radio]').prop("checked", true);
+				$('#AllTimeCheck').parents('label').addClass('radio-active');
+			}
+			else if ($('#MonToFriCheck option:selected').text() == "True") {
+				$('#MonToFriCheck').parents('label').find('[type=radio]').prop("checked", true);
+				$('#MonToFriCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+				$('#MonToFriCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+				$('#MonToFriCheck').parents('.radio').siblings().find('input').prop("checked", true);
+				$('#MonToFriCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+				$('#MonToFriCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+				$('#MonToFriCheck').parents('label').addClass('radio-active');
+			}
+			else if ($('#MonToSatCheck option:selected').text() == "True") {
+				$('#MonToSatCheck').parents('label').find('[type=radio]').prop("checked", true);
+				$('#MonToSatCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+				$('#MonToSatCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+				$('#MonToSatCheck').parents('.radio').siblings().find('input').prop("checked", true);
+				$('#MonToSatCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+				$('#MonToSatCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+				$('#MonToSatCheck').parents('label').addClass('radio-active');
+			}
+			else if ($('#CustomCheck option:selected').text() == "True") {
+				$('#CustomCheck').parents('label').find('[type=radio]').prop("checked", true);
+				$('#CustomCheck').parents('.radio').siblings().removeClass('cursor-no-drop');
+				$('#CustomCheck').parents('.radio').siblings().children().removeClass('pointer-event-none');
+				$('#CustomCheck').parents('.radio').siblings().find('input').prop("checked", true);
+				$('#CustomCheck').parents('.radio').siblings().find('input').parents('.sch-checkbox').siblings('.sch-time').css('display', 'block');
+				$('#CustomCheck').parents('.radio').siblings().find('input').siblings('strong').html('Open');
+				$('#CustomCheck').parents('label').addClass('radio-active');
+			}
 
-		//display view in the scheduler section
-		if ($('#Display_view #AllTimeCheck option:selected').text() == "True") {
-			$('.sch-2, .sch-3, .sch-4').css('display', 'none');
-			$('.sch-1').css('display', 'block');
-		}
-		else if ($('#Display_view #MonToFriCheck option:selected').text() == "True") {
-			$('.sch-1, .sch-3, .sch-4').css('display', 'none');
-			$('.sch-2').css('display', 'block');
-		}
-		else if ($('#Display_view #MonToSatCheck option:selected').text() == "True") {
-			$('.sch-1, .sch-2, .sch-4').css('display', 'none');
-			$('.sch-3').css('display', 'block');
-		}
-		else if ($('#Display_view #CustomCheck option:selected').text() == "True") {
-			$('.sch-1, .sch-2, .sch-3').css('display', 'none');
-			$('.sch-4').css('display', 'block');
+			//display view in the scheduler section
+			if ($('#Display_view #AllTimeCheck option:selected').text() == "True") {
+				$('.sch-2, .sch-3, .sch-4').css('display', 'none');
+				$('.sch-1').css('display', 'block');
+			}
+			else if ($('#Display_view #MonToFriCheck option:selected').text() == "True") {
+				$('.sch-1, .sch-3, .sch-4').css('display', 'none');
+				$('.sch-2').css('display', 'block');
+			}
+			else if ($('#Display_view #MonToSatCheck option:selected').text() == "True") {
+				$('.sch-1, .sch-2, .sch-4').css('display', 'none');
+				$('.sch-3').css('display', 'block');
+			}
+			else if ($('#Display_view #CustomCheck option:selected').text() == "True") {
+				$('.sch-1, .sch-2, .sch-3').css('display', 'none');
+				$('.sch-4').css('display', 'block');
 			}
 		}, 1000);
 	});

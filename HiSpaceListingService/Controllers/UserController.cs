@@ -172,5 +172,31 @@ namespace HiSpaceListingService.Controllers
 			return CreatedAtAction("GetUsers", user);
 		}
 
+		//GET: api/user/ApproveByUserId/1/completed
+		[HttpGet("ApproveByUserId/{UserId}/{Status}")]
+		public ActionResult<bool> ApproveByUserId(int UserId, string Status)
+		{
+			bool result = true;
+			if (UserId == 0)
+			{
+				result = false;
+			}
+			try
+			{
+				var user = _context.Users.SingleOrDefault(d => d.UserId == UserId);
+				if (user != null)
+				{
+					user.UserStatus = Status;
+					_context.Entry(user).State = EntityState.Modified;
+					_context.SaveChangesAsync();
+				}
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				result = false;
+			}
+			return result;
+		}
+
 	}
 }

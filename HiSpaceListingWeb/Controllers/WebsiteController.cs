@@ -16,23 +16,17 @@ namespace HiSpaceListingWeb.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
-		}
-
-		public ActionResult Landing()
-		{
+			SetSessionVariables();
 			return View();
 		}
 		public ActionResult About()
 		{
+			SetSessionVariables();
 			return View();
 		}
 		public ActionResult Contact()
 		{
-			return View();
-		}
-		public ActionResult PropertyGrid()
-		{
+			SetSessionVariables();
 			return View();
 		}
 		public ActionResult PropertyList()
@@ -103,10 +97,7 @@ namespace HiSpaceListingWeb.Controllers
 		}
 		public ActionResult PropertyLister()
 		{
-			return View();
-		}
-		public ActionResult PropertyListMap()
-		{
+			SetSessionVariables();
 			return View();
 		}
 		public ActionResult PropertyDetail(int ListingID)

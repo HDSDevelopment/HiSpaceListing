@@ -89,6 +89,7 @@ namespace HiSpaceListingWeb.Utilities
 		public string ApiUserAddUser = "AddUser/";
 		public string ApiUserUpdateUser = "UpdateUser/";
 		public string ApiUserDeleteUser = "DeleteUser/";
+		public string ApiUserApproveByUserId = "ApproveByUserId/";
 
 		#endregion User Controller
 

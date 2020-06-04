@@ -19,94 +19,9 @@ namespace HiSpaceListingWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-		public ActionResult AddImage(int id)
-		{
 			SetSessionVariables();
-			//ListingImages model = new ListingImages
-			//{
-			//	ListingId = id
-			//};
-			//ListListingImageViewModel vModel = new ListListingImageViewModel();
-			//using (var client = new HttpClient())
-			//{
-			//	client.BaseAddress = new Uri(Common.Instance.ApiAddonsControllerName);
-			//	//HTTP GET
-			//	var responseTask = client.GetAsync(Common.Instance.ApiAddonsGetImagesByListingId + id);
-			//	responseTask.Wait();
-
-			//	var result = responseTask.Result;
-			//	if (result.IsSuccessStatusCode)
-			//	{
-			//		var readTask = result.Content.ReadAsAsync<IList<ListingImageViewModel>>();
-			//		readTask.Wait();
-
-			//		vModel.ListingImageViewModel = readTask.Result.ToList();
-			//	}
-			//	else //web api sent error response 
-			//	{
-			//		//log response status here..
-
-			//		//vModel = Enumerable.Empty<ListingImageViewModel>();
-
-			//		ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
-			//	}
-			//}
-			//return View(clLocations);
-			return PartialView("_AddImagePartialView");
-		}
-
-		//public ActionResult CreateImage(List<ListListingImageViewModel> model, IFormCollection formCollection)
-		//{
-		//	SetSessionVariables();
-		//	ListListingImageViewModel vModel = new ListListingImageViewModel();
-		//	return PartialView("_AddImagePartialView", vModel);
-		//}
-
-		
-
-		public ActionResult AddAmenities(int id)
-		{
-			Amenity model = new Amenity
-			{
-				ListingId = id
-			};
-			return PartialView("_AddAmenitiesPartialView", model);
-		}
-
-		public ActionResult AddFacilities(int id)
-		{
-			Facility model = new Facility
-			{
-				ListingId = id
-			};
-			return PartialView("_AddFacilitiesPartialView", model);
-		}
-
-		public ActionResult AddProject(int id)
-		{
-			REProfessionalMaster model = new REProfessionalMaster
-			{
-				ListingId = id
-			};
-			return PartialView("_AddProjectPartialView", model);
-		}
-
-		//public IActionResult ListingTable()
-		//{
-		//	SetSessionVariables();
-		//	if (ViewBag.UserId != null)
-		//	{
-		//		return View();
-		//	}
-		//	else
-		//	{
-		//		return View();
-		//	}
-
-		//}
+			return View();
+        }
 
 		public ActionResult ListingTable(int UserID, int UserType)
 		{

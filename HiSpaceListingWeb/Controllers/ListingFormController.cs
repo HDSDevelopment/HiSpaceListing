@@ -90,7 +90,7 @@ namespace HiSpaceListingWeb.Controllers
 					var result = postTask.Result;
 					if (result.IsSuccessStatusCode)
 					{
-						return RedirectToAction("ListingTable", "Listing", new { UserID = model.UserId });
+						return RedirectToAction("ListingTable", "Listing", new { UserID = model.UserId, UserType = GetSessionObject().UserType});
 					}
 				}
 
