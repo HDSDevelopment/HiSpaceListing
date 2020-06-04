@@ -53,7 +53,9 @@ namespace HiSpaceListingWeb.Controllers
 						vModel.MonToSatCheck = false;
 						vModel.CustomCheck = false;
 					}
-					else if ((vModel.WorkingHours.Is24 == false) && (vModel.WorkingHours.MonAvail == true) && (vModel.WorkingHours.TueAvail == true) && (vModel.WorkingHours.WedAvail == true) && (vModel.WorkingHours.ThuAvail == true) && (vModel.WorkingHours.FriAvail == true) && (vModel.WorkingHours.SatAvail == false) && (vModel.WorkingHours.SunAvail == false) && (new[] { vModel.WorkingHours.MonOpen, vModel.WorkingHours.TueOpen, vModel.WorkingHours.WedOpen, vModel.WorkingHours.ThuOpen, vModel.WorkingHours.FriOpen }.Contains(vModel.WorkingHours.MonOpen)) && (new[] { vModel.WorkingHours.MonClose, vModel.WorkingHours.TueClose, vModel.WorkingHours.WedClose, vModel.WorkingHours.ThuClose, vModel.WorkingHours.FriClose }.Contains(vModel.WorkingHours.MonClose)))
+					//else if ((vModel.WorkingHours.Is24 == false) && (vModel.WorkingHours.MonAvail == true) && (vModel.WorkingHours.TueAvail == true) && (vModel.WorkingHours.WedAvail == true) && (vModel.WorkingHours.ThuAvail == true) && (vModel.WorkingHours.FriAvail == true) && (vModel.WorkingHours.SatAvail == false) && (vModel.WorkingHours.SunAvail == false) && (new[] { vModel.WorkingHours.MonOpen, vModel.WorkingHours.TueOpen, vModel.WorkingHours.WedOpen, vModel.WorkingHours.ThuOpen, vModel.WorkingHours.FriOpen }.Contains(vModel.WorkingHours.MonOpen)) && (new[] { vModel.WorkingHours.MonClose, vModel.WorkingHours.TueClose, vModel.WorkingHours.WedClose, vModel.WorkingHours.ThuClose, vModel.WorkingHours.FriClose }.Contains(vModel.WorkingHours.MonClose)))	
+						else if ((vModel.WorkingHours.Is24 == false) && (vModel.WorkingHours.MonAvail == true) && (vModel.WorkingHours.TueAvail == true) && (vModel.WorkingHours.WedAvail == true) && (vModel.WorkingHours.ThuAvail == true) && (vModel.WorkingHours.FriAvail == true) && (vModel.WorkingHours.SatAvail == false) && (vModel.WorkingHours.SunAvail == false) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.TueOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.WedOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.ThuOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.FriOpen)
+						 && (vModel.WorkingHours.MonClose == vModel.WorkingHours.TueClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.WedClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.ThuClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.FriClose))
 					{
 						vModel.AllTimeCheck = false;
 						vModel.MonToFriCheck = true;
@@ -62,7 +64,8 @@ namespace HiSpaceListingWeb.Controllers
 						vModel.MonToFriOpen = vModel.WorkingHours.MonOpen;
 						vModel.MonToFriClose = vModel.WorkingHours.MonClose;
 					}
-					else if ((vModel.WorkingHours.Is24 == false) && (vModel.WorkingHours.MonAvail == true) && (vModel.WorkingHours.TueAvail == true) && (vModel.WorkingHours.WedAvail == true) && (vModel.WorkingHours.ThuAvail == true) && (vModel.WorkingHours.FriAvail == true) && (vModel.WorkingHours.SatAvail == true) && (vModel.WorkingHours.SunAvail == false) && (new[] { vModel.WorkingHours.MonOpen, vModel.WorkingHours.TueOpen, vModel.WorkingHours.WedOpen, vModel.WorkingHours.ThuOpen, vModel.WorkingHours.FriOpen }.Contains(vModel.WorkingHours.MonOpen)) && (new[] { vModel.WorkingHours.MonClose, vModel.WorkingHours.TueClose, vModel.WorkingHours.WedClose, vModel.WorkingHours.ThuClose, vModel.WorkingHours.FriClose }.Contains(vModel.WorkingHours.MonClose)))
+					else if ((vModel.WorkingHours.Is24 == false) && (vModel.WorkingHours.MonAvail == true) && (vModel.WorkingHours.TueAvail == true) && (vModel.WorkingHours.WedAvail == true) && (vModel.WorkingHours.ThuAvail == true) && (vModel.WorkingHours.FriAvail == true) && (vModel.WorkingHours.SatAvail == true) && (vModel.WorkingHours.SunAvail == false) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.TueOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.WedOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.ThuOpen) && (vModel.WorkingHours.MonOpen == vModel.WorkingHours.FriOpen)
+						 && (vModel.WorkingHours.MonClose == vModel.WorkingHours.TueClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.WedClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.ThuClose) && (vModel.WorkingHours.MonClose == vModel.WorkingHours.FriClose))
 					{
 						vModel.AllTimeCheck = false;
 						vModel.MonToFriCheck = false;
@@ -81,7 +84,12 @@ namespace HiSpaceListingWeb.Controllers
 						vModel.CustomCheck = true;
 					}
 				}
+				else
+				{
+
+				}
 			}
+			
 
 			return PartialView("_AddHoursPartialView", vModel);
 		}
@@ -186,6 +194,34 @@ namespace HiSpaceListingWeb.Controllers
 				else if (model.CustomCheck == true)
 				{
 					model.WorkingHours.Is24 = false;
+					if(model.WorkingHours.MonAvail == null)
+					{
+						model.WorkingHours.MonAvail = false;
+					}
+					if (model.WorkingHours.TueAvail == null)
+					{
+						model.WorkingHours.TueAvail = false;
+					}
+					if (model.WorkingHours.WedAvail == null)
+					{
+						model.WorkingHours.WedAvail = false;
+					}
+					if (model.WorkingHours.ThuAvail == null)
+					{
+						model.WorkingHours.ThuAvail = false;
+					}
+					if (model.WorkingHours.FriAvail == null)
+					{
+						model.WorkingHours.FriAvail = false;
+					}
+					if (model.WorkingHours.SatAvail == null)
+					{
+						model.WorkingHours.SatAvail = false;
+					}
+					if (model.WorkingHours.SunAvail == null)
+					{
+						model.WorkingHours.SunAvail = false;
+					}
 				}
 
 				using (var client = new HttpClient())

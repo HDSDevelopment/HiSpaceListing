@@ -2180,3 +2180,13 @@ form.md-form .checkbox.checbox-switch-small {
 			box-shadow: none;
 			text-shadow: none;
 		}
+.alert-text{
+	text-align: center;
+}
+	.alert-text span {
+		padding: 10px;
+		border-radius: 25px;
+		color: #fff;
+		font-weight: 600;
+		font-size: 12px;
+	}

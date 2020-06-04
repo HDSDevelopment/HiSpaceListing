@@ -36,7 +36,7 @@ namespace HiSpaceListingService.Controllers
 		[HttpGet("GetWoringHoursByListingID/{ListingId}")]
 		public async Task<ActionResult<WorkingHours>> GetWoringHoursByListingID(int ListingId)
 		{
-			var workingHours = await _context.WorkingHourss.FindAsync(ListingId);
+			var workingHours = await _context.WorkingHourss.FirstOrDefaultAsync(d => d.ListingId == ListingId);
 
 			if (workingHours == null)
 			{
