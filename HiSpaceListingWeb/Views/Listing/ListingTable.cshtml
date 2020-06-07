@@ -86,6 +86,7 @@
 									@Html.HiddenFor(m => m.User.Doc_CompanyLogo)
 									@Html.HiddenFor(m => m.User.Doc_PANCopy)
 									@Html.HiddenFor(m => m.User.Doc_RCCopy)
+									@Html.HiddenFor(m => m.User.Password)
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="text" class="form-control" placeholder="Company Name">*@
 										@Html.EditorFor(m => m.User.CompanyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Name" } })
@@ -101,35 +102,19 @@
 										@Html.EditorFor(m => m.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Email" } })
 										<label for="input" class="control-label">Email*</label><i class="bar"></i>
 									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="password" class="form-control" placeholder="password">*@
+									@*<div class="form-group col-md-3 col-sm-6">
 										@Html.EditorFor(m => m.User.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Password" } })
 										<label for="input" class="control-label">Password*</label><i class="bar"></i>
-									</div>
+									</div>*@
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="text" class="form-control" placeholder="www.abc.com">*@
 										@Html.EditorFor(m => m.User.Website, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Website" } })
 										<label for="input" class="control-label">Web Address</label><i class="bar"></i>
 									</div>
-									<div class="form-group col-md-3 col-sm-6">
+									<div class="form-group col-md-6 col-sm-12">
 										@*<input type="text" class="form-control" placeholder="No.00, street">*@
 										@Html.EditorFor(m => m.User.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Address" } })
-										<label for="input" class="control-label">Address Line</label><i class="bar"></i>
-									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="text" class="form-control" placeholder="city">*@
-										@Html.EditorFor(m => m.User.City, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter City" } })
-										<label for="input" class="control-label">City</label><i class="bar"></i>
-									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="text" class="form-control" placeholder="state">*@
-										@Html.EditorFor(m => m.User.State, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter State" } })
-										<label for="input" class="control-label">State</label><i class="bar"></i>
-									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="text" class="form-control" placeholder="country">*@
-										@Html.EditorFor(m => m.User.Country, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Country" } })
-										<label for="input" class="control-label">Country</label><i class="bar"></i>
+										<label for="input" class="control-label">Complete Address</label><i class="bar"></i>
 									</div>
 									<div class="form-group col-md-3 col-sm-6">
 										@*<input type="number" class="form-control" placeholder="postal code">*@
@@ -166,65 +151,67 @@
 										@Html.EditorFor(m => m.User.UAN, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter UAN" } })
 										<label for="input" class="control-label">UAN</label><i class="bar"></i>
 									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="file" class="form-control" accept="image/*">*@
-										@*@Html.EditorFor(m => m.User.Doc_PANCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-						<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
-										<p class="label-head mb-10">PAN Certificate</p>
-										@if (Model.User.Doc_PANCopy != null)
-										{
+									<div class="row">
+										<div class="form-group col-md-3 col-sm-6">
+											@*<input type="file" class="form-control" accept="image/*">*@
+											@*@Html.EditorFor(m => m.User.Doc_PANCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+			<label for="input" class="control-label">Upload PAN</label><i class="bar"></i>*@
+											<p class="label-head mb-10">PAN Certificate</p>
+											@if (Model.User.Doc_PANCopy != null)
+											{
 
-											<div class="gallery">
+												<div class="gallery">
+													@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
+													<a href="@Url.Content(Model.User.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
+													<p><a href="@Url.Content(Model.User.Doc_PANCopy)" target="_blank">PAN</a></p>
+												</div>
+											}
+											else
+											{
 												@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
-												<p><a href="@Url.Content(Model.User.Doc_PANCopy)" target="_blank">PAN</a></p>
-											</div>
-										}
-										else
-										{
-											@Html.EditorFor(m => m.PANCopy, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
-										}
-									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="file" class="form-control" accept="image/*">*@
-										@*@Html.EditorFor(m => m.User.Doc_RCCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-						<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
-										<p class="label-head mb-10">Registration Certificate</p>
-										@if (Model.User.Doc_RCCopy != null)
-										{
+												<p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
+											}
+										</div>
+										<div class="form-group col-md-3 col-sm-6">
+											@*<input type="file" class="form-control" accept="image/*">*@
+											@*@Html.EditorFor(m => m.User.Doc_RCCopy, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+			<label for="input" class="control-label">Upload Registration</label><i class="bar"></i>*@
+											<p class="label-head mb-10">Registration Certificate</p>
+											@if (Model.User.Doc_RCCopy != null)
+											{
 
-											<div class="gallery">
+												<div class="gallery">
+													@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+													<a href="@Url.Content(Model.User.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
+													<p><a href="@Url.Content(Model.User.Doc_RCCopy)" target="_blank">RCCopy</a></p>
+												</div>
+											}
+											else
+											{
 												@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.User.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
-												<p><a href="@Url.Content(Model.User.Doc_RCCopy)" target="_blank">RCCopy</a></p>
-											</div>
-										}
-										else
-										{
-											@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
-										}
-									</div>
-									<div class="form-group col-md-3 col-sm-6">
-										@*<input type="file" class="form-control" accept="image/*">*@
-										@*@Html.EditorFor(m => m.User.Doc_CompanyLogo, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
-						<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
-										<p class="label-head mb-10">Logo</p>
-										@if (Model.User.Doc_CompanyLogo != null)
-										{
+												<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+											}
+										</div>
+										<div class="form-group col-md-3 col-sm-6">
+											@*<input type="file" class="form-control" accept="image/*">*@
+											@*@Html.EditorFor(m => m.User.Doc_CompanyLogo, new { htmlAttributes = new { @class = "form-control", type = "file", accept = "image/*" } })
+			<label for="input" class="control-label">Company Logo</label><i class="bar"></i>*@
+											<p class="label-head mb-10">Logo</p>
+											@if (Model.User.Doc_CompanyLogo != null)
+											{
 
-											<div class="gallery">
+												<div class="gallery">
+													@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
+													<a href="@Url.Content(Model.User.Doc_CompanyLogo)" class="view1"><img src="@Url.Content(Model.User.Doc_CompanyLogo)" class="img-fluid" alt="Logo"></a>
+													<p><a href="@Url.Content(Model.User.Doc_CompanyLogo)" target="_blank">Logo</a></p>
+												</div>
+											}
+											else
+											{
 												@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
-												<a href="@Url.Content(Model.User.Doc_CompanyLogo)" class="view1"><img src="@Url.Content(Model.User.Doc_CompanyLogo)" class="img-fluid" alt="Logo"></a>
-												<p><a href="@Url.Content(Model.User.Doc_CompanyLogo)" target="_blank">Logo</a></p>
-											</div>
-										}
-										else
-										{
-											@Html.EditorFor(m => m.Logo, new { accept = "image/*", @class = "form-control-file" })
-											<p class="font-15 text-danger">Logo Not Uploaded!</p>
-										}
+												<p class="font-15 text-danger">Logo Not Uploaded!</p>
+											}
+										</div>
 									</div>
 									<div class="col-md-12 col-sm-12">
 										<div class="checkbox m-0">

@@ -12,5 +12,6 @@ namespace HiSpaceListingService.ViewModel
 		public User SpaceUser { get; set; }
 		public int AvailableAmenities { get; set; }
 		public int AvailableFacilities { get; set; }
+		public int AvailableProjects { get; set; }
 	}
 }

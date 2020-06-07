@@ -46,7 +46,7 @@
 											<div><i class="fas fa-city"></i><b>Total List </b><span>(@Model.ListerPropertyCount)</span></div>
 										</div>
 										<div class="lister-btn">
-											<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website")">See Details</a>
+											<a class="btn btn-sm btn-primary" href="@Url.Action( "PropertyLister","Website",new { UserID = Model.User.UserId})">See Details</a>
 										</div>
 									</div>
 								</div>

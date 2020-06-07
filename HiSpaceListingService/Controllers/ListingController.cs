@@ -196,9 +196,38 @@ namespace HiSpaceListingService.Controllers
 				property.SpaceUser = _context.Users.SingleOrDefault(d => d.UserId == item.UserId);
 				property.AvailableAmenities = (from PA in _context.Amenitys where PA.ListingId == item.ListingId && PA.Status == true select new Amenity() { AmenityId = PA.AmenityId, Name = PA.Name}).ToList().Count();
 				property.AvailableFacilities = (from PF in _context.Facilitys where PF.ListingId == item.ListingId && PF.Status == true select new Facility() {  FacilityId = PF.FacilityId, Name = PF.Name }).ToList().Count();
+				property.AvailableProjects = (from PF in _context.REProfessionalMasters where PF.ListingId == item.ListingId && PF.Status == true select new REProfessionalMaster() { REProfessionalMasterId = PF.REProfessionalMasterId, ProjectName = PF.ProjectName }).ToList().Count();
 
 				vModel.Add(property);
 			}
+			
+			return vModel;
+		}
+
+		/// <summary>
+		/// Get property list
+		/// </summary>
+		/// <returns>The list of Properties.</returns>
+		// GET: api/Listing/GetPropertyListByUserID
+		[HttpGet("GetPropertyListByUserID/{UserID}")]
+		public async Task<ActionResult<PropertyListListerResponse>> GetPropertyListByUserID(int UserID)
+		{
+			PropertyListListerResponse vModel = new PropertyListListerResponse();
+			var properties = await _context.Listings.Where(m => m.Status == true && m.UserId == UserID).OrderByDescending(d => d.CreatedDateTime).ToListAsync();
+
+			foreach (var item in properties)
+			{
+				PropertyDetailResponse property = new PropertyDetailResponse();
+				property.SpaceListing = item;
+				property.SpaceUser = _context.Users.SingleOrDefault(d => d.UserId == item.UserId);
+				property.AvailableAmenities = (from PA in _context.Amenitys where PA.ListingId == item.ListingId && PA.Status == true select new Amenity() { AmenityId = PA.AmenityId, Name = PA.Name }).ToList().Count();
+				property.AvailableFacilities = (from PF in _context.Facilitys where PF.ListingId == item.ListingId && PF.Status == true select new Facility() { FacilityId = PF.FacilityId, Name = PF.Name }).ToList().Count();
+				property.AvailableProjects = (from PF in _context.REProfessionalMasters where PF.ListingId == item.ListingId && PF.Status == true select new REProfessionalMaster() { REProfessionalMasterId = PF.REProfessionalMasterId, ProjectName = PF.ProjectName }).ToList().Count();
+
+				vModel.PropertyDetail.Add(property);
+			}
+			vModel.SpaceUser = _context.Users.SingleOrDefault(m => m.UserId == UserID);
+			vModel.PropertyCount = _context.Listings.Where(d => d.UserId == UserID && d.Status == true).ToList().Count();
 
 			return vModel;
 		}
